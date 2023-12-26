@@ -48020,5 +48020,2971 @@ def predict_target():
 if __name__ == '__main__':
     app.run(debug=True)
 ```
+Stream language
+
+// Token definition
+enum TokenType { BEG, COLON, NUMERIC, EQUAL, OPEN_PAREN, CLOSE_PAREN, IMPLEMENT_TASK, I };
+
+struct Token {
+    enum TokenType type;
+    char* lexeme;
+};
+
+// Lexer
+struct Token* lexer(char* source);
+
+// Parser
+void parse(struct Token* tokens);
+
+// Compiler
+void generateCode(struct ASTNode* ast);
+
+// Main program
+int main() {
+    char* sourceCode = "BEG: 1A=(IMPLEMENT-TASK::PRINT_HELLO-WORLD)I-1";
+    struct Token* tokens = lexer(sourceCode);
+    parse(tokens);
+
+    // Continue with code generation and compilation steps
+    // ...
+
+    return 0;
+}
+
+// Token definition
+enum TokenType { BEG, COLON, IDENTIFIER, EQUAL, OPEN_PAREN, CLOSE_PAREN, COMMAND, TASK_MARKER };
+
+struct Token {
+    enum TokenType type;
+    char* lexeme;
+};
+
+// Lexer
+struct Token* lexer(char* source);
+
+// Parser
+void parse(struct Token* tokens);
+
+// Compiler
+void generateCode(struct ASTNode* ast);
+
+// Main program
+int main() {
+    char* sourceCode = "BEG: 1A=(IMPLEMENT-TASK::PRINT_HELLO-WORLD)I-1";
+    struct Token* tokens = lexer(sourceCode);
+    parse(tokens);
+
+    // Continue with code generation and compilation steps
+    // ...
+
+    return 0;
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Token definition
+enum TokenType { BEG, COLON, IDENTIFIER, EQUAL, OPEN_PAREN, CLOSE_PAREN, COMMAND, TASK_MARKER, END };
+
+struct Token {
+    enum TokenType type;
+    char* lexeme;
+};
+
+// Lexer
+struct Token* lexer(char* source) {
+    // Simplified lexer for demonstration purposes
+    struct Token* tokens = malloc(sizeof(struct Token) * 100);
+    // Tokenize the source based on spaces
+    char* token = strtok(source, " ");
+    int i = 0;
+
+    while (token != NULL) {
+        tokens[i].lexeme = token;
+
+        // Identify token type
+        if (strcmp(token, "BEG:") == 0) tokens[i].type = BEG;
+        else if (strcmp(token, ":") == 0) tokens[i].type = COLON;
+        else if (strcmp(token, "I-1") == 0) tokens[i].type = END;
+        else if (strcmp(token, "=") == 0) tokens[i].type = EQUAL;
+        else if (strcmp(token, "(") == 0) tokens[i].type = OPEN_PAREN;
+        else if (strcmp(token, ")") == 0) tokens[i].type = CLOSE_PAREN;
+        else if (strstr(token, "TASK::") != NULL) tokens[i].type = COMMAND;
+        else if (isalpha(token[0]) && isdigit(token[1])) tokens[i].type = IDENTIFIER;
+
+        i++;
+        token = strtok(NULL, " ");
+    }
+
+    tokens[i].type = END;  // Mark the end of tokens
+    return tokens;
+}
+
+// Parser
+void parse(struct Token* tokens) {
+    // Simplified parser for demonstration purposes
+    int i = 0;
+    while (tokens[i].type != END) {
+        switch (tokens[i].type) {
+            case BEG:
+                printf("Start/Attention\n");
+                break;
+            case IDENTIFIER:
+                printf("Task Identifier: %s\n", tokens[i].lexeme);
+                break;
+            case COLON:
+                printf("Command is coming\n");
+                break;
+            case COMMAND:
+                printf("Command: %s\n", tokens[i].lexeme);
+                break;
+            case EQUAL:
+                printf("Is\n");
+                break;
+            case OPEN_PAREN:
+                printf("Specify what is being done\n");
+                break;
+            case CLOSE_PAREN:
+                printf("One task is being done\n");
+                break;
+            case END:
+                printf("End\n");
+                break;
+            default:
+                printf("Unknown token\n");
+                break;
+        }
+        i++;
+    }
+}
+
+// Main program
+int main() {
+    char* sourceCode = "BEG: 1A=(IMPLEMENT-TASK::PRINT_HELLO-WORLD)I-1";
+    struct Token* tokens = lexer(sourceCode);
+    parse(tokens);
+
+    // Continue with code generation and compilation steps
+    // ...
+
+    free(tokens);
+    return 0;
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Token definition
+enum TokenType { BEG, COLON, IDENTIFIER, EQUAL, OPEN_PAREN, CLOSE_PAREN, COMMAND, TASK_MARKER, END };
+
+struct Token {
+    enum TokenType type;
+    char* lexeme;
+};
+
+// Lexer
+struct Token* lexer(char* source) {
+    struct Token* tokens = malloc(sizeof(struct Token) * 100);
+    char* token = strtok(source, " ");
+    int i = 0;
+
+    while (token != NULL) {
+        tokens[i].lexeme = token;
+
+        if (strcmp(token, "BEG:") == 0) tokens[i].type = BEG;
+        else if (strcmp(token, ":") == 0) tokens[i].type = COLON;
+        else if (strcmp(token, "I-1") == 0) tokens[i].type = END;
+        else if (strcmp(token, "=") == 0) tokens[i].type = EQUAL;
+        else if (strcmp(token, "(") == 0) tokens[i].type = OPEN_PAREN;
+        else if (strcmp(token, ")") == 0) tokens[i].type = CLOSE_PAREN;
+        else if (strstr(token, "TASK::") != NULL) tokens[i].type = COMMAND;
+        else if (isalpha(token[0]) && isdigit(token[1])) tokens[i].type = IDENTIFIER;
+
+        i++;
+        token = strtok(NULL, " ");
+    }
+
+    tokens[i].type = END;
+    return tokens;
+}
+
+// Parser
+void parse(struct Token* tokens) {
+    int i = 0;
+    while (tokens[i].type != END) {
+        switch (tokens[i].type) {
+            case BEG:
+                printf("Attention: ");
+                break;
+            case IDENTIFIER:
+                printf("Task %s: ", tokens[i].lexeme);
+                break;
+            case COLON:
+                printf("Command: ");
+                break;
+            case COMMAND:
+                printf("%s ", tokens[i].lexeme);
+                break;
+            case EQUAL:
+                printf("is ");
+                break;
+            case OPEN_PAREN:
+                printf("doing ");
+                break;
+            case CLOSE_PAREN:
+                printf(" (Task complete)\n");
+                break;
+            default:
+                break;
+        }
+        i++;
+    }
+}
+
+// Main program
+int main() {
+    char* sourceCode = "BEG: 1A=(IMPLEMENT-TASK::PRINT_HELLO-WORLD)I-1";
+    struct Token* tokens = lexer(sourceCode);
+    parse(tokens);
+
+    free(tokens);
+    return 0;
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Token definition
+enum TokenType { BEG, COLON, IDENTIFIER, EQUAL, OPEN_PAREN, CLOSE_PAREN, COMMAND, TASK_MARKER, END };
+
+struct Token {
+    enum TokenType type;
+    char* lexeme;
+};
+
+// Lexer
+struct Token* lexer(char* source) {
+    struct Token* tokens = malloc(sizeof(struct Token) * 100);
+    char* token = strtok(source, " ");
+    int i = 0;
+
+    while (token != NULL) {
+        tokens[i].lexeme = token;
+
+        if (strcmp(token, "BEG:") == 0) tokens[i].type = BEG;
+        else if (strcmp(token, ":") == 0) tokens[i].type = COLON;
+        else if (strcmp(token, "I-1") == 0) tokens[i].type = END;
+        else if (strcmp(token, "=") == 0) tokens[i].type = EQUAL;
+        else if (strcmp(token, "(") == 0) tokens[i].type = OPEN_PAREN;
+        else if (strcmp(token, ")") == 0) tokens[i].type = CLOSE_PAREN;
+        else if (strstr(token, "TASK::") != NULL) tokens[i].type = COMMAND;
+        else if (isalpha(token[0]) && isdigit(token[1])) tokens[i].type = IDENTIFIER;
+
+        i++;
+        token = strtok(NULL, " ");
+    }
+
+    tokens[i].type = END;
+    return tokens;
+}
+
+// Parser
+void parse(struct Token* tokens) {
+    int i = 0;
+    while (tokens[i].type != END) {
+        switch (tokens[i].type) {
+            case BEG:
+                printf("Attention: ");
+                break;
+            case IDENTIFIER:
+                printf("Task %s: ", tokens[i].lexeme);
+                break;
+            case COLON:
+                printf("Command: ");
+                break;
+            case COMMAND:
+                printf("%s ", tokens[i].lexeme);
+                break;
+            case EQUAL:
+                printf("is ");
+                break;
+            case OPEN_PAREN:
+                printf("doing ");
+                break;
+            case CLOSE_PAREN:
+                printf(" (Task complete)\n");
+                break;
+            default:
+                break;
+        }
+        i++;
+    }
+}
+
+// Main program
+int main() {
+    char* sourceCode = "BEG: 1A=(IMPLEMENT-TASK::PRINT_HELLO-WORLD::SLEEP-5)I-1";
+    struct Token* tokens = lexer(sourceCode);
+    parse(tokens);
+
+    free(tokens);
+    return 0;
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Token definition
+enum TokenType { BEG, COLON, IDENTIFIER, EQUAL, OPEN_PAREN, CLOSE_PAREN, COMMAND, PARAMETER, TASK_MARKER, END };
+
+struct Token {
+    enum TokenType type;
+    char* lexeme;
+};
+
+// Lexer
+struct Token* lexer(char* source) {
+    struct Token* tokens = malloc(sizeof(struct Token) * 100);
+    char* token = strtok(source, " ");
+    int i = 0;
+
+    while (token != NULL) {
+        tokens[i].lexeme = token;
+
+        if (strcmp(token, "BEG:") == 0) tokens[i].type = BEG;
+        else if (strcmp(token, ":") == 0) tokens[i].type = COLON;
+        else if (strcmp(token, "I-1") == 0) tokens[i].type = END;
+        else if (strcmp(token, "=") == 0) tokens[i].type = EQUAL;
+        else if (strcmp(token, "(") == 0) tokens[i].type = OPEN_PAREN;
+        else if (strcmp(token, ")") == 0) tokens[i].type = CLOSE_PAREN;
+        else if (strstr(token, "TASK::") != NULL) tokens[i].type = COMMAND;
+        else if (isalpha(token[0]) && isdigit(token[1])) tokens[i].type = IDENTIFIER;
+        else if (isalpha(token[0])) tokens[i].type = PARAMETER;
+
+        i++;
+        token = strtok(NULL, " ");
+    }
+
+    tokens[i].type = END;
+    return tokens;
+}
+
+// Parser
+void parse(struct Token* tokens) {
+    int i = 0;
+    while (tokens[i].type != END) {
+        switch (tokens[i].type) {
+            case BEG:
+                printf("Attention: ");
+                break;
+            case IDENTIFIER:
+                printf("Task %s: ", tokens[i].lexeme);
+                break;
+            case COLON:
+                printf("Command: ");
+                break;
+            case COMMAND:
+                printf("%s ", tokens[i].lexeme);
+                break;
+            case PARAMETER:
+                printf("%s ", tokens[i].lexeme);
+                break;
+            case EQUAL:
+                printf("is ");
+                break;
+            case OPEN_PAREN:
+                printf("doing ");
+                break;
+            case CLOSE_PAREN:
+                printf(" (Task complete)\n");
+                break;
+            default:
+                break;
+        }
+        i++;
+    }
+}
+
+// Main program
+int main() {
+    char* sourceCode = "BEG: 1A=(IMPLEMENT-TASK::PRINT_HELLO-WORLD::SLEEP-5::PARAMETER-VALUE)I-1";
+    struct Token* tokens = lexer(sourceCode);
+    parse(tokens);
+
+    free(tokens);
+    return 0;
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Token definition
+enum TokenType { BEG, COLON, IDENTIFIER, EQUAL, OPEN_PAREN, CLOSE_PAREN, COMMAND, PARAMETER, TASK_MARKER, IF, ELSE, CONDITION, END };
+
+struct Token {
+    enum TokenType type;
+    char* lexeme;
+};
+
+// Lexer
+struct Token* lexer(char* source) {
+    struct Token* tokens = malloc(sizeof(struct Token) * 100);
+    char* token = strtok(source, " ");
+    int i = 0;
+
+    while (token != NULL) {
+        tokens[i].lexeme = token;
+
+        if (strcmp(token, "BEG:") == 0) tokens[i].type = BEG;
+        else if (strcmp(token, ":") == 0) tokens[i].type = COLON;
+        else if (strcmp(token, "I-1") == 0) tokens[i].type = END;
+        else if (strcmp(token, "=") == 0) tokens[i].type = EQUAL;
+        else if (strcmp(token, "(") == 0) tokens[i].type = OPEN_PAREN;
+        else if (strcmp(token, ")") == 0) tokens[i].type = CLOSE_PAREN;
+        else if (strstr(token, "TASK::") != NULL) tokens[i].type = COMMAND;
+        else if (isalpha(token[0]) && isdigit(token[1])) tokens[i].type = IDENTIFIER;
+        else if (isalpha(token[0])) tokens[i].type = PARAMETER;
+        else if (strcmp(token, "IF") == 0) tokens[i].type = IF;
+        else if (strcmp(token, "ELSE") == 0) tokens[i].type = ELSE;
+        else if (strcmp(token, "CONDITION") == 0) tokens[i].type = CONDITION;
+
+        i++;
+        token = strtok(NULL, " ");
+    }
+
+    tokens[i].type = END;
+    return tokens;
+}
+
+// Parser
+void parse(struct Token* tokens) {
+    int i = 0;
+    while (tokens[i].type != END) {
+        switch (tokens[i].type) {
+            case BEG:
+                printf("Attention: ");
+                break;
+            case IDENTIFIER:
+                printf("Task %s: ", tokens[i].lexeme);
+                break;
+            case COLON:
+                printf("Command: ");
+                break;
+            case COMMAND:
+                printf("%s ", tokens[i].lexeme);
+                break;
+            case PARAMETER:
+                printf("%s ", tokens[i].lexeme);
+                break;
+            case EQUAL:
+                printf("is ");
+                break;
+            case OPEN_PAREN:
+                printf("doing ");
+                break;
+            case CLOSE_PAREN:
+                printf(" (Task complete)\n");
+                break;
+            case IF:
+                printf("IF ");
+                break;
+            case ELSE:
+                printf("ELSE ");
+                break;
+            case CONDITION:
+                printf("CONDITION ");
+                break;
+            default:
+                break;
+        }
+        i++;
+    }
+}
+
+// Main program
+int main() {
+    char* sourceCode = "BEG: 1A=(IF CONDITION::PRINT_TRUE::ELSE::PRINT_FALSE)I-1";
+    struct Token* tokens = lexer(sourceCode);
+    parse(tokens);
+
+    free(tokens);
+    return 0;
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Token definition
+enum TokenType { BEG, COLON, IDENTIFIER, EQUAL, OPEN_PAREN, CLOSE_PAREN, COMMAND, PARAMETER, TASK_MARKER, IF, ELSE, CONDITION, IFF, END };
+
+struct Token {
+    enum TokenType type;
+    char* lexeme;
+};
+
+// Lexer
+struct Token* lexer(char* source) {
+    struct Token* tokens = malloc(sizeof(struct Token) * 100);
+    char* token = strtok(source, " ");
+    int i = 0;
+
+    while (token != NULL) {
+        tokens[i].lexeme = token;
+
+        if (strcmp(token, "BEG:") == 0) tokens[i].type = BEG;
+        else if (strcmp(token, ":") == 0) tokens[i].type = COLON;
+        else if (strcmp(token, "I-1") == 0) tokens[i].type = END;
+        else if (strcmp(token, "=") == 0) tokens[i].type = EQUAL;
+        else if (strcmp(token, "(") == 0) tokens[i].type = OPEN_PAREN;
+        else if (strcmp(token, ")") == 0) tokens[i].type = CLOSE_PAREN;
+        else if (strstr(token, "TASK::") != NULL) tokens[i].type = COMMAND;
+        else if (isalpha(token[0]) && isdigit(token[1])) tokens[i].type = IDENTIFIER;
+        else if (isalpha(token[0])) tokens[i].type = PARAMETER;
+        else if (strcmp(token, "IF") == 0) tokens[i].type = IF;
+        else if (strcmp(token, "ELSE") == 0) tokens[i].type = ELSE;
+        else if (strcmp(token, "CONDITION") == 0) tokens[i].type = CONDITION;
+        else if (strcmp(token, "IFF") == 0) tokens[i].type = IFF;
+
+        i++;
+        token = strtok(NULL, " ");
+    }
+
+    tokens[i].type = END;
+    return tokens;
+}
+
+// Parser
+void parse(struct Token* tokens) {
+    int i = 0;
+    while (tokens[i].type != END) {
+        switch (tokens[i].type) {
+            case BEG:
+                printf("Attention: ");
+                break;
+            case IDENTIFIER:
+                printf("Task %s: ", tokens[i].lexeme);
+                break;
+            case COLON:
+                printf("Command: ");
+                break;
+            case COMMAND:
+                printf("%s ", tokens[i].lexeme);
+                break;
+            case PARAMETER:
+                printf("%s ", tokens[i].lexeme);
+                break;
+            case EQUAL:
+                printf("is ");
+                break;
+            case OPEN_PAREN:
+                printf("doing ");
+                break;
+            case CLOSE_PAREN:
+                printf(" (Task complete)\n");
+                break;
+            case IF:
+                printf("IF ");
+                break;
+            case ELSE:
+                printf("ELSE ");
+                break;
+            case CONDITION:
+                printf("CONDITION ");
+                break;
+            case IFF:
+                printf("IFF ");
+                break;
+            default:
+                break;
+        }
+        i++;
+    }
+}
+
+// Main program
+int main() {
+    char* sourceCode = "BEG: 1A=(IFF CONDITION::PRINT_TRUE::ELSE::PRINT_FALSE)I-1";
+    struct Token* tokens = lexer(sourceCode);
+    parse(tokens);
+
+    free(tokens);
+    return 0;
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Token definition
+enum TokenType { BEG, COLON, IDENTIFIER, EQUAL, OPEN_PAREN, CLOSE_PAREN, COMMAND, PARAMETER, TASK_MARKER, IF, ELSE, CONDITION, IFF, EXPAND, END };
+
+struct Token {
+    enum TokenType type;
+    char* lexeme;
+};
+
+// Lexer
+struct Token* lexer(char* source) {
+    struct Token* tokens = malloc(sizeof(struct Token) * 100);
+    char* token = strtok(source, " ");
+    int i = 0;
+
+    while (token != NULL) {
+        tokens[i].lexeme = token;
+
+        if (strcmp(token, "BEG:") == 0) tokens[i].type = BEG;
+        else if (strcmp(token, ":") == 0) tokens[i].type = COLON;
+        else if (strcmp(token, "I-1") == 0) tokens[i].type = END;
+        else if (strcmp(token, "=") == 0) tokens[i].type = EQUAL;
+        else if (strcmp(token, "(") == 0) tokens[i].type = OPEN_PAREN;
+        else if (strcmp(token, ")") == 0) tokens[i].type = CLOSE_PAREN;
+        else if (strstr(token, "TASK::") != NULL) tokens[i].type = COMMAND;
+        else if (isalpha(token[0]) && isdigit(token[1])) tokens[i].type = IDENTIFIER;
+        else if (isalpha(token[0])) tokens[i].type = PARAMETER;
+        else if (strcmp(token, "IF") == 0) tokens[i].type = IF;
+        else if (strcmp(token, "ELSE") == 0) tokens[i].type = ELSE;
+        else if (strcmp(token, "CONDITION") == 0) tokens[i].type = CONDITION;
+        else if (strcmp(token, "IFF") == 0) tokens[i].type = IFF;
+        else if (strcmp(token, "EXPAND") == 0) tokens[i].type = EXPAND;
+
+        i++;
+        token = strtok(NULL, " ");
+    }
+
+    tokens[i].type = END;
+    return tokens;
+}
+
+// Parser
+void parse(struct Token* tokens) {
+    int i = 0;
+    while (tokens[i].type != END) {
+        switch (tokens[i].type) {
+            case BEG:
+                printf("Attention: ");
+                break;
+            case IDENTIFIER:
+                printf("Task %s: ", tokens[i].lexeme);
+                break;
+            case COLON:
+                printf("Command: ");
+                break;
+            case COMMAND:
+                printf("%s ", tokens[i].lexeme);
+                break;
+            case PARAMETER:
+                printf("%s ", tokens[i].lexeme);
+                break;
+            case EQUAL:
+                printf("is ");
+                break;
+            case OPEN_PAREN:
+                printf("doing ");
+                break;
+            case CLOSE_PAREN:
+                printf(" (Task complete)\n");
+                break;
+            case IF:
+                printf("IF ");
+                break;
+            case ELSE:
+                printf("ELSE ");
+                break;
+            case CONDITION:
+                printf("CONDITION ");
+                break;
+            case IFF:
+                printf("IFF ");
+                break;
+            case EXPAND:
+                printf("EXPAND ");
+                break;
+            default:
+                break;
+        }
+        i++;
+    }
+}
+
+// Main program
+int main() {
+    char* sourceCode = "BEG: 1A=(EXPAND 2B::PRINT_SUBTASK)I-1";
+    struct Token* tokens = lexer(sourceCode);
+    parse(tokens);
+
+    free(tokens);
+    return 0;
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Token definition
+enum TokenType { BEG, COLON, IDENTIFIER, EQUAL, OPEN_PAREN, CLOSE_PAREN, COMMAND, PARAMETER, TASK_MARKER, IF, ELSE, CONDITION, IFF, EXPAND, VAR_DECL, VAR_ASSIGN, VAR_USE, END };
+
+struct Token {
+    enum TokenType type;
+    char* lexeme;
+};
+
+// Lexer
+struct Token* lexer(char* source) {
+    struct Token* tokens = malloc(sizeof(struct Token) * 100);
+    char* token = strtok(source, " ");
+    int i = 0;
+
+    while (token != NULL) {
+        tokens[i].lexeme = token;
+
+        if (strcmp(token, "BEG:") == 0) tokens[i].type = BEG;
+        else if (strcmp(token, ":") == 0) tokens[i].type = COLON;
+        else if (strcmp(token, "I-1") == 0) tokens[i].type = END;
+        else if (strcmp(token, "=") == 0) tokens[i].type = EQUAL;
+        else if (strcmp(token, "(") == 0) tokens[i].type = OPEN_PAREN;
+        else if (strcmp(token, ")") == 0) tokens[i].type = CLOSE_PAREN;
+        else if (strstr(token, "TASK::") != NULL) tokens[i].type = COMMAND;
+        else if (isalpha(token[0]) && isdigit(token[1])) tokens[i].type = IDENTIFIER;
+        else if (isalpha(token[0])) tokens[i].type = PARAMETER;
+        else if (strcmp(token, "IF") == 0) tokens[i].type = IF;
+        else if (strcmp(token, "ELSE") == 0) tokens[i].type = ELSE;
+        else if (strcmp(token, "CONDITION") == 0) tokens[i].type = CONDITION;
+        else if (strcmp(token, "IFF") == 0) tokens[i].type = IFF;
+        else if (strcmp(token, "EXPAND") == 0) tokens[i].type = EXPAND;
+        else if (strcmp(token, "VAR_DECL") == 0) tokens[i].type = VAR_DECL;
+        else if (strcmp(token, "VAR_ASSIGN") == 0) tokens[i].type = VAR_ASSIGN;
+        else if (strcmp(token, "VAR_USE") == 0) tokens[i].type = VAR_USE;
+
+        i++;
+        token = strtok(NULL, " ");
+    }
+
+    tokens[i].type = END;
+    return tokens;
+}
+
+// Parser
+void parse(struct Token* tokens) {
+    char* currentVariable = NULL;
+
+    int i = 0;
+    while (tokens[i].type != END) {
+        switch (tokens[i].type) {
+            case BEG:
+                printf("Attention: ");
+                break;
+            case IDENTIFIER:
+                printf("Task %s: ", tokens[i].lexeme);
+                break;
+            case COLON:
+                printf("Command: ");
+                break;
+            case COMMAND:
+                printf("%s ", tokens[i].lexeme);
+                break;
+            case PARAMETER:
+                printf("%s ", tokens[i].lexeme);
+                break;
+            case EQUAL:
+                printf("is ");
+                break;
+            case OPEN_PAREN:
+                printf("doing ");
+                break;
+            case CLOSE_PAREN:
+                printf(" (Task complete)\n");
+                break;
+            case IF:
+                printf("IF ");
+                break;
+            case ELSE:
+                printf("ELSE ");
+                break;
+            case CONDITION:
+                printf("CONDITION ");
+                break;
+            case IFF:
+                printf("IFF ");
+                break;
+            case EXPAND:
+                printf("EXPAND ");
+                break;
+            case VAR_DECL:
+                printf("Variable Declaration: %s ", tokens[i].lexeme);
+                currentVariable = strdup(tokens[i].lexeme);
+                break;
+            case VAR_ASSIGN:
+                printf("Assignment to %s: ", currentVariable);
+                break;
+            case VAR_USE:
+                printf("Use of %s ", currentVariable);
+                break;
+            default:
+                break;
+        }
+        i++;
+    }
+
+    free(currentVariable);
+}
+
+// Main program
+int main() {
+    char* sourceCode = "BEG: VAR_DECL X VAR_ASSIGN = VAR_USE X I-1";
+    struct Token* tokens = lexer(sourceCode);
+    parse(tokens);
+
+    free(tokens);
+    return 0;
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Token definition
+enum TokenType { BEG, COLON, IDENTIFIER, EQUAL, OPEN_PAREN, CLOSE_PAREN, COMMAND, PARAMETER, TASK_MARKER, IF, ELSE, CONDITION, IFF, EXPAND, VAR_DECL, VAR_ASSIGN, VAR_USE, FOR_LOOP, WHILE_LOOP, END };
+
+struct Token {
+    enum TokenType type;
+    char* lexeme;
+};
+
+// Lexer
+struct Token* lexer(char* source) {
+    struct Token* tokens = malloc(sizeof(struct Token) * 100);
+    char* token = strtok(source, " ");
+    int i = 0;
+
+    while (token != NULL) {
+        tokens[i].lexeme = token;
+
+        if (strcmp(token, "BEG:") == 0) tokens[i].type = BEG;
+        else if (strcmp(token, ":") == 0) tokens[i].type = COLON;
+        else if (strcmp(token, "I-1") == 0) tokens[i].type = END;
+        else if (strcmp(token, "=") == 0) tokens[i].type = EQUAL;
+        else if (strcmp(token, "(") == 0) tokens[i].type = OPEN_PAREN;
+        else if (strcmp(token, ")") == 0) tokens[i].type = CLOSE_PAREN;
+        else if (strstr(token, "TASK::") != NULL) tokens[i].type = COMMAND;
+        else if (isalpha(token[0]) && isdigit(token[1])) tokens[i].type = IDENTIFIER;
+        else if (isalpha(token[0])) tokens[i].type = PARAMETER;
+        else if (strcmp(token, "IF") == 0) tokens[i].type = IF;
+        else if (strcmp(token, "ELSE") == 0) tokens[i].type = ELSE;
+        else if (strcmp(token, "CONDITION") == 0) tokens[i].type = CONDITION;
+        else if (strcmp(token, "IFF") == 0) tokens[i].type = IFF;
+        else if (strcmp(token, "EXPAND") == 0) tokens[i].type = EXPAND;
+        else if (strcmp(token, "VAR_DECL") == 0) tokens[i].type = VAR_DECL;
+        else if (strcmp(token, "VAR_ASSIGN") == 0) tokens[i].type = VAR_ASSIGN;
+        else if (strcmp(token, "VAR_USE") == 0) tokens[i].type = VAR_USE;
+        else if (strcmp(token, "FOR_LOOP") == 0) tokens[i].type = FOR_LOOP;
+        else if (strcmp(token, "WHILE_LOOP") == 0) tokens[i].type = WHILE_LOOP;
+
+        i++;
+        token = strtok(NULL, " ");
+    }
+
+    tokens[i].type = END;
+    return tokens;
+}
+
+// Parser
+void parse(struct Token* tokens) {
+    char* currentVariable = NULL;
+
+    int i = 0;
+    while (tokens[i].type != END) {
+        switch (tokens[i].type) {
+            case BEG:
+                printf("Attention: ");
+                break;
+            case IDENTIFIER:
+                printf("Task %s: ", tokens[i].lexeme);
+                break;
+            case COLON:
+                printf("Command: ");
+                break;
+            case COMMAND:
+                printf("%s ", tokens[i].lexeme);
+                break;
+            case PARAMETER:
+                printf("%s ", tokens[i].lexeme);
+                break;
+            case EQUAL:
+                printf("is ");
+                break;
+            case OPEN_PAREN:
+                printf("doing ");
+                break;
+            case CLOSE_PAREN:
+                printf(" (Task complete)\n");
+                break;
+            case IF:
+                printf("IF ");
+                break;
+            case ELSE:
+                printf("ELSE ");
+                break;
+            case CONDITION:
+                printf("CONDITION ");
+                break;
+            case IFF:
+                printf("IFF ");
+                break;
+            case EXPAND:
+                printf("EXPAND ");
+                break;
+            case VAR_DECL:
+                printf("Variable Declaration: %s ", tokens[i].lexeme);
+                currentVariable = strdup(tokens[i].lexeme);
+                break;
+            case VAR_ASSIGN:
+                printf("Assignment to %s: ", currentVariable);
+                break;
+            case VAR_USE:
+                printf("Use of %s ", currentVariable);
+                break;
+            case FOR_LOOP:
+                printf("FOR Loop ");
+                break;
+            case WHILE_LOOP:
+                printf("WHILE Loop ");
+                break;
+            default:
+                break;
+        }
+        i++;
+    }
+
+    free(currentVariable);
+}
+
+// Main program
+int main() {
+    char* sourceCode = "BEG: FOR_LOOP (VAR_DECL I VAR_ASSIGN = 1 IFF CONDITION)I-1";
+    struct Token* tokens = lexer(sourceCode);
+    parse(tokens);
+
+    free(tokens);
+    return 0;
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Token definition
+enum TokenType {
+    BEG, COLON, IDENTIFIER, EQUAL, OPEN_PAREN, CLOSE_PAREN, COMMAND,
+    PARAMETER, TASK_MARKER, IF, ELSE, CONDITION, IFF, EXPAND, VAR_DECL,
+    VAR_ASSIGN, VAR_USE, FOR_LOOP, WHILE_LOOP, END
+};
+
+struct Token {
+    enum TokenType type;
+    char* lexeme;
+};
+
+// Lexer
+struct Token* lexer(char* source) {
+    struct Token* tokens = malloc(sizeof(struct Token) * 100);
+    char* token = strtok(source, " ");
+    int i = 0;
+
+    while (token != NULL) {
+        tokens[i].lexeme = token;
+
+        if (strcmp(token, "BEG:") == 0) tokens[i].type = BEG;
+        else if (strcmp(token, ":") == 0) tokens[i].type = COLON;
+        else if (strcmp(token, "I-1") == 0) tokens[i].type = END;
+        else if (strcmp(token, "=") == 0) tokens[i].type = EQUAL;
+        else if (strcmp(token, "(") == 0) tokens[i].type = OPEN_PAREN;
+        else if (strcmp(token, ")") == 0) tokens[i].type = CLOSE_PAREN;
+        else if (strstr(token, "TASK::") != NULL) tokens[i].type = COMMAND;
+        else if (isalpha(token[0]) && isdigit(token[1])) tokens[i].type = IDENTIFIER;
+        else if (isalpha(token[0])) tokens[i].type = PARAMETER;
+        else if (strcmp(token, "IF") == 0) tokens[i].type = IF;
+        else if (strcmp(token, "ELSE") == 0) tokens[i].type = ELSE;
+        else if (strcmp(token, "CONDITION") == 0) tokens[i].type = CONDITION;
+        else if (strcmp(token, "IFF") == 0) tokens[i].type = IFF;
+        else if (strcmp(token, "EXPAND") == 0) tokens[i].type = EXPAND;
+        else if (strcmp(token, "VAR_DECL") == 0) tokens[i].type = VAR_DECL;
+        else if (strcmp(token, "VAR_ASSIGN") == 0) tokens[i].type = VAR_ASSIGN;
+        else if (strcmp(token, "VAR_USE") == 0) tokens[i].type = VAR_USE;
+        else if (strcmp(token, "FOR_LOOP") == 0) tokens[i].type = FOR_LOOP;
+        else if (strcmp(token, "WHILE_LOOP") == 0) tokens[i].type = WHILE_LOOP;
+
+        i++;
+        token = strtok(NULL, " ");
+    }
+
+    tokens[i].type = END;
+    return tokens;
+}
+
+// Parser
+void parse(struct Token* tokens) {
+    char* currentVariable = NULL;
+
+    int i = 0;
+    while (tokens[i].type != END) {
+        switch (tokens[i].type) {
+            case BEG:
+                printf("Attention: ");
+                break;
+            case IDENTIFIER:
+                // Validate variable names to prevent injection attacks
+                if (is_valid_variable(tokens[i].lexeme)) {
+                    printf("Task %s: ", tokens[i].lexeme);
+                } else {
+                    printf("Invalid variable name: %s\n", tokens[i].lexeme);
+                    exit(1);  // Terminate execution on security violation
+                }
+                break;
+            case COLON:
+                printf("Command: ");
+                break;
+            case COMMAND:
+                // Execute the command in a secure environment
+                execute_command_safely(tokens[i].lexeme);
+                break;
+            case PARAMETER:
+                // Validate parameters to prevent injection attacks
+                if (is_valid_parameter(tokens[i].lexeme)) {
+                    printf("%s ", tokens[i].lexeme);
+                } else {
+                    printf("Invalid parameter: %s\n", tokens[i].lexeme);
+                    exit(1);  // Terminate execution on security violation
+                }
+                break;
+            case EQUAL:
+                printf("is ");
+                break;
+            case OPEN_PAREN:
+                printf("doing ");
+                break;
+            case CLOSE_PAREN:
+                printf(" (Task complete)\n");
+                break;
+            case IF:
+                printf("IF ");
+                break;
+            case ELSE:
+                printf("ELSE ");
+                break;
+            case CONDITION:
+                // Validate conditions to prevent injection attacks
+                if (is_valid_condition(tokens[i].lexeme)) {
+                    printf("CONDITION ");
+                } else {
+                    printf("Invalid condition: %s\n", tokens[i].lexeme);
+                    exit(1);  // Terminate execution on security violation
+                }
+                break;
+            case IFF:
+                printf("IFF ");
+                break;
+            case EXPAND:
+                printf("EXPAND ");
+                break;
+            case VAR_DECL:
+                // Validate variable names to prevent injection attacks
+                if (is_valid_variable(tokens[i].lexeme)) {
+                    printf("Variable Declaration: %s ", tokens[i].lexeme);
+                    currentVariable = strdup(tokens[i].lexeme);
+                } else {
+                    printf("Invalid variable name: %s\n", tokens[i].lexeme);
+                    exit(1);  // Terminate execution on security violation
+                }
+                break;
+            case VAR_ASSIGN:
+                printf("Assignment to %s: ", currentVariable);
+                break;
+            case VAR_USE:
+                // Validate variable usage to prevent injection attacks
+                if (is_valid_variable(tokens[i].lexeme)) {
+                    printf("Use of %s ", tokens[i].lexeme);
+                } else {
+                    printf("Invalid variable usage: %s\n", tokens[i].lexeme);
+                    exit(1);  // Terminate execution on security violation
+                }
+                break;
+            case FOR_LOOP:
+                printf("FOR Loop ");
+                break;
+            case WHILE_LOOP:
+                printf("WHILE Loop ");
+                break;
+            default:
+                break;
+        }
+        i++;
+    }
+
+    free(currentVariable);
+}
+
+// Security functions (replace with actual implementations)
+int is_valid_variable(char* variable) {
+    // Implement validation logic
+    return 1;
+}
+
+int is_valid_parameter(char* parameter) {
+    // Implement validation logic
+    return 1;
+}
+
+int is_valid_condition(char* condition) {
+    // Implement validation logic
+    return 1;
+}
+
+void execute_command_safely(char* command) {
+    // Implement secure execution environment
+    printf("%s ", command);
+}
+
+// Main program
+int main() {
+    char* sourceCode = "BEG: VAR_DECL X VAR_ASSIGN = VAR_USE X I-1";
+    struct Token* tokens = lexer(sourceCode);
+    parse(tokens);
+
+    free(tokens);
+    return 0;
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Maximum length for variable names and commands
+#define MAX_NAME_LENGTH 50
+#define MAX_COMMAND_LENGTH 100
+
+// Token definition
+enum TokenType {
+    BEG, COLON, IDENTIFIER, EQUAL, OPEN_PAREN, CLOSE_PAREN, COMMAND,
+    PARAMETER, TASK_MARKER, IF, ELSE, CONDITION, IFF, EXPAND, VAR_DECL,
+    VAR_ASSIGN, VAR_USE, FOR_LOOP, WHILE_LOOP, END
+};
+
+struct Token {
+    enum TokenType type;
+    char* lexeme;
+};
+
+// Lexer
+struct Token* lexer(char* source) {
+    struct Token* tokens = malloc(sizeof(struct Token) * 100);
+    char* token = strtok(source, " ");
+    int i = 0;
+
+    while (token != NULL) {
+        tokens[i].lexeme = strdup(token);  // Copy the token to avoid overwriting
+        tokens[i].type = determineTokenType(tokens[i].lexeme);
+
+        i++;
+        token = strtok(NULL, " ");
+    }
+
+    tokens[i].type = END;
+    return tokens;
+}
+
+// Function to determine token type based on lexeme
+enum TokenType determineTokenType(char* lexeme) {
+    // Implement logic to determine the token type
+    // (Replace this with actual implementation)
+    return IDENTIFIER;  // Placeholder value
+}
+
+// Parser
+void parse(struct Token* tokens) {
+    char currentVariable[MAX_NAME_LENGTH] = "";
+
+    int i = 0;
+    while (tokens[i].type != END) {
+        switch (tokens[i].type) {
+            case BEG:
+                printf("Attention: ");
+                break;
+            case IDENTIFIER:
+                if (is_valid_variable(tokens[i].lexeme)) {
+                    printf("Task %s: ", tokens[i].lexeme);
+                } else {
+                    printf("Invalid variable name: %s\n", tokens[i].lexeme);
+                    exit(1);
+                }
+                break;
+            case COLON:
+                printf("Command: ");
+                break;
+            case COMMAND:
+                execute_command_safely(tokens[i].lexeme);
+                break;
+            case PARAMETER:
+                if (is_valid_parameter(tokens[i].lexeme)) {
+                    printf("%s ", tokens[i].lexeme);
+                } else {
+                    printf("Invalid parameter: %s\n", tokens[i].lexeme);
+                    exit(1);
+                }
+                break;
+            case EQUAL:
+                printf("is ");
+                break;
+            case OPEN_PAREN:
+                printf("doing ");
+                break;
+            case CLOSE_PAREN:
+                printf(" (Task complete)\n");
+                break;
+            case IF:
+                printf("IF ");
+                break;
+            case ELSE:
+                printf("ELSE ");
+                break;
+            case CONDITION:
+                if (is_valid_condition(tokens[i].lexeme)) {
+                    printf("CONDITION ");
+                } else {
+                    printf("Invalid condition: %s\n", tokens[i].lexeme);
+                    exit(1);
+                }
+                break;
+            case IFF:
+                printf("IFF ");
+                break;
+            case EXPAND:
+                printf("EXPAND ");
+                break;
+            case VAR_DECL:
+                if (is_valid_variable(tokens[i].lexeme)) {
+                    strncpy(currentVariable, tokens[i].lexeme, MAX_NAME_LENGTH - 1);
+                    printf("Variable Declaration: %s ", tokens[i].lexeme);
+                } else {
+                    printf("Invalid variable name: %s\n", tokens[i].lexeme);
+                    exit(1);
+                }
+                break;
+            case VAR_ASSIGN:
+                printf("Assignment to %s: ", currentVariable);
+                break;
+            case VAR_USE:
+                if (is_valid_variable(tokens[i].lexeme)) {
+                    printf("Use of %s ", tokens[i].lexeme);
+                } else {
+                    printf("Invalid variable usage: %s\n", tokens[i].lexeme);
+                    exit(1);
+                }
+                break;
+            case FOR_LOOP:
+                printf("FOR Loop ");
+                break;
+            case WHILE_LOOP:
+                printf("WHILE Loop ");
+                break;
+            default:
+                break;
+        }
+        i++;
+    }
+}
+
+// Security functions (replace with actual implementations)
+int is_valid_variable(char* variable) {
+    // Implement validation logic
+    // (e.g., check for length, characters allowed, etc.)
+    return 1;
+}
+
+int is_valid_parameter(char* parameter) {
+    // Implement validation logic
+    return 1;
+}
+
+int is_valid_condition(char* condition) {
+    // Implement validation logic
+    return 1;
+}
+
+void execute_command_safely(char* command) {
+    // Implement secure execution environment
+    // (e.g., command whitelisting, sandboxing)
+    if (is_valid_command(command)) {
+        printf("%s ", command);
+    } else {
+        printf("Invalid command: %s\n", command);
+        exit(1);
+    }
+}
+
+int is_valid_command(char* command) {
+    // Implement command whitelisting logic
+    // (e.g., allow only predefined safe commands)
+    return 1;
+}
+
+// Main program
+int main() {
+    char* sourceCode = "BEG: VAR_DECL X VAR_ASSIGN = VAR_USE X I-1";
+    struct Token* tokens = lexer(sourceCode);
+    parse(tokens);
+
+    // Free allocated memory for lexemes
+    for (int i = 0; tokens[i].type != END; ++i) {
+        free(tokens[i].lexeme);
+    }
+    free(tokens);
+
+    return 0;
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Maximum length for variable names and commands
+#define MAX_NAME_LENGTH 50
+#define MAX_COMMAND_LENGTH 100
+
+// Token definition
+enum TokenType {
+    BEG, COLON, IDENTIFIER, EQUAL, OPEN_PAREN, CLOSE_PAREN, COMMAND,
+    PARAMETER, TASK_MARKER, IF, ELSE, CONDITION, IFF, EXPAND, VAR_DECL,
+    VAR_ASSIGN, VAR_USE, FOR_LOOP, WHILE_LOOP, END
+};
+
+struct Token {
+    enum TokenType type;
+    char* lexeme;
+};
+
+// Lexer
+struct Token* lexer(char* source) {
+    struct Token* tokens = malloc(sizeof(struct Token) * 100);
+    char* token = strtok(source, " ");
+    int i = 0;
+
+    while (token != NULL) {
+        tokens[i].lexeme = strdup(token);  // Copy the token to avoid overwriting
+        tokens[i].type = determineTokenType(tokens[i].lexeme);
+
+        i++;
+        token = strtok(NULL, " ");
+    }
+
+    tokens[i].type = END;
+    return tokens;
+}
+
+// Function to determine token type based on lexeme
+enum TokenType determineTokenType(char* lexeme) {
+    // Implement logic to determine the token type
+    // (Replace this with actual implementation)
+    return IDENTIFIER;  // Placeholder value
+}
+
+// Parser
+void parse(struct Token* tokens) {
+    char currentVariable[MAX_NAME_LENGTH] = "";
+
+    int i = 0;
+    while (tokens[i].type != END) {
+        switch (tokens[i].type) {
+            case BEG:
+                printf("Attention: ");
+                break;
+            case IDENTIFIER:
+                if (is_valid_variable(tokens[i].lexeme)) {
+                    printf("Task %s: ", tokens[i].lexeme);
+                } else {
+                    printf("Invalid variable name: %s\n", tokens[i].lexeme);
+                    exit(1);
+                }
+                break;
+            case COLON:
+                printf("Command: ");
+                break;
+            case COMMAND:
+                execute_command_safely(tokens[i].lexeme);
+                break;
+            case PARAMETER:
+                if (is_valid_parameter(tokens[i].lexeme)) {
+                    printf("%s ", tokens[i].lexeme);
+                } else {
+                    printf("Invalid parameter: %s\n", tokens[i].lexeme);
+                    exit(1);
+                }
+                break;
+            case EQUAL:
+                printf("is ");
+                break;
+            case OPEN_PAREN:
+                printf("doing ");
+                break;
+            case CLOSE_PAREN:
+                printf(" (Task complete)\n");
+                break;
+            case IF:
+                printf("IF ");
+                break;
+            case ELSE:
+                printf("ELSE ");
+                break;
+            case CONDITION:
+                if (is_valid_condition(tokens[i].lexeme)) {
+                    printf("CONDITION ");
+                } else {
+                    printf("Invalid condition: %s\n", tokens[i].lexeme);
+                    exit(1);
+                }
+                break;
+            case IFF:
+                printf("IFF ");
+                break;
+            case EXPAND:
+                printf("EXPAND ");
+                break;
+            case VAR_DECL:
+                if (is_valid_variable(tokens[i].lexeme)) {
+                    strncpy(currentVariable, tokens[i].lexeme, MAX_NAME_LENGTH - 1);
+                    printf("Variable Declaration: %s ", tokens[i].lexeme);
+                } else {
+                    printf("Invalid variable name: %s\n", tokens[i].lexeme);
+                    exit(1);
+                }
+                break;
+            case VAR_ASSIGN:
+                printf("Assignment to %s: ", currentVariable);
+                break;
+            case VAR_USE:
+                if (is_valid_variable(tokens[i].lexeme)) {
+                    printf("Use of %s ", tokens[i].lexeme);
+                } else {
+                    printf("Invalid variable usage: %s\n", tokens[i].lexeme);
+                    exit(1);
+                }
+                break;
+            case FOR_LOOP:
+                printf("FOR Loop ");
+                break;
+            case WHILE_LOOP:
+                printf("WHILE Loop ");
+                break;
+            default:
+                break;
+        }
+        i++;
+    }
+}
+
+// Security functions (replace with actual implementations)
+int is_valid_variable(char* variable) {
+    // Implement validation logic
+    // (e.g., check for length, characters allowed, etc.)
+    return 1;
+}
+
+int is_valid_parameter(char* parameter) {
+    // Implement validation logic
+    return 1;
+}
+
+int is_valid_condition(char* condition) {
+    // Implement validation logic
+    return 1;
+}
+
+void execute_command_safely(char* command) {
+    // Implement secure execution environment
+    // (e.g., command whitelisting, sandboxing)
+    if (is_valid_command(command)) {
+        printf("%s ", command);
+    } else {
+        printf("Invalid command: %s\n", command);
+        exit(1);
+    }
+}
+
+int is_valid_command(char* command) {
+    // Implement command whitelisting logic
+    // (e.g., allow only predefined safe commands)
+    return 1;
+}
+
+// Main program
+int main() {
+    char* sourceCode = "BEG: VAR_DECL X VAR_ASSIGN = VAR_USE X I-1";
+    struct Token* tokens = lexer(sourceCode);
+    parse(tokens);
+
+    // Free allocated memory for lexemes
+    for (int i = 0; tokens[i].type != END; ++i) {
+        free(tokens[i].lexeme);
+    }
+    free(tokens);
+
+    return 0;
+}
+
+BEG: VAR_DECL X VAR_ASSIGN = VAR_USE X I-1
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Maximum length for variable names and commands
+#define MAX_NAME_LENGTH 50
+#define MAX_COMMAND_LENGTH 100
+
+// Token definition
+enum TokenType {
+    BEG, COLON, IDENTIFIER, EQUAL, OPEN_PAREN, CLOSE_PAREN, COMMAND,
+    PARAMETER, TASK_MARKER, IF, ELSE, CONDITION, IFF, EXPAND, VAR_DECL,
+    VAR_ASSIGN, VAR_USE, FOR_LOOP, WHILE_LOOP, END
+};
+
+struct Token {
+    enum TokenType type;
+    char* lexeme;
+};
+
+// Lexer
+struct Token* lexer(char* source) {
+    struct Token* tokens = malloc(sizeof(struct Token) * 100);
+    char* token = strtok(source, " ");
+    int i = 0;
+
+    while (token != NULL) {
+        tokens[i].lexeme = strdup(token);  // Copy the token to avoid overwriting
+        tokens[i].type = determineTokenType(tokens[i].lexeme);
+
+        i++;
+        token = strtok(NULL, " ");
+    }
+
+    tokens[i].type = END;
+    return tokens;
+}
+
+// Function to determine token type based on lexeme
+enum TokenType determineTokenType(char* lexeme) {
+    // Implement logic to determine the token type
+    // (Replace this with actual implementation)
+    return IDENTIFIER;  // Placeholder value
+}
+
+// Parser
+void parse(struct Token* tokens) {
+    char currentVariable[MAX_NAME_LENGTH] = "";
+    int conditionMet = 0;  // Flag for conditionals
+
+    int i = 0;
+    while (tokens[i].type != END) {
+        switch (tokens[i].type) {
+            case BEG:
+                printf("Attention: ");
+                break;
+            case IDENTIFIER:
+                if (is_valid_variable(tokens[i].lexeme)) {
+                    printf("Task %s: ", tokens[i].lexeme);
+                } else {
+                    printf("Invalid variable name: %s\n", tokens[i].lexeme);
+                    exit(1);
+                }
+                break;
+            case COLON:
+                printf("Command: ");
+                break;
+            case COMMAND:
+                execute_command_safely(tokens[i].lexeme);
+                break;
+            case PARAMETER:
+                if (is_valid_parameter(tokens[i].lexeme)) {
+                    printf("%s ", tokens[i].lexeme);
+                } else {
+                    printf("Invalid parameter: %s\n", tokens[i].lexeme);
+                    exit(1);
+                }
+                break;
+            case EQUAL:
+                printf("is ");
+                break;
+            case OPEN_PAREN:
+                printf("doing ");
+                break;
+            case CLOSE_PAREN:
+                printf(" (Task complete)\n");
+                break;
+            case IF:
+                conditionMet = evaluate_condition(tokens[i + 1].lexeme);  // Assuming condition follows IF
+                printf("IF ");
+                break;
+            case ELSE:
+                conditionMet = !conditionMet;  // Toggle the condition for ELSE
+                printf("ELSE ");
+                break;
+            case CONDITION:
+                if (conditionMet) {
+                    printf("CONDITION ");
+                } else {
+                    // Skip the block if the condition is not met
+                    skip_condition_block(&i, tokens);
+                }
+                break;
+            case IFF:
+                printf("IFF ");
+                break;
+            case EXPAND:
+                printf("EXPAND ");
+                break;
+            case VAR_DECL:
+                if (is_valid_variable(tokens[i].lexeme)) {
+                    strncpy(currentVariable, tokens[i].lexeme, MAX_NAME_LENGTH - 1);
+                    printf("Variable Declaration: %s ", tokens[i].lexeme);
+                } else {
+                    printf("Invalid variable name: %s\n", tokens[i].lexeme);
+                    exit(1);
+                }
+                break;
+            case VAR_ASSIGN:
+                printf("Assignment to %s: ", currentVariable);
+                break;
+            case VAR_USE:
+                if (is_valid_variable(tokens[i].lexeme)) {
+                    printf("Use of %s ", tokens[i].lexeme);
+                } else {
+                    printf("Invalid variable usage: %s\n", tokens[i].lexeme);
+                    exit(1);
+                }
+                break;
+            case FOR_LOOP:
+                printf("FOR Loop ");
+                break;
+            case WHILE_LOOP:
+                printf("WHILE Loop ");
+                break;
+            default:
+                break;
+        }
+        i++;
+    }
+}
+
+// Function to evaluate a condition
+int evaluate_condition(char* condition) {
+    // Implement logic to evaluate the condition
+    // (Replace this with actual implementation)
+    return 1;  // Placeholder value
+}
+
+// Function to skip a block of code based on condition
+void skip_condition_block(int* i, struct Token* tokens) {
+    int nestedLevel = 0;
+    while (tokens[*i].type != END) {
+        if (tokens[*i].type == CONDITION) {
+            nestedLevel++;
+        } else if (tokens[*i].type == ELSE && nestedLevel == 0) {
+            return;  // Exit if ELSE is encountered outside a nested block
+        } else if (tokens[*i].type == END && nestedLevel == 0) {
+            return;  // Exit if the end of the task is reached
+        } else if (tokens[*i].type == END) {
+            nestedLevel--;
+        }
+        (*i)++;
+    }
+}
+
+// Rest of the code (including security functions) remains unchanged...
+
+// Main program
+int main() {
+    char* sourceCode = "BEG: IF CONDITION VAR_DECL X VAR_ASSIGN = VAR_USE X ELSE VAR_DECL Y VAR_ASSIGN = VAR_USE Y I-1";
+    struct Token* tokens = lexer(sourceCode);
+    parse(tokens);
+
+    // Free allocated memory for lexemes
+    for (int i = 0; tokens[i].type != END; ++i) {
+        free(tokens[i].lexeme);
+    }
+    free(tokens);
+
+    return 0;
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Maximum length for variable names and commands
+#define MAX_NAME_LENGTH 50
+#define MAX_COMMAND_LENGTH 100
+
+// Token definition
+enum TokenType {
+    BEG, COLON, IDENTIFIER, EQUAL, OPEN_PAREN, CLOSE_PAREN, COMMAND,
+    PARAMETER, TASK_MARKER, IF, ELSE, CONDITION, IFF, EXPAND, VAR_DECL,
+    VAR_ASSIGN, VAR_USE, FOR_LOOP, WHILE_LOOP, FUNCTION_DECL, FUNCTION_CALL,
+    USER_INPUT, USER_OUTPUT, END
+};
+
+struct Token {
+    enum TokenType type;
+    char* lexeme;
+};
+
+// Lexer
+struct Token* lexer(char* source) {
+    struct Token* tokens = malloc(sizeof(struct Token) * 100);
+    char* token = strtok(source, " ");
+    int i = 0;
+
+    while (token != NULL) {
+        tokens[i].lexeme = strdup(token);  // Copy the token to avoid overwriting
+        tokens[i].type = determineTokenType(tokens[i].lexeme);
+
+        i++;
+        token = strtok(NULL, " ");
+    }
+
+    tokens[i].type = END;
+    return tokens;
+}
+
+// Function to determine token type based on lexeme
+enum TokenType determineTokenType(char* lexeme) {
+    // Implement logic to determine the token type
+    // (Replace this with actual implementation)
+    if (strcmp(lexeme, "FOR") == 0) return FOR_LOOP;
+    if (strcmp(lexeme, "WHILE") == 0) return WHILE_LOOP;
+    if (strcmp(lexeme, "FUNCTION") == 0) return FUNCTION_DECL;
+    if (strcmp(lexeme, "CALL") == 0) return FUNCTION_CALL;
+    if (strcmp(lexeme, "INPUT") == 0) return USER_INPUT;
+    if (strcmp(lexeme, "OUTPUT") == 0) return USER_OUTPUT;
+    return IDENTIFIER;  // Placeholder value
+}
+
+// Parser
+void parse(struct Token* tokens) {
+    char currentVariable[MAX_NAME_LENGTH] = "";
+    int conditionMet = 0;  // Flag for conditionals
+
+    int i = 0;
+    while (tokens[i].type != END) {
+        switch (tokens[i].type) {
+            // ... (previous cases remain unchanged)
+
+            case FOR_LOOP:
+                printf("FOR Loop ");
+                break;
+            case WHILE_LOOP:
+                printf("WHILE Loop ");
+                break;
+            case FUNCTION_DECL:
+                printf("Function Declaration: %s ", tokens[i + 1].lexeme);  // Assuming function name follows FUNCTION
+                break;
+            case FUNCTION_CALL:
+                printf("Function Call: %s ", tokens[i + 1].lexeme);  // Assuming function name follows CALL
+                break;
+            case USER_INPUT:
+                printf("User Input: ");
+                break;
+            case USER_OUTPUT:
+                printf("User Output: ");
+                break;
+            default:
+                break;
+        }
+        i++;
+    }
+}
+
+// Rest of the code (including security functions) remains unchanged...
+
+// Main program
+int main() {
+    char* sourceCode = "BEG: FOR i = 1 TO 5 COMMAND OUTPUT i I-1";
+    struct Token* tokens = lexer(sourceCode);
+    parse(tokens);
+
+    // Free allocated memory for lexemes
+    for (int i = 0; tokens[i].type != END; ++i) {
+        free(tokens[i].lexeme);
+    }
+    free(tokens);
+
+    return 0;
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Maximum length for variable names and commands
+#define MAX_NAME_LENGTH 50
+#define MAX_COMMAND_LENGTH 100
+
+// Data type definition
+enum DataType {
+    INT, STRING, BOOLEAN, FLOAT, // Add more as needed
+};
+
+// Token definition
+enum TokenType {
+    BEG, COLON, IDENTIFIER, EQUAL, OPEN_PAREN, CLOSE_PAREN, COMMAND,
+    PARAMETER, TASK_MARKER, IF, ELSE, CONDITION, IFF, EXPAND, VAR_DECL,
+    VAR_ASSIGN, VAR_USE, FOR_LOOP, WHILE_LOOP, FUNCTION_DECL, FUNCTION_CALL,
+    USER_INPUT, USER_OUTPUT, DATA_TYPE, ERROR_HANDLING, FILE_IO, STANDARD_LIBRARY, END
+};
+
+struct Token {
+    enum TokenType type;
+    char* lexeme;
+};
+
+// Lexer
+struct Token* lexer(char* source) {
+    struct Token* tokens = malloc(sizeof(struct Token) * 100);
+    char* token = strtok(source, " ");
+    int i = 0;
+
+    while (token != NULL) {
+        tokens[i].lexeme = strdup(token);  // Copy the token to avoid overwriting
+        tokens[i].type = determineTokenType(tokens[i].lexeme);
+
+        i++;
+        token = strtok(NULL, " ");
+    }
+
+    tokens[i].type = END;
+    return tokens;
+}
+
+// Function to determine token type based on lexeme
+enum TokenType determineTokenType(char* lexeme) {
+    // Implement logic to determine the token type
+    // (Replace this with actual implementation)
+    if (strcmp(lexeme, "FOR") == 0) return FOR_LOOP;
+    if (strcmp(lexeme, "WHILE") == 0) return WHILE_LOOP;
+    if (strcmp(lexeme, "FUNCTION") == 0) return FUNCTION_DECL;
+    if (strcmp(lexeme, "CALL") == 0) return FUNCTION_CALL;
+    if (strcmp(lexeme, "INPUT") == 0) return USER_INPUT;
+    if (strcmp(lexeme, "OUTPUT") == 0) return USER_OUTPUT;
+    if (strcmp(lexeme, "INT") == 0 || strcmp(lexeme, "STRING") == 0 || strcmp(lexeme, "BOOLEAN") == 0 || strcmp(lexeme, "FLOAT") == 0) return DATA_TYPE;
+    if (strcmp(lexeme, "TRY") == 0 || strcmp(lexeme, "CATCH") == 0) return ERROR_HANDLING;
+    if (strcmp(lexeme, "READ_FILE") == 0 || strcmp(lexeme, "WRITE_FILE") == 0) return FILE_IO;
+    if (strcmp(lexeme, "STD_LIBRARY") == 0) return STANDARD_LIBRARY;
+    return IDENTIFIER;  // Placeholder value
+}
+
+// Parser
+void parse(struct Token* tokens) {
+    char currentVariable[MAX_NAME_LENGTH] = "";
+    int conditionMet = 0;  // Flag for conditionals
+
+    int i = 0;
+    while (tokens[i].type != END) {
+        switch (tokens[i].type) {
+            // ... (previous cases remain unchanged)
+
+            case DATA_TYPE:
+                printf("Data Type: %s ", tokens[i + 1].lexeme);  // Assuming data type follows INT, STRING, etc.
+                break;
+            case ERROR_HANDLING:
+                printf("Error Handling: ");
+                break;
+            case FILE_IO:
+                printf("File I/O: %s ", tokens[i].lexeme);  // Assuming READ_FILE or WRITE_FILE
+                break;
+            case STANDARD_LIBRARY:
+                printf("Standard Library: ");
+                break;
+            default:
+                break;
+        }
+        i++;
+    }
+}
+
+// Rest of the code (including security functions) remains unchanged...
+
+// Main program
+int main() {
+    char* sourceCode = "BEG: TRY COMMAND OUTPUT 5 CATCH COMMAND OUTPUT 'Error' I-1";
+    struct Token* tokens = lexer(sourceCode);
+    parse(tokens);
+
+    // Free allocated memory for lexemes
+    for (int i = 0; tokens[i].type != END; ++i) {
+        free(tokens[i].lexeme);
+    }
+    free(tokens);
+
+    return 0;
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Maximum length for variable names and commands
+#define MAX_NAME_LENGTH 50
+#define MAX_COMMAND_LENGTH 100
+
+// Data type definition
+enum DataType {
+    INT, STRING, BOOLEAN, FLOAT, // Add more as needed
+};
+
+// Token definition
+enum TokenType {
+    BEG, COLON, IDENTIFIER, EQUAL, OPEN_PAREN, CLOSE_PAREN, COMMAND,
+    PARAMETER, TASK_MARKER, IF, ELSE, CONDITION, IFF, EXPAND, VAR_DECL,
+    VAR_ASSIGN, VAR_USE, FOR_LOOP, WHILE_LOOP, FUNCTION_DECL, FUNCTION_CALL,
+    USER_INPUT, USER_OUTPUT, DATA_TYPE, ERROR_HANDLING, FILE_IO, STANDARD_LIBRARY,
+    MODULE_DECL, MODULE_USE, CONCURRENT, END
+};
+
+struct Token {
+    enum TokenType type;
+    char* lexeme;
+};
+
+// Lexer
+struct Token* lexer(char* source) {
+    struct Token* tokens = malloc(sizeof(struct Token) * 100);
+    char* token = strtok(source, " ");
+    int i = 0;
+
+    while (token != NULL) {
+        tokens[i].lexeme = strdup(token);  // Copy the token to avoid overwriting
+        tokens[i].type = determineTokenType(tokens[i].lexeme);
+
+        i++;
+        token = strtok(NULL, " ");
+    }
+
+    tokens[i].type = END;
+    return tokens;
+}
+
+// Function to determine token type based on lexeme
+enum TokenType determineTokenType(char* lexeme) {
+    // Implement logic to determine the token type
+    // (Replace this with actual implementation)
+    if (strcmp(lexeme, "FOR") == 0) return FOR_LOOP;
+    if (strcmp(lexeme, "WHILE") == 0) return WHILE_LOOP;
+    if (strcmp(lexeme, "FUNCTION") == 0) return FUNCTION_DECL;
+    if (strcmp(lexeme, "CALL") == 0) return FUNCTION_CALL;
+    if (strcmp(lexeme, "INPUT") == 0) return USER_INPUT;
+    if (strcmp(lexeme, "OUTPUT") == 0) return USER_OUTPUT;
+    if (strcmp(lexeme, "INT") == 0 || strcmp(lexeme, "STRING") == 0 || strcmp(lexeme, "BOOLEAN") == 0 || strcmp(lexeme, "FLOAT") == 0) return DATA_TYPE;
+    if (strcmp(lexeme, "TRY") == 0 || strcmp(lexeme, "CATCH") == 0) return ERROR_HANDLING;
+    if (strcmp(lexeme, "READ_FILE") == 0 || strcmp(lexeme, "WRITE_FILE") == 0) return FILE_IO;
+    if (strcmp(lexeme, "STD_LIBRARY") == 0) return STANDARD_LIBRARY;
+    if (strcmp(lexeme, "MODULE") == 0) return MODULE_DECL;
+    if (strcmp(lexeme, "USE_MODULE") == 0) return MODULE_USE;
+    if (strcmp(lexeme, "CONCURRENT") == 0) return CONCURRENT;
+    return IDENTIFIER;  // Placeholder value
+}
+
+// Parser
+void parse(struct Token* tokens) {
+    char currentVariable[MAX_NAME_LENGTH] = "";
+    int conditionMet = 0;  // Flag for conditionals
+
+    int i = 0;
+    while (tokens[i].type != END) {
+        switch (tokens[i].type) {
+            // ... (previous cases remain unchanged)
+
+            case FUNCTION_DECL:
+                printf("Function Declaration: %s ", tokens[i + 1].lexeme);  // Assuming function name follows FUNCTION
+                break;
+            case FUNCTION_CALL:
+                printf("Function Call: %s ", tokens[i + 1].lexeme);  // Assuming function name follows CALL
+                break;
+            case MODULE_DECL:
+                printf("Module Declaration: %s ", tokens[i + 1].lexeme);  // Assuming module name follows MODULE
+                break;
+            case MODULE_USE:
+                printf("Use Module: %s ", tokens[i + 1].lexeme);  // Assuming module name follows USE_MODULE
+                break;
+            case CONCURRENT:
+                printf("Concurrent Execution ");
+                break;
+            default:
+                break;
+        }
+        i++;
+    }
+}
+
+// Rest of the code (including security functions) remains unchanged...
+
+// Main program
+int main() {
+    char* sourceCode = "BEG: FUNCTION add PARAMETER x DATA_TYPE INT PARAMETER y DATA_TYPE INT COMMAND OUTPUT x + y I-1";
+    struct Token* tokens = lexer(sourceCode);
+    parse(tokens);
+
+    // Free allocated memory for lexemes
+    for (int i = 0; tokens[i].type != END; ++i) {
+        free(tokens[i].lexeme);
+    }
+    free(tokens);
+
+    return 0;
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Maximum length for variable names and commands
+#define MAX_NAME_LENGTH 50
+#define MAX_COMMAND_LENGTH 100
+
+// Data type definition
+enum DataType {
+    INT, STRING, BOOLEAN, FLOAT, // Add more as needed
+};
+
+// Token definition
+enum TokenType {
+    BEG, COLON, IDENTIFIER, EQUAL, OPEN_PAREN, CLOSE_PAREN, COMMAND,
+    PARAMETER, TASK_MARKER, IF, ELSE, CONDITION, IFF, EXPAND, VAR_DECL,
+    VAR_ASSIGN, VAR_USE, FOR_LOOP, WHILE_LOOP, FUNCTION_DECL, FUNCTION_CALL,
+    USER_INPUT, USER_OUTPUT, DATA_TYPE, ERROR_HANDLING, FILE_IO, STANDARD_LIBRARY,
+    MODULE_DECL, MODULE_USE, CONCURRENT, COMMENT, TYPE_CONVERSION, OPTIMIZATION, END
+};
+
+struct Token {
+    enum TokenType type;
+    char* lexeme;
+};
+
+// Lexer
+struct Token* lexer(char* source) {
+    struct Token* tokens = malloc(sizeof(struct Token) * 100);
+    char* token = strtok(source, " ");
+    int i = 0;
+
+    while (token != NULL) {
+        tokens[i].lexeme = strdup(token);  // Copy the token to avoid overwriting
+        tokens[i].type = determineTokenType(tokens[i].lexeme);
+
+        i++;
+        token = strtok(NULL, " ");
+    }
+
+    tokens[i].type = END;
+    return tokens;
+}
+
+// Function to determine token type based on lexeme
+enum TokenType determineTokenType(char* lexeme) {
+    // Implement logic to determine the token type
+    // (Replace this with actual implementation)
+    if (strcmp(lexeme, "FOR") == 0) return FOR_LOOP;
+    if (strcmp(lexeme, "WHILE") == 0) return WHILE_LOOP;
+    if (strcmp(lexeme, "FUNCTION") == 0) return FUNCTION_DECL;
+    if (strcmp(lexeme, "CALL") == 0) return FUNCTION_CALL;
+    if (strcmp(lexeme, "INPUT") == 0) return USER_INPUT;
+    if (strcmp(lexeme, "OUTPUT") == 0) return USER_OUTPUT;
+    if (strcmp(lexeme, "INT") == 0 || strcmp(lexeme, "STRING") == 0 || strcmp(lexeme, "BOOLEAN") == 0 || strcmp(lexeme, "FLOAT") == 0) return DATA_TYPE;
+    if (strcmp(lexeme, "TRY") == 0 || strcmp(lexeme, "CATCH") == 0) return ERROR_HANDLING;
+    if (strcmp(lexeme, "READ_FILE") == 0 || strcmp(lexeme, "WRITE_FILE") == 0) return FILE_IO;
+    if (strcmp(lexeme, "STD_LIBRARY") == 0) return STANDARD_LIBRARY;
+    if (strcmp(lexeme, "MODULE") == 0) return MODULE_DECL;
+    if (strcmp(lexeme, "USE_MODULE") == 0) return MODULE_USE;
+    if (strcmp(lexeme, "CONCURRENT") == 0) return CONCURRENT;
+    if (strcmp(lexeme, "//") == 0) return COMMENT;
+    if (strcmp(lexeme, "CONVERT") == 0) return TYPE_CONVERSION;
+    if (strcmp(lexeme, "OPTIMIZE") == 0) return OPTIMIZATION;
+    return IDENTIFIER;  // Placeholder value
+}
+
+// Parser
+void parse(struct Token* tokens) {
+    char currentVariable[MAX_NAME_LENGTH] = "";
+    int conditionMet = 0;  // Flag for conditionals
+
+    int i = 0;
+    while (tokens[i].type != END) {
+        switch (tokens[i].type) {
+            // ... (previous cases remain unchanged)
+
+            case COMMENT:
+                printf("Comment: %s ", tokens[i + 1].lexeme);  // Assuming comment follows "//"
+                break;
+            case TYPE_CONVERSION:
+                printf("Type Conversion ");
+                break;
+            case OPTIMIZATION:
+                printf("Optimization ");
+                break;
+            default:
+                break;
+        }
+        i++;
+    }
+}
+
+// Rest of the code (including security functions) remains unchanged...
+
+// Main program
+int main() {
+    char* sourceCode = "BEG: // This is a comment FUNCTION add PARAMETER x DATA_TYPE INT PARAMETER y DATA_TYPE INT COMMAND OUTPUT CONVERT x TO STRING + CONVERT y TO STRING I-1";
+    struct Token* tokens = lexer(sourceCode);
+    parse(tokens);
+
+    // Free allocated memory for lexemes
+    for (int i = 0; tokens[i].type != END; ++i) {
+        free(tokens[i].lexeme);
+    }
+    free(tokens);
+
+    return 0;
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Maximum length for variable names and commands
+#define MAX_NAME_LENGTH 50
+#define MAX_COMMAND_LENGTH 100
+
+// Data type definition
+enum DataType {
+    INT, STRING, BOOLEAN, FLOAT, // Add more as needed
+};
+
+// Token definition
+enum TokenType {
+    BEG, COLON, IDENTIFIER, EQUAL, OPEN_PAREN, CLOSE_PAREN, COMMAND,
+    PARAMETER, TASK_MARKER, IF, ELSE, CONDITION, IFF, EXPAND, VAR_DECL,
+    VAR_ASSIGN, VAR_USE, FOR_LOOP, WHILE_LOOP, FUNCTION_DECL, FUNCTION_CALL,
+    USER_INPUT, USER_OUTPUT, DATA_TYPE, ERROR_HANDLING, FILE_IO, STANDARD_LIBRARY,
+    MODULE_DECL, MODULE_USE, CONCURRENT, COMMENT, TYPE_CONVERSION, OPTIMIZATION, END
+};
+
+struct Token {
+    enum TokenType type;
+    char* lexeme;
+};
+
+// Function to check if a variable name is valid
+int is_valid_variable(char* name) {
+    // Implement your validation logic
+    return (strlen(name) <= MAX_NAME_LENGTH);
+}
+
+// Lexer
+struct Token* lexer(char* source) {
+    struct Token* tokens = malloc(sizeof(struct Token) * 100);
+    char* token = strtok(source, " ");
+    int i = 0;
+
+    while (token != NULL) {
+        tokens[i].lexeme = strdup(token);  // Copy the token to avoid overwriting
+        tokens[i].type = determineTokenType(tokens[i].lexeme);
+
+        i++;
+        token = strtok(NULL, " ");
+    }
+
+    tokens[i].type = END;
+    return tokens;
+}
+
+// Function to determine token type based on lexeme
+enum TokenType determineTokenType(char* lexeme) {
+    // Implement logic to determine the token type
+    // (Replace this with actual implementation)
+    if (strcmp(lexeme, "FOR") == 0) return FOR_LOOP;
+    if (strcmp(lexeme, "WHILE") == 0) return WHILE_LOOP;
+    if (strcmp(lexeme, "FUNCTION") == 0) return FUNCTION_DECL;
+    if (strcmp(lexeme, "CALL") == 0) return FUNCTION_CALL;
+    if (strcmp(lexeme, "INPUT") == 0) return USER_INPUT;
+    if (strcmp(lexeme, "OUTPUT") == 0) return USER_OUTPUT;
+    if (strcmp(lexeme, "INT") == 0 || strcmp(lexeme, "STRING") == 0 || strcmp(lexeme, "BOOLEAN") == 0 || strcmp(lexeme, "FLOAT") == 0) return DATA_TYPE;
+    if (strcmp(lexeme, "TRY") == 0 || strcmp(lexeme, "CATCH") == 0) return ERROR_HANDLING;
+    if (strcmp(lexeme, "READ_FILE") == 0 || strcmp(lexeme, "WRITE_FILE") == 0) return FILE_IO;
+    if (strcmp(lexeme, "STD_LIBRARY") == 0) return STANDARD_LIBRARY;
+    if (strcmp(lexeme, "MODULE") == 0) return MODULE_DECL;
+    if (strcmp(lexeme, "USE_MODULE") == 0) return MODULE_USE;
+    if (strcmp(lexeme, "CONCURRENT") == 0) return CONCURRENT;
+    if (strcmp(lexeme, "//") == 0) return COMMENT;
+    if (strcmp(lexeme, "CONVERT") == 0) return TYPE_CONVERSION;
+    if (strcmp(lexeme, "OPTIMIZE") == 0) return OPTIMIZATION;
+    return IDENTIFIER;  // Placeholder value
+}
+
+// Function to check if a conversion is valid
+int is_valid_conversion(char* from, char* to) {
+    // Implement your conversion validation logic
+    return 1;  // Placeholder value
+}
+
+// Parser
+void parse(struct Token* tokens) {
+    char currentVariable[MAX_NAME_LENGTH] = "";
+    int conditionMet = 0;  // Flag for conditionals
+
+    int i = 0;
+    while (tokens[i].type != END) {
+        switch (tokens[i].type) {
+            // ... (previous cases remain unchanged)
+
+            case VAR_DECL:
+                if (!is_valid_variable(tokens[i + 1].lexeme)) {
+                    printf("Invalid variable name: %s\n", tokens[i + 1].lexeme);
+                    exit(1);
+                }
+                printf("Variable Declaration: %s ", tokens[i + 1].lexeme);
+                break;
+            case TYPE_CONVERSION:
+                if (!is_valid_conversion(tokens[i + 1].lexeme, tokens[i + 3].lexeme)) {
+                    printf("Invalid conversion from %s to %s\n", tokens[i + 1].lexeme, tokens[i + 3].lexeme);
+                    exit(1);
+                }
+                printf("Type Conversion ");
+                break;
+            case OPTIMIZATION:
+                printf("Optimization ");
+                break;
+            default:
+                break;
+        }
+        i++;
+    }
+}
+
+// Rest of the code (including security functions) remains unchanged...
+
+// Main program
+int main() {
+    char* sourceCode = "BEG: VAR_DECL too_long_variable DATA_TYPE INT COMMAND OUTPUT OPTIMIZE 'Hello' CONVERSION STRING I-1";
+    struct Token* tokens = lexer(sourceCode);
+    parse(tokens);
+
+    // Free allocated memory for lexemes
+    for (int i = 0; tokens[i].type != END; ++i) {
+        free(tokens[i].lexeme);
+    }
+    free(tokens);
+
+    return 0;
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Maximum length for variable names and commands
+#define MAX_NAME_LENGTH 50
+#define MAX_COMMAND_LENGTH 100
+
+// Data type definition
+enum DataType {
+    INT, STRING, BOOLEAN, FLOAT, // Add more as needed
+};
+
+// Token definition
+enum TokenType {
+    BEG, COLON, IDENTIFIER, EQUAL, OPEN_PAREN, CLOSE_PAREN, COMMAND,
+    PARAMETER, TASK_MARKER, IF, ELSE, CONDITION, IFF, EXPAND, VAR_DECL,
+    VAR_ASSIGN, VAR_USE, FOR_LOOP, WHILE_LOOP, FUNCTION_DECL, FUNCTION_CALL,
+    USER_INPUT, USER_OUTPUT, DATA_TYPE, ERROR_HANDLING, FILE_IO, STANDARD_LIBRARY,
+    MODULE_DECL, MODULE_USE, CONCURRENT, COMMENT, TYPE_CONVERSION, OPTIMIZATION, END
+};
+
+struct Token {
+    enum TokenType type;
+    char* lexeme;
+};
+
+// Function to check if a variable name is valid
+int is_valid_variable(char* name) {
+    // Implement your validation logic
+    return (strlen(name) <= MAX_NAME_LENGTH);
+}
+
+// Function to check if a conversion is valid
+int is_valid_conversion(char* from, char* to) {
+    // Implement your conversion validation logic
+    return 1;  // Placeholder value
+}
+
+// Function to handle errors and exit
+void handle_error(char* message) {
+    fprintf(stderr, "Error: %s\n", message);
+    exit(EXIT_FAILURE);
+}
+
+// Function to execute a command securely
+void execute_command(char* command) {
+    // Implement secure execution logic (sandboxing, access control, etc.)
+    printf("Executing: %s\n", command);
+}
+
+// Lexer
+struct Token* lexer(char* source) {
+    struct Token* tokens = malloc(sizeof(struct Token) * 100);
+    char* token = strtok(source, " ");
+    int i = 0;
+
+    while (token != NULL) {
+        tokens[i].lexeme = strdup(token);  // Copy the token to avoid overwriting
+        tokens[i].type = determineTokenType(tokens[i].lexeme);
+
+        i++;
+        token = strtok(NULL, " ");
+    }
+
+    tokens[i].type = END;
+    return tokens;
+}
+
+// Function to determine token type based on lexeme
+enum TokenType determineTokenType(char* lexeme) {
+    // Implement logic to determine the token type
+    // (Replace this with actual implementation)
+    if (strcmp(lexeme, "FOR") == 0) return FOR_LOOP;
+    if (strcmp(lexeme, "WHILE") == 0) return WHILE_LOOP;
+    if (strcmp(lexeme, "FUNCTION") == 0) return FUNCTION_DECL;
+    if (strcmp(lexeme, "CALL") == 0) return FUNCTION_CALL;
+    if (strcmp(lexeme, "INPUT") == 0) return USER_INPUT;
+    if (strcmp(lexeme, "OUTPUT") == 0) return USER_OUTPUT;
+    if (strcmp(lexeme, "INT") == 0 || strcmp(lexeme, "STRING") == 0 || strcmp(lexeme, "BOOLEAN") == 0 || strcmp(lexeme, "FLOAT") == 0) return DATA_TYPE;
+    if (strcmp(lexeme, "TRY") == 0 || strcmp(lexeme, "CATCH") == 0) return ERROR_HANDLING;
+    if (strcmp(lexeme, "READ_FILE") == 0 || strcmp(lexeme, "WRITE_FILE") == 0) return FILE_IO;
+    if (strcmp(lexeme, "STD_LIBRARY") == 0) return STANDARD_LIBRARY;
+    if (strcmp(lexeme, "MODULE") == 0) return MODULE_DECL;
+    if (strcmp(lexeme, "USE_MODULE") == 0) return MODULE_USE;
+    if (strcmp(lexeme, "CONCURRENT") == 0) return CONCURRENT;
+    if (strcmp(lexeme, "//") == 0) return COMMENT;
+    if (strcmp(lexeme, "CONVERT") == 0) return TYPE_CONVERSION;
+    if (strcmp(lexeme, "OPTIMIZE") == 0) return OPTIMIZATION;
+    return IDENTIFIER;  // Placeholder value
+}
+
+// Function to check if a command is safe for execution
+int is_safe_command(char* command) {
+    // Implement your security checks (sandboxing, access control, etc.)
+    return 1;  // Placeholder value
+}
+
+// Parser
+void parse(struct Token* tokens) {
+    char currentVariable[MAX_NAME_LENGTH] = "";
+    int conditionMet = 0;  // Flag for conditionals
+
+    int i = 0;
+    while (tokens[i].type != END) {
+        switch (tokens[i].type) {
+            // ... (previous cases remain unchanged)
+
+            case COMMAND:
+                if (!is_safe_command(tokens[i + 1].lexeme)) {
+                    handle_error("Unsafe command");
+                }
+                execute_command(tokens[i + 1].lexeme);
+                break;
+            case VAR_DECL:
+                if (!is_valid_variable(tokens[i + 1].lexeme)) {
+                    handle_error("Invalid variable name");
+                }
+                printf("Variable Declaration: %s ", tokens[i + 1].lexeme);
+                break;
+            case TYPE_CONVERSION:
+                if (!is_valid_conversion(tokens[i + 1].lexeme, tokens[i + 3].lexeme)) {
+                    handle_error("Invalid conversion");
+                }
+                printf("Type Conversion ");
+                break;
+            case OPTIMIZATION:
+                printf("Optimization ");
+                break;
+            default:
+                break;
+        }
+        i++;
+    }
+}
+
+// Rest of the code (including security functions) remains unchanged...
+
+// Main program
+int main() {
+    char* sourceCode = "BEG: COMMAND LS -la I-1";
+    struct Token* tokens = lexer(sourceCode);
+    parse(tokens);
+
+    // Free allocated memory for lexemes
+    for (int i = 0; tokens[i].type != END; ++i) {
+        free(tokens[i].lexeme);
+    }
+    free(tokens);
+
+    return 0;
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Maximum length for variable names and commands
+#define MAX_NAME_LENGTH 50
+#define MAX_COMMAND_LENGTH 100
+
+// Data type definition
+enum DataType {
+    INT, STRING, BOOLEAN, FLOAT, // Add more as needed
+};
+
+// Token definition
+enum TokenType {
+    BEG, COLON, IDENTIFIER, EQUAL, OPEN_PAREN, CLOSE_PAREN, COMMAND,
+    PARAMETER, TASK_MARKER, IF, ELSE, CONDITION, IFF, EXPAND, VAR_DECL,
+    VAR_ASSIGN,
+
+VAR_USE, FOR_LOOP, WHILE_LOOP, FUNCTION_DECL, FUNCTION_CALL,
+    USER_INPUT, USER_OUTPUT, DATA_TYPE, ERROR_HANDLING, FILE_IO, STANDARD_LIBRARY,
+    MODULE_DECL, MODULE_USE, CONCURRENT, COMMENT, TYPE_CONVERSION, OPTIMIZATION, END
+};
+
+struct Token {
+    enum TokenType type;
+    char* lexeme;
+};
+
+// Function to check if a variable name is valid
+int is_valid_variable(char* name) {
+    // Implement your validation logic
+    return (strlen(name) <= MAX_NAME_LENGTH);
+}
+
+// Function to check if a conversion is valid
+int is_valid_conversion(char* from, char* to) {
+    // Implement your conversion validation logic
+    return 1;  // Placeholder value
+}
+
+// Function to handle errors and exit
+void handle_error(char* message) {
+    fprintf(stderr, "Error: %s\n", message);
+    exit(EXIT_FAILURE);
+}
+
+// Function to execute a command securely within a Docker container
+void execute_command(char* command) {
+    // Implement secure execution logic (sandboxing, access control, etc.)
+    // For simplicity, this example uses Docker for containerization.
+    char dockerCommand[MAX_COMMAND_LENGTH];
+    snprintf(dockerCommand, sizeof(dockerCommand), "docker run -i --rm your-container-image %s", command);
+
+    if (system(dockerCommand) != 0) {
+        handle_error("Failed to execute command securely");
+    }
+}
+
+// Lexer
+struct Token* lexer(char* source) {
+    struct Token* tokens = malloc(sizeof(struct Token) * 100);
+    char* token = strtok(source, " ");
+    int i = 0;
+
+    while (token != NULL) {
+        tokens[i].lexeme = strdup(token);  // Copy the token to avoid overwriting
+        tokens[i].type = determineTokenType(tokens[i].lexeme);
+
+        i++;
+        token = strtok(NULL, " ");
+    }
+
+    tokens[i].type = END;
+    return tokens;
+}
+
+// Function to determine token type based on lexeme
+enum TokenType determineTokenType(char* lexeme) {
+    // Implement logic to determine the token type
+    // (Replace this with actual implementation)
+    if (strcmp(lexeme, "FOR") == 0) return FOR_LOOP;
+    if (strcmp(lexeme, "WHILE") == 0) return WHILE_LOOP;
+    if (strcmp(lexeme, "FUNCTION") == 0) return FUNCTION_DECL;
+    if (strcmp(lexeme, "CALL") == 0) return FUNCTION_CALL;
+    if (strcmp(lexeme, "INPUT") == 0) return USER_INPUT;
+    if (strcmp(lexeme, "OUTPUT") == 0) return USER_OUTPUT;
+    if (strcmp(lexeme, "INT") == 0 || strcmp(lexeme, "STRING") == 0 || strcmp(lexeme, "BOOLEAN") == 0 || strcmp(lexeme, "FLOAT") == 0) return DATA_TYPE;
+    if (strcmp(lexeme, "TRY") == 0 || strcmp(lexeme, "CATCH") == 0) return ERROR_HANDLING;
+    if (strcmp(lexeme, "READ_FILE") == 0 || strcmp(lexeme, "WRITE_FILE") == 0) return FILE_IO;
+    if (strcmp(lexeme, "STD_LIBRARY") == 0) return STANDARD_LIBRARY;
+    if (strcmp(lexeme, "MODULE") == 0) return MODULE_DECL;
+    if (strcmp(lexeme, "USE_MODULE") == 0) return MODULE_USE;
+    if (strcmp(lexeme, "CONCURRENT") == 0) return CONCURRENT;
+    if (strcmp(lexeme, "//") == 0) return COMMENT;
+    if (strcmp(lexeme, "CONVERT") == 0) return TYPE_CONVERSION;
+    if (strcmp(lexeme, "OPTIMIZE") == 0) return OPTIMIZATION;
+    return IDENTIFIER;  // Placeholder value
+}
+
+// Function to check if a command is safe for execution
+int is_safe_command(char* command) {
+    // Implement your security checks (sandboxing, access control, etc.)
+    return 1;  // Placeholder value
+}
+
+// Parser
+void parse(struct Token* tokens) {
+    char currentVariable[MAX_NAME_LENGTH] = "";
+    int conditionMet = 0;  // Flag for conditionals
+
+    int i = 0;
+    while (tokens[i].type != END) {
+        switch (tokens[i].type) {
+            // ... (previous cases remain unchanged)
+
+            case COMMAND:
+                if (!is_safe_command(tokens[i + 1].lexeme)) {
+                    handle_error("Unsafe command");
+                }
+                execute_command(tokens[i + 1].lexeme);
+                break;
+            case VAR_DECL:
+                if (!is_valid_variable(tokens[i + 1].lexeme)) {
+                    handle_error("Invalid variable name");
+                }
+                printf("Variable Declaration: %s ", tokens[i + 1].lexeme);
+                break;
+            case TYPE_CONVERSION:
+                if (!is_valid_conversion(tokens[i + 1].lexeme, tokens[i + 3].lexeme)) {
+                    handle_error("Invalid conversion");
+                }
+                printf("Type Conversion ");
+                break;
+            case OPTIMIZATION:
+                printf("Optimization ");
+                break;
+            default:
+                break;
+        }
+        i++;
+    }
+}
+
+// Rest of the code (including security functions) remains unchanged...
+
+// Main program
+int main() {
+    char* sourceCode = "BEG: COMMAND LS -la I-1";
+    struct Token* tokens = lexer(sourceCode);
+    parse(tokens);
+
+    // Free allocated memory for lexemes
+    for (int i = 0; tokens[i].type != END; ++i) {
+        free(tokens[i].lexeme);
+    }
+    free(tokens);
+
+    return 0;
+}
+```
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Maximum length for variable names and commands
+#define MAX_NAME_LENGTH 50
+#define MAX_COMMAND_LENGTH 100
+
+// Data type definition
+enum DataType {
+    INT, STRING, BOOLEAN, FLOAT, // Add more as needed
+};
+
+// Token definition
+enum TokenType {
+    BEG, COLON, IDENTIFIER, EQUAL, OPEN_PAREN, CLOSE_PAREN, COMMAND,
+    PARAMETER, TASK_MARKER, IF, ELSE, CONDITION, IFF, EXPAND, VAR_DECL,
+    VAR_ASSIGN, VAR_USE, FOR_LOOP, WHILE_LOOP, FUNCTION_DECL, FUNCTION_CALL,
+    USER_INPUT, USER_OUTPUT, DATA_TYPE, ERROR_HANDLING, FILE_IO, STANDARD_LIBRARY,
+    MODULE_DECL, MODULE_USE, CONCURRENT, COMMENT, TYPE_CONVERSION, OPTIMIZATION, END
+};
+
+struct Token {
+    enum TokenType type;
+    char* lexeme;
+};
+
+// Function to check if a variable name is valid
+int is_valid_variable(char* name) {
+    // Implement your validation logic
+    return (strlen(name) <= MAX_NAME_LENGTH);
+}
+
+// Function to check if a conversion is valid
+int is_valid_conversion(char* from, char* to) {
+    // Implement your conversion validation logic
+    return 1;  // Placeholder value
+}
+
+// Function to handle errors and exit
+void handle_error(char* message) {
+    fprintf(stderr, "Error: %s\n", message);
+    exit(EXIT_FAILURE);
+}
+
+// Function to execute a command securely within a Docker container
+void execute_command(char* command) {
+    // Implement secure execution logic (sandboxing, access control, etc.)
+    // For simplicity, this example uses Docker for containerization.
+    char dockerCommand[MAX_COMMAND_LENGTH];
+    snprintf(dockerCommand, sizeof(dockerCommand), "docker run -i --rm your-container-image %s", command);
+
+    if (system(dockerCommand) != 0) {
+        handle_error("Failed to execute command securely");
+    }
+}
+
+// Lexer
+struct Token* lexer(char* source) {
+    struct Token* tokens = malloc(sizeof(struct Token) * 100);
+    char* token = strtok(source, " ");
+    int i = 0;
+
+    while (token != NULL) {
+        tokens[i].lexeme = strdup(token);  // Copy the token to avoid overwriting
+        tokens[i].type = determineTokenType(tokens[i].lexeme);
+
+        i++;
+        token = strtok(NULL, " ");
+    }
+
+    tokens[i].type = END;
+    return tokens;
+}
+
+// Function to determine token type based on lexeme
+enum TokenType determineTokenType(char* lexeme) {
+    // Implement logic to determine the token type
+    // (Replace this with actual implementation)
+    if (strcmp(lexeme, "FOR") == 0) return FOR_LOOP;
+    if (strcmp(lexeme, "WHILE") == 0) return WHILE_LOOP;
+    if (strcmp(lexeme, "FUNCTION") == 0) return FUNCTION_DECL;
+    if (strcmp(lexeme, "CALL") == 0) return FUNCTION_CALL;
+    if (strcmp(lexeme, "INPUT") == 0) return USER_INPUT;
+    if (strcmp(lexeme, "OUTPUT") == 0) return USER_OUTPUT;
+    if (strcmp(lexeme, "INT") == 0 || strcmp(lexeme, "STRING") == 0 || strcmp(lexeme, "BOOLEAN") == 0 || strcmp(lexeme, "FLOAT") == 0) return DATA_TYPE;
+    if (strcmp(lexeme, "TRY") == 0 || strcmp(lexeme, "CATCH") == 0) return ERROR_HANDLING;
+    if (strcmp(lexeme, "READ_FILE") == 0 || strcmp(lexeme, "WRITE_FILE") == 0) return FILE_IO;
+    if (strcmp(lexeme, "STD_LIBRARY") == 0) return STANDARD_LIBRARY;
+    if (strcmp(lexeme, "MODULE") == 0) return MODULE_DECL;
+    if (strcmp(lexeme, "USE_MODULE") == 0) return MODULE_USE;
+    if (strcmp(lexeme, "CONCURRENT") == 0) return CONCURRENT;
+    if (strcmp(lexeme, "//") == 0) return COMMENT;
+    if (strcmp(lexeme, "CONVERT") == 0) return TYPE_CONVERSION;
+    if (strcmp(lexeme, "OPTIMIZE") == 0) return OPTIMIZATION;
+    return IDENTIFIER;  // Placeholder value
+}
+
+// Function to check if a command is safe for execution
+int is_safe_command(char* command) {
+    // Implement your security checks (sandboxing, access control, etc.)
+    // For example, you can restrict certain commands or operations.
+    return (strstr(command, "rm") == NULL);  // Disallow 'rm' command as an example
+}
+
+// Function to perform access control checks
+int has_permission(char* user, char* resource) {
+    // Implement your access control logic
+    // For example, check if the user has permission to access the specified resource.
+    return 1;  // Placeholder value
+}
+
+// Parser
+void parse(struct Token* tokens, char* user) {
+    char currentVariable[MAX_NAME_LENGTH] = "";
+    int conditionMet = 0;  // Flag for conditionals
+
+    int i = 0;
+    while (tokens[i].type != END) {
+        switch (tokens[i].type) {
+            // ... (previous cases remain unchanged)
+
+            case COMMAND:
+                if (!is_safe_command(tokens[i + 1].lexeme)) {
+                    handle_error("Unsafe command");
+                }
+                if (!has_permission(user, tokens[i + 1].lexeme)) {
+                    handle_error("Permission denied");
+                }
+                execute_command(tokens[i + 1].lexeme);
+                break;
+            case VAR_DECL:
+                if (!is_valid_variable(tokens[i + 1].lexeme)) {
+                    handle_error("Invalid variable name");
+                }
+                printf("Variable Declaration: %s ", tokens[i + 1].lexeme);
+                break;
+            case TYPE_CONVERSION:
+                if (!is_valid_conversion(tokens[i + 1].lexeme, tokens[i + 3].lexeme)) {
+                    handle_error("Invalid conversion");
+                }
+                printf("Type Conversion ");
+                break;
+            case OPTIMIZATION:
+                printf("Optimization ");
+                break;
+            default:
+                break;
+        }
+        i++;
+    }
+}
+
+// Rest of the code (including security functions) remains unchanged...
+
+// Main program
+int main() {
+    char* sourceCode = "BEG: COMMAND LS -la I-1";
+    struct Token* tokens = lexer(sourceCode);
+    char* currentUser = "john_doe";  // Replace with actual user context
+    parse(tokens, currentUser);
+
+    // Free allocated memory for lexemes
+    for (int i = 0; tokens[i].type != END; ++i) {
+        free(tokens[i].lexeme);
+    }
+    free(tokens);
+
+    return 0;
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Maximum length for variable names and commands
+#define MAX_NAME_LENGTH 50
+#define MAX_COMMAND_LENGTH 100
+
+// Data type definition
+enum DataType {
+    INT, STRING, BOOLEAN, FLOAT, // Add more as needed
+};
+
+// Token definition
+enum TokenType {
+    BEG, COLON, IDENTIFIER, EQUAL, OPEN_PAREN, CLOSE_PAREN, COMMAND,
+    PARAMETER, TASK_MARKER, IF, ELSE, CONDITION, IFF, EXPAND, VAR_DECL,
+    VAR_ASSIGN, VAR_USE, FOR_LOOP, WHILE_LOOP, FUNCTION_DECL, FUNCTION_CALL,
+    USER_INPUT, USER_OUTPUT, DATA_TYPE, ERROR_HANDLING, FILE_IO, STANDARD_LIBRARY,
+    MODULE_DECL, MODULE_USE, CONCURRENT, COMMENT, TYPE_CONVERSION, OPTIMIZATION, END
+};
+
+struct Token {
+    enum TokenType type;
+    char* lexeme;
+};
+
+// Function to check if a variable name is valid
+int is_valid_variable(char* name) {
+    // Implement your validation logic
+    return (strlen(name) <= MAX_NAME_LENGTH);
+}
+
+// Function to check if a conversion is valid
+int is_valid_conversion(char* from, char* to) {
+    // Implement your conversion validation logic
+    return 1;  // Placeholder value
+}
+
+// Function to handle errors and exit
+void handle_error(char* message) {
+    fprintf(stderr, "Error: %s\n", message);
+    exit(EXIT_FAILURE);
+}
+
+// Function to execute a command securely within a Docker container
+void execute_command(char* command) {
+    // Implement secure execution logic (sandboxing, access control, etc.)
+    // For simplicity, this example uses Docker for containerization.
+    char dockerCommand[MAX_COMMAND_LENGTH];
+    snprintf(dockerCommand, sizeof(dockerCommand), "docker run -i --rm your-container-image %s", command);
+
+    if (system(dockerCommand) != 0) {
+        handle_error("Failed to execute command securely");
+    }
+}
+
+// Function to check if a command is safe for execution
+int is_safe_command(char* command) {
+    // Implement your security checks (sandboxing, access control, etc.)
+    // For example, you can restrict certain commands or operations.
+    return (strstr(command, "rm") == NULL);  // Disallow 'rm' command as an example
+}
+
+// Function to perform access control checks
+int has_permission(char* user, char* resource) {
+    // Implement your access control logic
+    // For example, check if the user has permission to access the specified resource.
+    return 1;  // Placeholder value
+}
+
+// Lexer
+struct Token* lexer(char* source) {
+    struct Token* tokens = malloc(sizeof(struct Token) * 100);
+    char* token = strtok(source, " ");
+    int i = 0;
+
+    while (token != NULL) {
+        tokens[i].lexeme = strdup(token);  // Copy the token to avoid overwriting
+        tokens[i].type = determineTokenType(tokens[i].lexeme);
+
+        i++;
+        token = strtok(NULL, " ");
+    }
+
+    tokens[i].type = END;
+    return tokens;
+}
+
+// Function to determine token type based on lexeme
+enum TokenType determineTokenType(char* lexeme) {
+    // Implement logic to determine the token type
+    // (Replace this with actual implementation)
+    if (strcmp(lexeme, "BEG:") == 0) return BEG;
+    if (strcmp(lexeme, ":") == 0) return COLON;
+    if (strcmp(lexeme, "IF") == 0) return IF;
+    if (strcmp(lexeme, "ELSE") == 0) return ELSE;
+    // ... (add more token types as needed)
+    return IDENTIFIER;  // Placeholder value
+}
+
+// Parser
+void parse(struct Token* tokens, char* user) {
+    char currentVariable[MAX_NAME_LENGTH] = "";
+    int conditionMet = 0;  // Flag for conditionals
+
+    int i = 0;
+    while (tokens[i].type != END) {
+        switch (tokens[i].type) {
+            case COMMAND:
+                if (!is_safe_command(tokens[i + 1].lexeme)) {
+                    handle_error("Unsafe command");
+                }
+                if (!has_permission(user, tokens[i + 1].lexeme)) {
+                    handle_error("Permission denied");
+                }
+                execute_command(tokens[i + 1].lexeme);
+                break;
+            case VAR_DECL:
+                if (!is_valid_variable(tokens[i + 1].lexeme)) {
+                    handle_error("Invalid variable name");
+                }
+                printf("Variable Declaration: %s ", tokens[i + 1].lexeme);
+                break;
+            case TYPE_CONVERSION:
+                if (!is_valid_conversion(tokens[i + 1].lexeme, tokens[i + 3].lexeme)) {
+                    handle_error("Invalid conversion");
+                }
+                printf("Type Conversion ");
+                break;
+            case OPTIMIZATION:
+                printf("Optimization ");
+                break;
+            // ... (add more cases based on your language's syntax)
+            default:
+                break;
+        }
+        i++;
+    }
+}
+
+// Main program
+int main() {
+    char* sourceCode = "BEG: COMMAND LS -la I-1";
+    struct Token* tokens = lexer(sourceCode);
+    char* currentUser = "john_doe";  // Replace with actual user context
+    parse(tokens, currentUser);
+
+    // Free allocated memory for lexemes
+    for (int i = 0; tokens[i].type != END; ++i) {
+        free(tokens[i].lexeme);
+    }
+    free(tokens);
+
+    return 0;
+}
+
+Beg: Initialize_Graphics
+
+: 1A = (set_resolution::1920x1080)I-1
+: 1B = (load_shader::advanced_graphics_shader)I-1
+
+Beg: Main_Rendering_Loop
+
+: 2A = (clear_screen)I-1
+
+: 2B = (render_model::spaceship_model)I-1
+: 2C = (apply_shader::1B)I-1
+: 2D = (set_lighting::sunlight)I-1
+
+: 2E = (render_special_effect::warp_drive)I-1
+: 2F = (apply_post_processing::chromatic_aberration)I-1
+
+: 2G = (present_frame)I-1
+
+Beg: Clean_Up
+
+: 3A = (unload_shader::1B)I-1
+: 3B = (release_graphics_resources)I-1
+
+Beg: Initialize_Graphics
+
+: 1A = (set_resolution::1920x1080)I-1
+: 1B = (initialize_opengl_context)I-1
+: 1C = (load_shader::advanced_graphics_shader)I-1
+
+Beg: Initialize_OpenCV
+
+: 2A = (initialize_opencv)I-1
+: 2B = (load_haar_cascade::face_detection)I-1
+
+Beg: Main_Rendering_Loop
+
+: 3A = (clear_screen)I-1
+
+: 3B = (render_model::spaceship_model)I-1
+: 3C = (apply_shader::1C)I-1
+: 3D = (set_lighting::sunlight)I-1
+
+: 3E = (render_special_effect::warp_drive)I-1
+: 3F = (apply_post_processing::chromatic_aberration)I-1
+
+: 3G = (render_opencv_overlay::2B)I-1
+
+: 3H = (present_frame)I-1
+
+Beg: Clean_Up
+
+: 4A = (unload_shader::1C)I-1
+: 4B = (release_graphics_resources)I-1
+
+: 4C = (release_opencv_resources)I-1
+
 
 
