@@ -1,40 +1,40 @@
-# JoLang Adapter for VaLangue-Family-Translator-1
+# Prano Adapter for VaLangue-Family-Translator-1
 
-class JoLangAdapter:
+class PranoAdapter:
     def __init__(self, dataset_path):
         self.dataset_path = dataset_path
 
     def parse_code(self, code):
-        # Logic to parse JoLang code using VaLangue-Family-Translator-1
+        # Logic to parse Prano code using VaLangue-Family-Translator-1
         pass
 
     def compile_code(self, parsed_code):
-        # Logic to compile JoLang code using VaLangue-Family-Translator-1
+        # Logic to compile Prano code using VaLangue-Family-Translator-1
         pass
 
     def interpret_code(self, code):
-        # Logic to interpret JoLang code using VaLangue-Family-Translator-1
+        # Logic to interpret Prano code using VaLangue-Family-Translator-1
         pass
 
     def translate_code(self, code, target_language):
-        # Logic to translate JoLang code to another language using VaLangue-Family-Translator-1
+        # Logic to translate Prano code to another language using VaLangue-Family-Translator-1
         pass
 
 # Example Usage
 dataset_path = "/path/to/VaLangue-Family-Translator-1"
-jo_lang_adapter = JoLangAdapter(dataset_path)
+jo_lang_adapter = PranoAdapter(dataset_path)
 
-# Parse and compile JoLang code
-jo_code = "print('Hello, JoLang!')"
+# Parse and compile Prano code
+jo_code = "print('Hello, Prano!')"
 parsed_code = jo_lang_adapter.parse_code(jo_code)
 compiled_code = jo_lang_adapter.compile_code(parsed_code)
 
-# Interpret JoLang code
+# Interpret Prano code
 jo_code_to_interpret = "input('Enter your name: ')"
 jo_lang_adapter.interpret_code(jo_code_to_interpret)
 
-# Translate JoLang code to Python
-jo_code_to_translate = "JoLangFeature()"
+# Translate Prano code to Python
+jo_code_to_translate = "PranoFeature()"
 translated_code = jo_lang_adapter.translate_code(jo_code_to_translate, "Python")
 
 from Family.translate import translate, detect_language
@@ -44,9 +44,9 @@ pseudocode = """
 *define task > Task = greet (name) 
 {print ("Hi, " + name + "!")}
 
-*define name > Name = JoLang
+*define name > Name = Prano
 
-*Call the task > greet("JoLang")
+*Call the task > greet("Prano")
 """
 
 def translate_pseudocode_to_ast(pseudocode):
@@ -68,12 +68,12 @@ def translate_pseudocode_to_ast(pseudocode):
             {
                 "type": "DefineName",
                 "variable_name": "Name",
-                "value": "JoLang"
+                "value": "Prano"
             },
             {
                 "type": "CallTask",
                 "task_name": "Task",
-                "arguments": ["JoLang"]
+                "arguments": ["Prano"]
             }
         ]
     }
@@ -118,11 +118,10 @@ compiled_code = compile_ast_to_code(ast_structure)
 # Use VaLangue-Family-Translator-1 for translation with retry
 translated_message = translate_with_retry(ast_structure["body"][2]["arguments"][0], source_lang='source_lang', target_lang='target_lang')
 
-# Print the translated JoLang code and translated message
-print("Compiled JoLang Code:")
+# Print the translated Prano code and translated message
+print("Compiled Prano Code:")
 print(compiled_code)
 print("\nTranslated Message:")
 print(translated_message)
-
 
 
