@@ -1,4 +1,4 @@
-# Obsyddean Programming Language
+# Vici Programming Language
 
 # Language Goals and Features:
 
@@ -36,9 +36,9 @@ Function DefineConstructs() {
 
 # VaLangue Family Integration:
 
-# Ensure Obsyddean fits seamlessly into the VaLangue Family of Languages
+# Ensure Vici fits seamlessly into the VaLangue Family of Languages
 Function VaLangueIntegration() {
-    print("Ensuring Obsyddean fits seamlessly into the VaLangue Family of Languages")
+    print("Ensuring Vici fits seamlessly into the VaLangue Family of Languages")
 }
 
 # Utilize the VaLangue Family Translator for translation capabilities
@@ -60,9 +60,9 @@ Function SecureCodingPractices() {
 
 # Translation Mechanism:
 
-# Develop a translation mechanism for Obsyddean as a translated language
+# Develop a translation mechanism for Vici as a translated language
 Function TranslationMechanism() {
-    print("Developing a translation mechanism for Obsyddean as a translated language")
+    print("Developing a translation mechanism for Vici as a translated language")
 }
 
 # Ensure compatibility with Python and F# datasets
@@ -72,9 +72,9 @@ Function CompatibilityWithDatasets() {
 
 # Compiler/Interpreter Development:
 
-# Build an interpreter or compiler for Obsyddean
+# Build an interpreter or compiler for Vici
 Function BuildInterpreterOrCompiler() {
-    print("Building an interpreter or compiler for Obsyddean")
+    print("Building an interpreter or compiler for Vici")
 }
 
 # Utilize Python and F# constructs for efficient code execution
@@ -96,9 +96,9 @@ Function TestingTypes() {
 
 # Documentation:
 
-# Create comprehensive documentation detailing Obsyddean’s syntax, semantics, and usage
+# Create comprehensive documentation detailing Vici’s syntax, semantics, and usage
 Function ComprehensiveDocumentation() {
-    print("Creating comprehensive documentation for Obsyddean's syntax, semantics, and usage")
+    print("Creating comprehensive documentation for Vici's syntax, semantics, and usage")
 }
 
 # Include examples, use cases, and integration with VaLangue frameworks
@@ -108,9 +108,9 @@ Function DocumentationContents() {
 
 # Community Engagement:
 
-# Share Obsyddean with the community, encouraging feedback and contributions
+# Share Vici with the community, encouraging feedback and contributions
 Function ShareWithCommunity() {
-    print("Sharing Obsyddean with the community, encouraging feedback and contributions")
+    print("Sharing Vici with the community, encouraging feedback and contributions")
 }
 
 # Foster a collaborative environment for language improvement
@@ -125,14 +125,14 @@ Function KeepEyeOnEvolution() {
     print("Keeping an eye on the evolution of the VaLangue Family of Languages")
 }
 
-# Iteratively improve Obsyddean based on user feedback and emerging language trends
+# Iteratively improve Vici based on user feedback and emerging language trends
 Function ImproveBasedOnFeedback() {
-    print("Iteratively improving Obsyddean based on user feedback and emerging language trends")
+    print("Iteratively improving Vici based on user feedback and emerging language trends")
 }
 
-# Entry point for running Obsyddean programs
-Function RunObsyddeanProgram() {
-    print("Obsyddean program is running.")
+# Entry point for running Vici programs
+Function RunViciProgram() {
+    print("Vici program is running.")
 }
 
 # Variable Declaration and Assignment
@@ -147,7 +147,7 @@ Module Variables {
 }
 
 # Example Usage:
-# Declare a technology using Obsyddean
+# Declare a technology using Vici
 Declare("AI", "TensorFlow", "Neural Networks")
 
 # Build a secure project
@@ -157,10 +157,10 @@ BuildProject("SecureApp", "Microservices", "High")
 Variables.DeclareVariable("count", "Int")
 Variables.AssignValue("count", 42)
 
-# Run Obsyddean program
-RunObsyddeanProgram()
+# Run Vici program
+RunViciProgram()
 ```
-# Obsyddean Programming Language - Text App Creation
+# Vici Programming Language - Text App Creation
 
 # Create a text app using the specified tech stack and procedure
 Function CreateTextApp(techStack: String, implementationProcedure: String) / positive {
