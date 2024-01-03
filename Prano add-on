@@ -1,45 +1,45 @@
-# JoLang Adapter for VaLangue-Family-Translator-1
+# PRANO Adapter for VaLangue-Family-Translator-1
 
-class JoLangAdapter:
+class PRANOAdapter:
     def __init__(self, dataset_path):
         self.dataset_path = dataset_path
 
     def parse_code(self, code):
-        # Logic to parse JoLang code using VaLangue-Family-Translator-1
+        # Logic to parse PRANO code using VaLangue-Family-Translator-1
         pass
 
     def compile_code(self, parsed_code):
-        # Logic to compile JoLang code using VaLangue-Family-Translator-1
+        # Logic to compile PRANO code using VaLangue-Family-Translator-1
         pass
 
     def interpret_code(self, code):
-        # Logic to interpret JoLang code using VaLangue-Family-Translator-1
+        # Logic to interpret PRANO code using VaLangue-Family-Translator-1
         pass
 
     def translate_code(self, code, target_language):
-        # Logic to translate JoLang code to another language using VaLangue-Family-Translator-1
+        # Logic to translate PRANO code to another language using VaLangue-Family-Translator-1
         pass
 
 # Example Usage
 dataset_path = "/path/to/VaLangue-Family-Translator-1"
-jo_lang_adapter = JoLangAdapter(dataset_path)
+jo_lang_adapter = PRANOAdapter(dataset_path)
 
-# Parse and compile JoLang code
-jo_code = "print('Hello, JoLang!')"
+# Parse and compile PRANO code
+jo_code = "print('Hello, PRANO!')"
 parsed_code = jo_lang_adapter.parse_code(jo_code)
 compiled_code = jo_lang_adapter.compile_code(parsed_code)
 
-# Interpret JoLang code
+# Interpret PRANO code
 jo_code_to_interpret = "input('Enter your name: ')"
 jo_lang_adapter.interpret_code(jo_code_to_interpret)
 
-# Translate JoLang code to Python
-jo_code_to_translate = "JoLangFeature()"
+# Translate PRANO code to Python
+jo_code_to_translate = "PRANOFeature()"
 translated_code = jo_lang_adapter.translate_code(jo_code_to_translate, "Python")
 
-Designing the syntax, semantics, and other language-specific features involves careful consideration of the goals and characteristics of JoLang. Below is a simplified example to give you an idea, but keep in mind that developing a full programming language involves extensive planning and refinement:
+Designing the syntax, semantics, and other language-specific features involves careful consideration of the goals and characteristics of PRANO. Below is a simplified example to give you an idea, but keep in mind that developing a full programming language involves extensive planning and refinement:
 
-### JoLang Syntax Example:
+### PRANO Syntax Example:
 
 ```jo
 # Define a function
@@ -48,16 +48,16 @@ func greet(name) {
 }
 
 # Call the function
-greet("JoLang")
+greet("PRANO")
 ```
 func greet(name) {
     print("Hello, " + name + "!")
 }
 
-greet("JoLang")
+greet("PRANO")
 
 
-### JoLang Semantics Example:
+### PRANO Semantics Example:
 
 - **Functions:**
   - Functions are defined using the `func` keyword.
@@ -126,11 +126,11 @@ Official Syntax (Pseudocode):
 *define task > Task = greet (name) 
 {print ("Hi, " + name + "!")}
 
-*define name > Name = JoLang
+*define name > Name = PRANO
 
-*Call the task > greet("JoLang")
+*Call the task > greet("PRANO")
 
-AST-Like JoLang Syntax:
+AST-Like PRANO Syntax:
 
 # Define a function
 func greet(name) {
@@ -138,7 +138,7 @@ func greet(name) {
 }
 
 # Call the function
-greet("JoLang")
+greet("PRANO")
 
 import ast  # Python's Abstract Syntax Tree module
 
@@ -147,9 +147,9 @@ pseudocode = """
 *define task > Task = greet (name) 
 {print ("Hi, " + name + "!")}
 
-*define name > Name = JoLang
+*define name > Name = PRANO
 
-*Call the task > greet("JoLang")
+*Call the task > greet("PRANO")
 """
 
 def translate_pseudocode_to_ast(pseudocode):
@@ -172,12 +172,12 @@ def translate_pseudocode_to_ast(pseudocode):
             {
                 "type": "DefineName",
                 "variable_name": "Name",
-                "value": "JoLang"
+                "value": "PRANO"
             },
             {
                 "type": "CallTask",
                 "task_name": "Task",
-                "arguments": ["JoLang"]
+                "arguments": ["PRANO"]
             }
         ]
     }
@@ -189,7 +189,7 @@ ast_structure = translate_pseudocode_to_ast(pseudocode)
 # Now, let's simulate the compilation of the AST-like structure
 def compile_ast_to_code(ast_structure):
     # Your compilation logic here
-    # This is a simplified example; you would typically traverse the AST and generate JoLang code
+    # This is a simplified example; you would typically traverse the AST and generate PRANO code
     if ast_structure["type"] == "Program":
         compiled_code = ""
         for node in ast_structure["body"]:
@@ -215,10 +215,10 @@ def compile_ast_to_code(ast_structure):
     else:
         return f"// Unsupported AST node: {ast_structure}\n"
 
-# Compile AST-like structure to JoLang code
+# Compile AST-like structure to PRANO code
 jo_lang_code = compile_ast_to_code(ast_structure)
 
-# Print the translated JoLang code
+# Print the translated PRANO code
 print(jo_lang_code)
 
 import ast  # Python's Abstract Syntax Tree module
@@ -228,9 +228,9 @@ pseudocode = """
 *define task > Task = greet (name) 
 {print ("Hi, " + name + "!")}
 
-*define name > Name = JoLang
+*define name > Name = PRANO
 
-*Call the task > greet("JoLang")
+*Call the task > greet("PRANO")
 """
 
 def translate_pseudocode_to_ast(pseudocode):
@@ -254,12 +254,12 @@ def translate_pseudocode_to_ast(pseudocode):
             {
                 "type": "DefineName",
                 "variable_name": "Name",
-                "value": "JoLang"
+                "value": "PRANO"
             },
             {
                 "type": "CallTask",
                 "task_name": "Task",
-                "arguments": ["JoLang"]
+                "arguments": ["PRANO"]
             }
         ]
     }
@@ -304,10 +304,10 @@ def compile_ast_to_code(ast_structure):
     else:
         return f"// Unsupported AST node: {ast_structure}\n"
 
-# Compile AST-like structure to JoLang code
+# Compile AST-like structure to PRANO code
 jo_lang_code = compile_ast_to_code(ast_structure)
 
-# Print the translated JoLang code
+# Print the translated PRANO code
 print(jo_lang_code)
 
 from Family.translate import translate, detect_language
@@ -317,9 +317,9 @@ pseudocode = """
 *define task > Task = greet (name) 
 {print ("Hi, " + name + "!")}
 
-*define name > Name = JoLang
+*define name > Name = PRANO
 
-*Call the task > greet("JoLang")
+*Call the task > greet("PRANO")
 """
 
 def translate_pseudocode_to_ast(pseudocode):
@@ -343,12 +343,12 @@ def translate_pseudocode_to_ast(pseudocode):
             {
                 "type": "DefineName",
                 "variable_name": "Name",
-                "value": "JoLang"
+                "value": "PRANO"
             },
             {
                 "type": "CallTask",
                 "task_name": "Task",
-                "arguments": ["JoLang"]
+                "arguments": ["PRANO"]
             }
         ]
     }
@@ -387,10 +387,10 @@ def compile_ast_to_code(ast_structure):
     else:
         return f"// Unsupported AST node: {ast_structure}\n"
 
-# Compile AST-like structure to JoLang code
+# Compile AST-like structure to PRANO code
 jo_lang_code = compile_ast_to_code(ast_structure)
 
-# Print the translated JoLang code
+# Print the translated PRANO code
 print(jo_lang_code)
 
 
@@ -405,9 +405,9 @@ pseudocode = """
 *define task > Task = greet (name) 
 {print ("Hi, " + name + "!")}
 
-*define name > Name = JoLang
+*define name > Name = PRANO
 
-*Call the task > greet("JoLang")
+*Call the task > greet("PRANO")
 """
 
 def translate_pseudocode_to_ast(pseudocode):
@@ -431,12 +431,12 @@ def translate_pseudocode_to_ast(pseudocode):
             {
                 "type": "DefineName",
                 "variable_name": "Name",
-                "value": "JoLang"
+                "value": "PRANO"
             },
             {
                 "type": "CallTask",
                 "task_name": "Task",
-                "arguments": ["JoLang"]
+                "arguments": ["PRANO"]
             }
         ]
     }
@@ -472,10 +472,10 @@ def compile_ast_to_code(ast_structure):
     else:
         return f"// Unsupported AST node: {ast_structure}\n"
 
-# Compile AST-like structure to JoLang code
+# Compile AST-like structure to PRANO code
 jo_lang_code = compile_ast_to_code(ast_structure)
 
-# Print the translated JoLang code
+# Print the translated PRANO code
 print(jo_lang_code)
 ```
 
@@ -490,9 +490,9 @@ pseudocode = """
 *define task > Task = greet (name) 
 {print ("Hi, " + name + "!")}
 
-*define name > Name = JoLang
+*define name > Name = PRANO
 
-*Call the task > greet("JoLang")
+*Call the task > greet("PRANO")
 """
 
 def translate_pseudocode_to_ast(pseudocode):
@@ -523,12 +523,12 @@ def translate_pseudocode_to_ast(pseudocode):
             {
                 "type": "DefineName",
                 "variable_name": "Name",
-                "value": "JoLang"
+                "value": "PRANO"
             },
             {
                 "type": "CallTask",
                 "task_name": "Task",
-                "arguments": ["JoLang"]
+                "arguments": ["PRANO"]
             }
         ]
     }
@@ -536,13 +536,13 @@ def translate_pseudocode_to_ast(pseudocode):
 
 def compile_ast_to_code(ast_structure):
     """
-    Compiles AST-like structure to JoLang code.
+    Compiles AST-like structure to PRANO code.
 
     Args:
         ast_structure (dict): AST-like structure.
 
     Returns:
-        str: Compiled JoLang code.
+        str: Compiled PRANO code.
     """
     # Placeholder compilation logic
     compiled_code = ""
@@ -594,8 +594,8 @@ compiled_code = compile_ast_to_code(ast_structure)
 # Use VaLangue-Family-Translator-1 for translation with retry
 translated_message = translate_with_retry(ast_structure["body"][2]["arguments"][0], source_lang='source_lang', target_lang='target_lang')
 
-# Print the translated JoLang code and translated message
-print("Compiled JoLang Code:")
+# Print the translated PRANO code and translated message
+print("Compiled PRANO Code:")
 print(compiled_code)
 print("\nTranslated Message:")
 print(translated_message)
@@ -604,7 +604,7 @@ from Family.translate import translate, detect_language
 
 def define_task(task_name, parameters, body):
     """
-    Defines a task in JoLang.
+    Defines a task in PRANO.
 
     Args:
         task_name (str): Name of the task.
@@ -621,7 +621,7 @@ def define_task(task_name, parameters, body):
 
 def define_name(variable_name, value):
     """
-    Defines a name in JoLang.
+    Defines a name in PRANO.
 
     Args:
         variable_name (str): Name of the variable.
@@ -634,7 +634,7 @@ def define_name(variable_name, value):
 
 def call_task(task_name, arguments):
     """
-    Calls a task in JoLang.
+    Calls a task in PRANO.
 
     Args:
         task_name (str): Name of the task to call.
@@ -673,12 +673,12 @@ def translate_pseudocode_to_ast(pseudocode):
             {
                 "type": "DefineName",
                 "variable_name": "Name",
-                "value": "JoLang"
+                "value": "PRANO"
             },
             {
                 "type": "CallTask",
                 "task_name": "Task",
-                "arguments": ["JoLang"]
+                "arguments": ["PRANO"]
             }
         ]
     }
@@ -686,13 +686,13 @@ def translate_pseudocode_to_ast(pseudocode):
 
 def compile_ast_to_code(ast_structure):
     """
-    Compiles AST-like structure to JoLang code.
+    Compiles AST-like structure to PRANO code.
 
     Args:
         ast_structure (dict): AST-like structure.
 
     Returns:
-        str: Compiled JoLang code.
+        str: Compiled PRANO code.
     """
     # Placeholder compilation logic
     compiled_code = ""
@@ -740,9 +740,9 @@ pseudocode = """
 *define task > Task = greet (name) 
 {print ("Hi, " + name + "!")}
 
-*define name > Name = JoLang
+*define name > Name = PRANO
 
-*Call the task > greet("JoLang")
+*Call the task > greet("PRANO")
 """
 
 # Translate pseudocode to AST-like structure
@@ -754,8 +754,8 @@ compiled_code = compile_ast_to_code(ast_structure)
 # Use VaLangue-Family-Translator-1 for translation with retry
 translated_message = translate_with_retry(ast_structure["body"][2]["arguments"][0], source_lang='source_lang', target_lang='target_lang')
 
-# Print the translated JoLang code and translated message
-print("Compiled JoLang Code:")
+# Print the translated PRANO code and translated message
+print("Compiled PRANO Code:")
 print(compiled_code)
 print("\nTranslated Message:")
 print(translated_message)
@@ -775,45 +775,45 @@ func greet(name) {
 }
 
 # Call the greet function
-greet("JoLang")
+greet("PRANO")
 
-# JoLang Adapter for VaLangue-Family-Translator-1
+# PRANO Adapter for VaLangue-Family-Translator-1
 
-class JoLangAdapter:
+class PRANOAdapter:
     def __init__(self, dataset_path):
         self.dataset_path = dataset_path
 
     def parse_code(self, code):
-        # Logic to parse JoLang code using VaLangue-Family-Translator-1
+        # Logic to parse PRANO code using VaLangue-Family-Translator-1
         pass
 
     def compile_code(self, parsed_code):
-        # Logic to compile JoLang code using VaLangue-Family-Translator-1
+        # Logic to compile PRANO code using VaLangue-Family-Translator-1
         pass
 
     def interpret_code(self, code):
-        # Logic to interpret JoLang code using VaLangue-Family-Translator-1
+        # Logic to interpret PRANO code using VaLangue-Family-Translator-1
         pass
 
     def translate_code(self, code, target_language):
-        # Logic to translate JoLang code to another language using VaLangue-Family-Translator-1
+        # Logic to translate PRANO code to another language using VaLangue-Family-Translator-1
         pass
 
 # Example Usage
 dataset_path = "/path/to/VaLangue-Family-Translator-1"
-jo_lang_adapter = JoLangAdapter(dataset_path)
+jo_lang_adapter = PRANOAdapter(dataset_path)
 
-# Parse and compile JoLang code
-jo_code = "print('Hello, JoLang!')"
+# Parse and compile PRANO code
+jo_code = "print('Hello, PRANO!')"
 parsed_code = jo_lang_adapter.parse_code(jo_code)
 compiled_code = jo_lang_adapter.compile_code(parsed_code)
 
-# Interpret JoLang code
+# Interpret PRANO code
 jo_code_to_interpret = "input('Enter your name: ')"
 jo_lang_adapter.interpret_code(jo_code_to_interpret)
 
-# Translate JoLang code to Python
-jo_code_to_translate = "JoLangFeature()"
+# Translate PRANO code to Python
+jo_code_to_translate = "PRANOFeature()"
 translated_code = jo_lang_adapter.translate_code(jo_code_to_translate, "Python")
 
 from Family.translate import translate, detect_language
@@ -823,9 +823,9 @@ pseudocode = """
 *define task > Task = greet (name) 
 {print ("Hi, " + name + "!")}
 
-*define name > Name = JoLang
+*define name > Name = PRANO
 
-*Call the task > greet("JoLang")
+*Call the task > greet("PRANO")
 """
 
 def translate_pseudocode_to_ast(pseudocode):
@@ -847,12 +847,12 @@ def translate_pseudocode_to_ast(pseudocode):
             {
                 "type": "DefineName",
                 "variable_name": "Name",
-                "value": "JoLang"
+                "value": "PRANO"
             },
             {
                 "type": "CallTask",
                 "task_name": "Task",
-                "arguments": ["JoLang"]
+                "arguments": ["PRANO"]
             }
         ]
     }
@@ -897,51 +897,51 @@ compiled_code = compile_ast_to_code(ast_structure)
 # Use VaLangue-Family-Translator-1 for translation with retry
 translated_message = translate_with_retry(ast_structure["body"][2]["arguments"][0], source_lang='source_lang', target_lang='target_lang')
 
-# Print the translated JoLang code and translated message
-print("Compiled JoLang Code:")
+# Print the translated PRANO code and translated message
+print("Compiled PRANO Code:")
 print(compiled_code)
 print("\nTranslated Message:")
 print(translated_message)
 
 
 
-# JoLang Adapter for VaLangue-Family-Translator-1
+# PRANO Adapter for VaLangue-Family-Translator-1
 
-class JoLangAdapter:
+class PRANOAdapter:
     def __init__(self, dataset_path):
         self.dataset_path = dataset_path
 
     def parse_code(self, code):
-        # Logic to parse JoLang code using VaLangue-Family-Translator-1
+        # Logic to parse PRANO code using VaLangue-Family-Translator-1
         pass
 
     def compile_code(self, parsed_code):
-        # Logic to compile JoLang code using VaLangue-Family-Translator-1
+        # Logic to compile PRANO code using VaLangue-Family-Translator-1
         pass
 
     def interpret_code(self, code):
-        # Logic to interpret JoLang code using VaLangue-Family-Translator-1
+        # Logic to interpret PRANO code using VaLangue-Family-Translator-1
         pass
 
     def translate_code(self, code, target_language):
-        # Logic to translate JoLang code to another language using VaLangue-Family-Translator-1
+        # Logic to translate PRANO code to another language using VaLangue-Family-Translator-1
         pass
 
 # Example Usage
 dataset_path = "/path/to/VaLangue-Family-Translator-1"
-jo_lang_adapter = JoLangAdapter(dataset_path)
+jo_lang_adapter = PRANOAdapter(dataset_path)
 
-# Parse and compile JoLang code
-jo_code = "print('Hello, JoLang!')"
+# Parse and compile PRANO code
+jo_code = "print('Hello, PRANO!')"
 parsed_code = jo_lang_adapter.parse_code(jo_code)
 compiled_code = jo_lang_adapter.compile_code(parsed_code)
 
-# Interpret JoLang code
+# Interpret PRANO code
 jo_code_to_interpret = "input('Enter your name: ')"
 jo_lang_adapter.interpret_code(jo_code_to_interpret)
 
-# Translate JoLang code to Python
-jo_code_to_translate = "JoLangFeature()"
+# Translate PRANO code to Python
+jo_code_to_translate = "PRANOFeature()"
 translated_code = jo_lang_adapter.translate_code(jo_code_to_translate, "Python")
 
 from Family.translate import translate, detect_language
@@ -951,9 +951,9 @@ pseudocode = """
 *define task > Task = greet (name) 
 {print ("Hi, " + name + "!")}
 
-*define name > Name = JoLang
+*define name > Name = PRANO
 
-*Call the task > greet("JoLang")
+*Call the task > greet("PRANO")
 """
 
 def translate_pseudocode_to_ast(pseudocode):
@@ -975,12 +975,12 @@ def translate_pseudocode_to_ast(pseudocode):
             {
                 "type": "DefineName",
                 "variable_name": "Name",
-                "value": "JoLang"
+                "value": "PRANO"
             },
             {
                 "type": "CallTask",
                 "task_name": "Task",
-                "arguments": ["JoLang"]
+                "arguments": ["PRANO"]
             }
         ]
     }
@@ -1025,8 +1025,8 @@ compiled_code = compile_ast_to_code(ast_structure)
 # Use VaLangue-Family-Translator-1 for translation with retry
 translated_message = translate_with_retry(ast_structure["body"][2]["arguments"][0], source_lang='source_lang', target_lang='target_lang')
 
-# Print the translated JoLang code and translated message
-print("Compiled JoLang Code:")
+# Print the translated PRANO code and translated message
+print("Compiled PRANO Code:")
 print(compiled_code)
 print("\nTranslated Message:")
 print(translated_message)
@@ -1042,7 +1042,7 @@ print(translated_message)
 	2.	Dictionaries:
 	•	define dictionary_name > Dict[KeyType, ValueType] = {key1: value1, key2: value2, …}
 
-*define user_info > Dict[String, Any] = {"name": "JoLangUser", "age": 25, "is_student": True}
+*define user_info > Dict[String, Any] = {"name": "PRANOUser", "age": 25, "is_student": True}
 
 
 	3.	Error Handling:
@@ -1074,11 +1074,11 @@ print(translated_message)
 
 	5.		•	define variable_name > custom_type = {field1: value1, field2: value2, …}
 
-*define user > person = {name: "JoLangUser", age: 25, is_student: True}
+*define user > person = {name: "PRANOUser", age: 25, is_student: True}
 
 *define colors > List[String] = ["red", "green", "blue"]
 
-*define user_info > Dict[String, Any] = {"name": "JoLangUser", "age": 25, "is_student": True}
+*define user_info > Dict[String, Any] = {"name": "PRANOUser", "age": 25, "is_student": True}
 
 *try {
     // Code that may raise an error
@@ -1095,15 +1095,15 @@ print(translated_message)
 
 *define person > Type = {name: String, age: Integer, is_student: Boolean}
 
-*define user > person = {name: "JoLangUser", age: 25, is_student: True}
+*define user > person = {name: "PRANOUser", age: 25, is_student: True}
 
-# JoLang Interpreter with Additional Features
+# PRANO Interpreter with Additional Features
 
 import os
 import threading
 from typing import List, Dict, Any
 
-class JoLangInterpreter:
+class PRANOInterpreter:
     def __init__(self):
         self.variables = {}
         self.tasks = {}
@@ -1119,23 +1119,23 @@ class JoLangInterpreter:
         pass
 
     def parse_code(self, code):
-        # Parse JoLang code
+        # Parse PRANO code
         pass
 
     def compile_code(self, parsed_code):
-        # Compile JoLang code
+        # Compile PRANO code
         pass
 
     def interpret_code(self, code):
-        # Interpret JoLang code
+        # Interpret PRANO code
         pass
 
     def translate_code(self, code, target_language):
-        # Translate JoLang code
+        # Translate PRANO code
         pass
 
     def import_module(self, module_name):
-        # Import JoLang module
+        # Import PRANO module
         pass
 
     def handle_error(self, error_type, error_message):
@@ -1164,8 +1164,8 @@ class JoLangInterpreter:
 
 # Example Usage
 
-# Initialize JoLangInterpreter
-jo_lang_interpreter = JoLangInterpreter()
+# Initialize PRANOInterpreter
+jo_lang_interpreter = PRANOInterpreter()
 
 # Load standard library
 jo_lang_interpreter.add_standard_library({'file': {'read': lambda file_path: open(file_path).read()}})
@@ -1191,7 +1191,7 @@ import os
 import threading
 from typing import List, Dict, Any
 
-class JoLangInterpreter:
+class PRANOInterpreter:
     def __init__(self):
         self.variables = {}
         self.tasks = {}
@@ -1259,8 +1259,8 @@ class JoLangInterpreter:
 
 # Example Usage
 
-# Initialize JoLangInterpreter
-jo_lang_interpreter = JoLangInterpreter()
+# Initialize PRANOInterpreter
+jo_lang_interpreter = PRANOInterpreter()
 
 # Load standard library
 jo_lang_interpreter.add_standard_library({'file': {'read': lambda file_path: open(file_path).read()}})
@@ -1283,9 +1283,9 @@ jo_lang_interpreter.run_threaded_task('threaded_task', ['Task1'])
 
 # ... Continue expanding and refining based on your requirements
 
-# JoLangInterpreter.py
+# PRANOInterpreter.py
 
-class JoLangInterpreter:
+class PRANOInterpreter:
     def __init__(self):
         # Initialize interpreter state
 
@@ -1307,23 +1307,23 @@ class JoLangInterpreter:
 
 # Example Usage
 
-# Initialize JoLangInterpreter
-jo_lang_interpreter = JoLangInterpreter()
+# Initialize PRANOInterpreter
+jo_lang_interpreter = PRANOInterpreter()
 
 # Load standard library or modules
 jo_lang_interpreter.add_standard_library({'file': {'read': lambda file_path: open(file_path).read()}})
 
-# Parse, compile, and interpret JoLang code
+# Parse, compile, and interpret PRANO code
 jo_code = "*define user_age > Integer = 25"
 parsed_code = jo_lang_interpreter.parse_code(jo_code)
 compiled_code = jo_lang_interpreter.compile_code(parsed_code)
 jo_lang_interpreter.interpret_code(compiled_code)
 
-# Translate JoLang code to Python
+# Translate PRANO code to Python
 python_code = jo_lang_interpreter.translate_code(jo_code, "Python")
 print("Translated Python Code:", python_code)
 
-*define user_name > String = "JoLangUser"
+*define user_name > String = "PRANOUser"
 *define user_age > Integer = 25
 *define is_adult > Boolean = true
 
@@ -1341,7 +1341,7 @@ print("Translated Python Code:", python_code)
 
 # Function Invocation
 sum = *Call the add_numbers > add_numbers(10, 5)
-*Call the greet_person > greet_person("JoLangUser")
+*Call the greet_person > greet_person("PRANOUser")
 
 *try 
 {
@@ -1372,7 +1372,7 @@ sum = *Call the add_numbers > add_numbers(10, 5)
 *define file_content > String = *file.read > "path/to/file.txt"
 
 # This is a comment
-*define message > String = "Hello, JoLang!"
+*define message > String = "Hello, PRANO!"
 
 *define class Person > 
 {
@@ -1389,7 +1389,7 @@ sum = *Call the add_numbers > add_numbers(10, 5)
 }
 
 # Create an instance of the Person class
-*define user > Person = *new > Person("JoLangUser", 25)
+*define user > Person = *new > Person("PRANOUser", 25)
 print(*Call the user.get_info > user)
 
 *define class Student > extends Person 
@@ -2021,7 +2021,7 @@ predictions = *predict > model, data
 
 *define validate_dynamic_code > 
 {
-    # Logic to validate and execute dynamically provided JoLang code
+    # Logic to validate and execute dynamically provided PRANO code
 }
 
 *define ci_cd_task > Task 
@@ -2051,7 +2051,7 @@ predictions = *predict > model, data
 
 *define deploy_to_cloud_platform > 
 {
-    # Logic to deploy JoLang applications to a cloud platform
+    # Logic to deploy PRANO applications to a cloud platform
 }
 
 *define localization_task > Task 
@@ -2061,7 +2061,7 @@ predictions = *predict > model, data
 
 *define support_multiple_languages > 
 {
-    # Logic to support multiple languages in JoLang applications
+    # Logic to support multiple languages in PRANO applications
 }
 
 *define neural_network_task > Task 
@@ -2091,7 +2091,7 @@ predictions = *predict > model, data
 
 *define interact_with_virtual_world > 
 {
-    # Logic to interact with a virtual world in a JoLang VR application
+    # Logic to interact with a virtual world in a PRANO VR application
 }
 
 *define quantum_computing_task > Task 
@@ -2101,7 +2101,7 @@ predictions = *predict > model, data
 
 *define simulate_quantum_systems > 
 {
-    # Logic to simulate quantum systems in JoLang
+    # Logic to simulate quantum systems in PRANO
 }
 
 *define gesture_recognition_task > Task 
@@ -2131,7 +2131,7 @@ predictions = *predict > model, data
 
 *define interact_with_augmented_environment > 
 {
-    # Logic to interact with an augmented environment in a JoLang AR application
+    # Logic to interact with an augmented environment in a PRANO AR application
 }
 
 *define genetic_algorithm_task > Task 
@@ -2146,12 +2146,12 @@ predictions = *predict > model, data
 
 *define ide_task > Task 
 {
-    *build_jolang_ide > *Call the_support_code_debugging > support_code_debugging
+    *build_PRANO_ide > *Call the_support_code_debugging > support_code_debugging
 }
 
 *define support_code_debugging > 
 {
-    # Logic to support debugging in the JoLang IDE
+    # Logic to support debugging in the PRANO IDE
 }
 
 *define cybersecurity_task > Task 
@@ -2161,7 +2161,7 @@ predictions = *predict > model, data
 
 *define detect_and_prevent_security_threats > 
 {
-    # Logic to detect and prevent security threats in JoLang applications
+    # Logic to detect and prevent security threats in PRANO applications
 }
 
 *define collaborative_coding_task > Task 
@@ -2176,12 +2176,12 @@ predictions = *predict > model, data
 
 *define mind_machine_interface_task > Task 
 {
-    *connect_jolang_to_bci_devices > *Call the_read_brain_signals > read_brain_signals
+    *connect_PRANO_to_bci_devices > *Call the_read_brain_signals > read_brain_signals
 }
 
 *define read_brain_signals > 
 {
-    # Logic to read and interpret brain signals in JoLang
+    # Logic to read and interpret brain signals in PRANO
 }
 
 *define time_travel_simulation_task > Task 
@@ -2191,7 +2191,7 @@ predictions = *predict > model, data
 
 *define explore_temporal_displacements > 
 {
-    # Logic to explore temporal displacements in JoLang simulations
+    # Logic to explore temporal displacements in PRANO simulations
 }
 
 *define consciousness_simulation_task > Task 
@@ -2201,7 +2201,7 @@ predictions = *predict > model, data
 
 *define explore_ai_behaviors > 
 {
-    # Logic to explore artificial intelligence behaviors in JoLang simulations
+    # Logic to explore artificial intelligence behaviors in PRANO simulations
 }
 
 *define interplanetary_communication_task > Task 
@@ -2211,7 +2211,7 @@ predictions = *predict > model, data
 
 *define transmit_data_to_other_planets > 
 {
-    # Logic to transmit data to other planets using JoLang
+    # Logic to transmit data to other planets using PRANO
 }
 
 *define parallel_universe_interaction_task > Task 
@@ -2221,7 +2221,7 @@ predictions = *predict > model, data
 
 *define travel_between_universes > 
 {
-    # Logic to simulate travel between parallel universes in JoLang
+    # Logic to simulate travel between parallel universes in PRANO
 }
 
 *define dreamscape_programming_task > Task 
@@ -2231,7 +2231,7 @@ predictions = *predict > model, data
 
 *define manifest_dream_code > 
 {
-    # Logic to manifest programmed code within dreamscapes using JoLang
+    # Logic to manifest programmed code within dreamscapes using PRANO
 }
 
 *define music_composition_task > Task 
@@ -2241,7 +2241,7 @@ predictions = *predict > model, data
 
 *define generate_musical_phrases > 
 {
-    # Logic to generate musical phrases and compositions in JoLang
+    # Logic to generate musical phrases and compositions in PRANO
 }
 
 *define immersive_storytelling_task > Task 
@@ -2251,7 +2251,7 @@ predictions = *predict > model, data
 
 *define interact_with_virtual_narratives > 
 {
-    # Logic to interact with virtual narratives and storyworlds in JoLang
+    # Logic to interact with virtual narratives and storyworlds in PRANO
 }
 
 *define quantum_teleportation_task > Task 
@@ -2261,7 +2261,7 @@ predictions = *predict > model, data
 
 *define explore_quantum_entanglement > 
 {
-    # Logic to explore quantum entanglement in JoLang simulations
+    # Logic to explore quantum entanglement in PRANO simulations
 }
 
 ```jo
@@ -2272,18 +2272,18 @@ predictions = *predict > model, data
 
 *define translate_across_languages > 
 {
-    # Logic to translate across languages using JoLang's integrated universal translator
+    # Logic to translate across languages using PRANO's integrated universal translator
 }
 ```
 
 *define ide_task > Task 
 {
-    *build_jolang_ide > *Call the_enhance_ide_functionality > enhance_ide_functionality
+    *build_PRANO_ide > *Call the_enhance_ide_functionality > enhance_ide_functionality
 }
 
 *define enhance_ide_functionality > 
 {
-    # Logic to enhance the functionality of the JoLang IDE, incorporating advanced features
+    # Logic to enhance the functionality of the PRANO IDE, incorporating advanced features
     *add_intelligent_code_completion > *Call the_improve_code_suggestions > improve_code_suggestions
     *enable_real-time_code_analysis > *Call the_integrate_static_code_analysis > integrate_static_code_analysis
     *introduce_version_control_integration > *Call the_support_git_integration > support_git_integration
@@ -2294,17 +2294,17 @@ predictions = *predict > model, data
 
 *define improve_code_suggestions > 
 {
-    # Logic to improve the suggestions provided by the code completion feature in the JoLang IDE
+    # Logic to improve the suggestions provided by the code completion feature in the PRANO IDE
 }
 
 *define integrate_static_code_analysis > 
 {
-    # Logic to integrate static code analysis tools for real-time feedback in the JoLang IDE
+    # Logic to integrate static code analysis tools for real-time feedback in the PRANO IDE
 }
 
 *define support_git_integration > 
 {
-    # Logic to support seamless integration with Git version control in the JoLang IDE
+    # Logic to support seamless integration with Git version control in the PRANO IDE
 }
 
 *define allow_personalized_workspace > 
@@ -2314,12 +2314,12 @@ predictions = *predict > model, data
 
 *define include_graphical_debugging > 
 {
-    # Logic to include graphical debugging tools for a more intuitive debugging experience in the JoLang IDE
+    # Logic to include graphical debugging tools for a more intuitive debugging experience in the PRANO IDE
 }
 
 *define facilitate_multilingual_programming > 
 {
-    # Logic to facilitate programming in multiple languages within the JoLang IDE
+    # Logic to facilitate programming in multiple languages within the PRANO IDE
 }
 
 *define update_pip > Task 
