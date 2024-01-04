@@ -22,26 +22,26 @@ class Savanna#Adapter:
 
 # Example Usage
 dataset_path = "/path/to/VaLangue-Family-Translator-1"
-jo_lang_adapter = Savanna#Adapter(dataset_path)
+Savanna#_adapter = Savanna#Adapter(dataset_path)
 
 # Parse and compile Savanna# code
-jo_code = "print('Hello, Savanna#!')"
-parsed_code = jo_lang_adapter.parse_code(jo_code)
-compiled_code = jo_lang_adapter.compile_code(parsed_code)
+Savanna#_code = "print('Hello, Savanna#!')"
+parsed_code = Savanna#_adapter.parse_code(Savanna#_code)
+compiled_code = Savanna#_adapter.compile_code(parsed_code)
 
 # Interpret Savanna# code
-jo_code_to_interpret = "input('Enter your name: ')"
-jo_lang_adapter.interpret_code(jo_code_to_interpret)
+Savanna#_code_to_interpret = "input('Enter your name: ')"
+Savanna#_adapter.interpret_code(Savanna#_code_to_interpret)
 
 # Translate Savanna# code to Python
-jo_code_to_translate = "Savanna#Feature()"
-translated_code = jo_lang_adapter.translate_code(jo_code_to_translate, "Python")
+Savanna#_code_to_translate = "Savanna#Feature()"
+translated_code = Savanna#_adapter.translate_code(Savanna#_code_to_translate, "Python")
 
 Designing the syntax, semantics, and other language-specific features involves careful consideration of the goals and characteristics of Savanna#. Below is a simplified example to give you an idea, but keep in mind that developing a full programming language involves extensive planning and refinement:
 
 ### Savanna# Syntax Example:
 
-```jo
+```Savanna#
 # Define a function
 func greet(name) {
     print("Hello, " + name + "!")
@@ -73,14 +73,14 @@ greet("Savanna#")
 - **Variable Declaration:**
   - Variables can be declared with the `var` keyword.
 
-```jo
+```Savanna#
 var x = 10
 ```
 
 - **Conditional Statements:**
   - Conditional statements can be written using `if`, `else if`, and `else`.
 
-```jo
+```Savanna#
 if x > 5 {
     print("x is greater than 5")
 } else {
@@ -91,7 +91,7 @@ if x > 5 {
 - **Loops:**
   - Loops can be implemented with `for` and `while` constructs.
 
-```jo
+```Savanna#
 for i in 1 to 5 {
     print(i)
 }
@@ -194,7 +194,7 @@ def compile_ast_to_code(ast_structure):
         compiled_code = ""
         for node in ast_structure["body"]:
             if node["type"] == "DefineTask":
-                compiled_code += f"func {node['task_name']}({', '.join(node['parameters'])}) {{\n"
+                compiled_code += f"func {node['task_name']}({', '.Savanna#in(node['parameters'])}) {{\n"
                 for statement in node["body"]:
                     compiled_code += compile_ast_to_code(statement)
                 compiled_code += "}\n"
@@ -216,10 +216,10 @@ def compile_ast_to_code(ast_structure):
         return f"// Unsupported AST node: {ast_structure}\n"
 
 # Compile AST-like structure to Savanna# code
-jo_lang_code = compile_ast_to_code(ast_structure)
+Savanna#_code = compile_ast_to_code(ast_structure)
 
 # Print the translated Savanna# code
-print(jo_lang_code)
+print(Savanna#_code)
 
 import ast  # Python's Abstract Syntax Tree module
 
@@ -281,7 +281,7 @@ def compile_ast_to_code(ast_structure):
         compiled_code = ""
         for node in ast_structure["body"]:
             if node["type"] == "DefineTask":
-                compiled_code += f"func {node['task_name']}({', '.join(node['parameters'])}) {{\n"
+                compiled_code += f"func {node['task_name']}({', '.Savanna#in(node['parameters'])}) {{\n"
                 for statement in node["body"]:
                     compiled_code += compile_ast_to_code(statement)
                 compiled_code += "}\n"
@@ -305,10 +305,10 @@ def compile_ast_to_code(ast_structure):
         return f"// Unsupported AST node: {ast_structure}\n"
 
 # Compile AST-like structure to Savanna# code
-jo_lang_code = compile_ast_to_code(ast_structure)
+Savanna#_code = compile_ast_to_code(ast_structure)
 
 # Print the translated Savanna# code
-print(jo_lang_code)
+print(Savanna#_code)
 
 from Family.translate import translate, detect_language
 
@@ -364,7 +364,7 @@ def compile_ast_to_code(ast_structure):
         compiled_code = ""
         for node in ast_structure["body"]:
             if node["type"] == "DefineTask":
-                compiled_code += f"func {node['task_name']}({', '.join(node['parameters'])}) {{\n"
+                compiled_code += f"func {node['task_name']}({', '.Savanna#in(node['parameters'])}) {{\n"
                 for statement in node["body"]:
                     compiled_code += compile_ast_to_code(statement)
                 compiled_code += "}\n"
@@ -388,10 +388,10 @@ def compile_ast_to_code(ast_structure):
         return f"// Unsupported AST node: {ast_structure}\n"
 
 # Compile AST-like structure to Savanna# code
-jo_lang_code = compile_ast_to_code(ast_structure)
+Savanna#_code = compile_ast_to_code(ast_structure)
 
 # Print the translated Savanna# code
-print(jo_lang_code)
+print(Savanna#_code)
 
 
 
@@ -452,14 +452,14 @@ def compile_ast_to_code(ast_structure):
         compiled_code = ""
         for node in ast_structure["body"]:
             if node["type"] == "DefineTask":
-                compiled_code += f"define_task('{node['task_name']}', {', '.join(node['parameters'])}, {{\n"
+                compiled_code += f"define_task('{node['task_name']}', {', '.Savanna#in(node['parameters'])}, {{\n"
                 for statement in node["body"]:
                     compiled_code += compile_ast_to_code(statement)
                 compiled_code += "})\n"
             elif node["type"] == "DefineName":
                 compiled_code += f"define_name('{node['variable_name']}', '{node['value']}')\n"
             elif node["type"] == "CallTask":
-                compiled_code += f"call_task('{node['task_name']}', {', '.join(node['arguments'])})\n"
+                compiled_code += f"call_task('{node['task_name']}', {', '.Savanna#in(node['arguments'])})\n"
             else:
                 compiled_code += f"// Unsupported AST node: {node}\n"
         return compiled_code
@@ -473,10 +473,10 @@ def compile_ast_to_code(ast_structure):
         return f"// Unsupported AST node: {ast_structure}\n"
 
 # Compile AST-like structure to Savanna# code
-jo_lang_code = compile_ast_to_code(ast_structure)
+Savanna#_code = compile_ast_to_code(ast_structure)
 
 # Print the translated Savanna# code
-print(jo_lang_code)
+print(Savanna#_code)
 ```
 
 translated_message = translate(ast_structure["message"], source_lang='source_lang', target_lang='target_lang')
@@ -548,14 +548,14 @@ def compile_ast_to_code(ast_structure):
     compiled_code = ""
     for node in ast_structure["body"]:
         if node["type"] == "DefineTask":
-            compiled_code += f"define_task('{node['task_name']}', {', '.join(node['parameters'])}, {{\n"
+            compiled_code += f"define_task('{node['task_name']}', {', '.Savanna#in(node['parameters'])}, {{\n"
             for statement in node["body"]:
                 compiled_code += compile_ast_to_code(statement)
             compiled_code += "})\n"
         elif node["type"] == "DefineName":
             compiled_code += f"define_name('{node['variable_name']}', '{node['value']}')\n"
         elif node["type"] == "CallTask":
-            compiled_code += f"call_task('{node['task_name']}', {', '.join(node['arguments'])})\n"
+            compiled_code += f"call_task('{node['task_name']}', {', '.Savanna#in(node['arguments'])})\n"
         else:
             compiled_code += f"// Unsupported AST node: {node}\n"
     return compiled_code
@@ -614,7 +614,7 @@ def define_task(task_name, parameters, body):
     Returns:
         None
     """
-    print(f"Task Defined: {task_name}({', '.join(parameters)}) {{")
+    print(f"Task Defined: {task_name}({', '.Savanna#in(parameters)}) {{")
     for statement in body:
         print(compile_ast_to_code(statement))
     print("}")
@@ -643,7 +643,7 @@ def call_task(task_name, arguments):
     Returns:
         None
     """
-    print(f"Calling Task: {task_name}({', '.join(arguments)})")
+    print(f"Calling Task: {task_name}({', '.Savanna#in(arguments)})")
 
 def translate_pseudocode_to_ast(pseudocode):
     """
@@ -655,7 +655,7 @@ def translate_pseudocode_to_ast(pseudocode):
     Returns:
         dict: AST-like structure.
     """
-# gh repo clone JoeySoprano420/VaLangue-Family-Translator
+# gh repo clone Savanna#eySoprano420/VaLangue-Family-Translator
 # For simplicity, a direct mapping is used here
     ast_structure = {
         "type": "Program",
@@ -698,14 +698,14 @@ def compile_ast_to_code(ast_structure):
     compiled_code = ""
     for node in ast_structure["body"]:
         if node["type"] == "DefineTask":
-            compiled_code += f"define_task('{node['task_name']}', {', '.join(node['parameters'])}, {{\n"
+            compiled_code += f"define_task('{node['task_name']}', {', '.Savanna#in(node['parameters'])}, {{\n"
             for statement in node["body"]:
                 compiled_code += compile_ast_to_code(statement)
             compiled_code += "})\n"
         elif node["type"] == "DefineName":
             compiled_code += f"define_name('{node['variable_name']}', '{node['value']}')\n"
         elif node["type"] == "CallTask":
-            compiled_code += f"call_task('{node['task_name']}', {', '.join(node['arguments'])})\n"
+            compiled_code += f"call_task('{node['task_name']}', {', '.Savanna#in(node['arguments'])})\n"
         else:
             compiled_code += f"// Unsupported AST node: {node}\n"
     return compiled_code
@@ -760,7 +760,7 @@ print(compiled_code)
 print("\nTranslated Message:")
 print(translated_message)
 # Import VaLangue-Family-Translator-1
-gh repo clone JoeySoprano420/VaLangue-Family-Translator
+gh repo clone Savanna#eySoprano420/VaLangue-Family-Translator
 
 # Use VaLangue-Family-Translator-1 for translations
 from Family.translate import translate
@@ -801,20 +801,20 @@ class Savanna#Adapter:
 
 # Example Usage
 dataset_path = "/path/to/VaLangue-Family-Translator-1"
-jo_lang_adapter = Savanna#Adapter(dataset_path)
+Savanna#_adapter = Savanna#Adapter(dataset_path)
 
 # Parse and compile Savanna# code
-jo_code = "print('Hello, Savanna#!')"
-parsed_code = jo_lang_adapter.parse_code(jo_code)
-compiled_code = jo_lang_adapter.compile_code(parsed_code)
+Savanna#_code = "print('Hello, Savanna#!')"
+parsed_code = Savanna#_adapter.parse_code(Savanna#_code)
+compiled_code = Savanna#_adapter.compile_code(parsed_code)
 
 # Interpret Savanna# code
-jo_code_to_interpret = "input('Enter your name: ')"
-jo_lang_adapter.interpret_code(jo_code_to_interpret)
+Savanna#_code_to_interpret = "input('Enter your name: ')"
+Savanna#_adapter.interpret_code(Savanna#_code_to_interpret)
 
 # Translate Savanna# code to Python
-jo_code_to_translate = "Savanna#Feature()"
-translated_code = jo_lang_adapter.translate_code(jo_code_to_translate, "Python")
+Savanna#_code_to_translate = "Savanna#Feature()"
+translated_code = Savanna#_adapter.translate_code(Savanna#_code_to_translate, "Python")
 
 from Family.translate import translate, detect_language
 
@@ -863,14 +863,14 @@ def compile_ast_to_code(ast_structure):
     compiled_code = ""
     for node in ast_structure["body"]:
         if node["type"] == "DefineTask":
-            compiled_code += f"define_task('{node['task_name']}', {', '.join(node['parameters'])}, {{\n"
+            compiled_code += f"define_task('{node['task_name']}', {', '.Savanna#in(node['parameters'])}, {{\n"
             for statement in node["body"]:
                 compiled_code += compile_ast_to_code(statement)
             compiled_code += "})\n"
         elif node["type"] == "DefineName":
             compiled_code += f"define_name('{node['variable_name']}', '{node['value']}')\n"
         elif node["type"] == "CallTask":
-            compiled_code += f"call_task('{node['task_name']}', {', '.join(node['arguments'])})\n"
+            compiled_code += f"call_task('{node['task_name']}', {', '.Savanna#in(node['arguments'])})\n"
         else:
             compiled_code += f"// Unsupported AST node: {node}\n"
     return compiled_code
@@ -929,20 +929,20 @@ class Savanna#Adapter:
 
 # Example Usage
 dataset_path = "/path/to/VaLangue-Family-Translator-1"
-jo_lang_adapter = Savanna#Adapter(dataset_path)
+Savanna#_adapter = Savanna#Adapter(dataset_path)
 
 # Parse and compile Savanna# code
-jo_code = "print('Hello, Savanna#!')"
-parsed_code = jo_lang_adapter.parse_code(jo_code)
-compiled_code = jo_lang_adapter.compile_code(parsed_code)
+Savanna#_code = "print('Hello, Savanna#!')"
+parsed_code = Savanna#_adapter.parse_code(Savanna#_code)
+compiled_code = Savanna#_adapter.compile_code(parsed_code)
 
 # Interpret Savanna# code
-jo_code_to_interpret = "input('Enter your name: ')"
-jo_lang_adapter.interpret_code(jo_code_to_interpret)
+Savanna#_code_to_interpret = "input('Enter your name: ')"
+Savanna#_adapter.interpret_code(Savanna#_code_to_interpret)
 
 # Translate Savanna# code to Python
-jo_code_to_translate = "Savanna#Feature()"
-translated_code = jo_lang_adapter.translate_code(jo_code_to_translate, "Python")
+Savanna#_code_to_translate = "Savanna#Feature()"
+translated_code = Savanna#_adapter.translate_code(Savanna#_code_to_translate, "Python")
 
 from Family.translate import translate, detect_language
 
@@ -992,14 +992,14 @@ def compile_ast_to_code(ast_structure):
     compiled_code = ""
     for node in ast_structure["body"]:
         if node["type"] == "DefineTask":
-            compiled_code += f"define_task('{node['task_name']}', {', '.join(node['parameters'])}, {{\n"
+            compiled_code += f"define_task('{node['task_name']}', {', '.Savanna#in(node['parameters'])}, {{\n"
             for statement in node["body"]:
                 compiled_code += compile_ast_to_code(statement)
             compiled_code += "})\n"
         elif node["type"] == "DefineName":
             compiled_code += f"define_name('{node['variable_name']}', '{node['value']}')\n"
         elif node["type"] == "CallTask":
-            compiled_code += f"call_task('{node['task_name']}', {', '.join(node['arguments'])})\n"
+            compiled_code += f"call_task('{node['task_name']}', {', '.Savanna#in(node['arguments'])})\n"
         else:
             compiled_code += f"// Unsupported AST node: {node}\n"
     return compiled_code
@@ -1166,26 +1166,26 @@ class Savanna#Interpreter:
 # Example Usage
 
 # Initialize Savanna#Interpreter
-jo_lang_interpreter = Savanna#Interpreter()
+Savanna#_interpreter = Savanna#Interpreter()
 
 # Load standard library
-jo_lang_interpreter.add_standard_library({'file': {'read': lambda file_path: open(file_path).read()}})
+Savanna#_interpreter.add_standard_library({'file': {'read': lambda file_path: open(file_path).read()}})
 
 # Define a task with threading
 def threaded_task(name):
     print(f"Threaded Task: {name}")
 
-jo_lang_interpreter.add_task('threaded_task', threaded_task)
+Savanna#_interpreter.add_task('threaded_task', threaded_task)
 
 # Import module and use standard library functions
-jo_lang_interpreter.import_module('math')
-jo_lang_interpreter.execute('*Call the sqrt > sqrt(16)')
+Savanna#_interpreter.import_module('math')
+Savanna#_interpreter.execute('*Call the sqrt > sqrt(16)')
 
 # Add a variable
-jo_lang_interpreter.execute('*define user_age > Integer = 25')
+Savanna#_interpreter.execute('*define user_age > Integer = 25')
 
 # Run a threaded task
-jo_lang_interpreter.run_threaded_task('threaded_task', ['Task1'])
+Savanna#_interpreter.run_threaded_task('threaded_task', ['Task1'])
 
 # ... Continue integrating other features
 import os
@@ -1261,26 +1261,26 @@ class Savanna#Interpreter:
 # Example Usage
 
 # Initialize Savanna#Interpreter
-jo_lang_interpreter = Savanna#Interpreter()
+Savanna#_interpreter = Savanna#Interpreter()
 
 # Load standard library
-jo_lang_interpreter.add_standard_library({'file': {'read': lambda file_path: open(file_path).read()}})
+Savanna#_interpreter.add_standard_library({'file': {'read': lambda file_path: open(file_path).read()}})
 
 # Define a task with threading
 def threaded_task(name):
     print(f"Threaded Task: {name}")
 
-jo_lang_interpreter.add_task('threaded_task', threaded_task)
+Savanna#_interpreter.add_task('threaded_task', threaded_task)
 
 # Import module and use standard library functions
-jo_lang_interpreter.import_module('math')
-jo_lang_interpreter.execute('*Call the sqrt > sqrt(16)')
+Savanna#_interpreter.import_module('math')
+Savanna#_interpreter.execute('*Call the sqrt > sqrt(16)')
 
 # Add a variable
-jo_lang_interpreter.execute('*define user_age > Integer = 25')
+Savanna#_interpreter.execute('*define user_age > Integer = 25')
 
 # Run a threaded task
-jo_lang_interpreter.run_threaded_task('threaded_task', ['Task1'])
+Savanna#_interpreter.run_threaded_task('threaded_task', ['Task1'])
 
 # ... Continue expanding and refining based on your requirements
 
@@ -1309,19 +1309,19 @@ class Savanna#Interpreter:
 # Example Usage
 
 # Initialize Savanna#Interpreter
-jo_lang_interpreter = Savanna#Interpreter()
+Savanna#_interpreter = Savanna#Interpreter()
 
 # Load standard library or modules
-jo_lang_interpreter.add_standard_library({'file': {'read': lambda file_path: open(file_path).read()}})
+Savanna#_interpreter.add_standard_library({'file': {'read': lambda file_path: open(file_path).read()}})
 
 # Parse, compile, and interpret Savanna# code
-jo_code = "*define user_age > Integer = 25"
-parsed_code = jo_lang_interpreter.parse_code(jo_code)
-compiled_code = jo_lang_interpreter.compile_code(parsed_code)
-jo_lang_interpreter.interpret_code(compiled_code)
+Savanna#_code = "*define user_age > Integer = 25"
+parsed_code = Savanna#_interpreter.parse_code(Savanna#_code)
+compiled_code = Savanna#_interpreter.compile_code(parsed_code)
+Savanna#_interpreter.interpret_code(compiled_code)
 
 # Translate Savanna# code to Python
-python_code = jo_lang_interpreter.translate_code(jo_code, "Python")
+python_code = Savanna#_interpreter.translate_code(Savanna#_code, "Python")
 print("Translated Python Code:", python_code)
 
 *define user_name > String = "Savanna#User"
@@ -2265,7 +2265,7 @@ predictions = *predict > model, data
     # Logic to explore quantum entanglement in Savanna# simulations
 }
 
-```jo
+```Savanna#
 *define universal_translation_task > Task 
 {
     *integrate_universal_translator > *Call the_translate_across_languages > translate_across_languages
@@ -2345,3 +2345,6 @@ predictions = *predict > model, data
     *run_system_command > python3 -m pip install --upgrade pillow
 }
 
+
+
+  
