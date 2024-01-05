@@ -1,0 +1,937 @@
+if code_crawling_enabled:
+    for each_file in project_directory:
+        code = read_code_from_file(each_file)
+        scrubbed_code = scrub_code(code)
+        save_scrubbed_code_to_file(each_file, scrubbed_code)
+    print("Code scrubbing completed successfully")
+else:
+    print("Code crawling is not enabled.")
+
+import os
+
+def read_code_from_file(file_path):
+    with open(file_path, 'r') as file:
+        return file.read()
+
+def scrub_code(code):
+    # Replace or modify code as needed for scrubbing
+    scrubbed_code = code.replace('unwanted_pattern', 'desired_pattern')
+    return scrubbed_code
+
+def save_scrubbed_code_to_file(file_path, scrubbed_code):
+    with open(file_path, 'w') as file:
+        file.write(scrubbed_code)
+
+def code_crawl_and_scrub(project_directory, enabled=True):
+    if enabled:
+        if os.path.exists(project_directory):
+            for root, _, files in os.walk(project_directory):
+                for file_name in files:
+                    file_path = os.path.join(root, file_name)
+                    code = read_code_from_file(file_path)
+                    scrubbed_code = scrub_code(code)
+                    save_scrubbed_code_to_file(file_path, scrubbed_code)
+            print("Code scrubbing completed successfully")
+        else:
+            print("Project directory not found.")
+    else:
+        print("Code scrubbing is not enabled.")
+
+# Example usage:
+project_directory = "/path/to/your/project"
+code_crawl_and_scrub(project_directory, enabled=True)
+
+import os
+
+def read_code_from_file(file_path):
+    try:
+        with open(file_path, 'r') as file:
+            return file.read()
+    except FileNotFoundError:
+        print(f"Error: File not found - {file_path}")
+        return None
+    except Exception as e:
+        print(f"Error reading file - {file_path}: {e}")
+        return None
+
+def scrub_code(code, scrub_patterns):
+    # Replace or modify code based on specified scrubbing patterns
+    for old_pattern, new_pattern in scrub_patterns.items():
+        code = code.replace(old_pattern, new_pattern)
+    return code
+
+def save_scrubbed_code_to_file(file_path, scrubbed_code):
+    try:
+        with open(file_path, 'w') as file:
+            file.write(scrubbed_code)
+    except Exception as e:
+        print(f"Error saving scrubbed code to file - {file_path}: {e}")
+
+def code_crawl_and_scrub(project_directory, enabled=True, scrub_patterns=None):
+    if enabled:
+        if not scrub_patterns:
+            scrub_patterns = {"unwanted_pattern": "desired_pattern"}
+
+        if os.path.exists(project_directory):
+            for root, _, files in os.walk(project_directory):
+                for file_name in files:
+                    file_path = os.path.join(root, file_name)
+                    code = read_code_from_file(file_path)
+
+                    if code is not None:
+                        scrubbed_code = scrub_code(code, scrub_patterns)
+                        save_scrubbed_code_to_file(file_path, scrubbed_code)
+                        
+            print("Code scrubbing completed successfully")
+        else:
+            print("Error: Project directory not found.")
+    else:
+        print("Code scrubbing is not enabled.")
+
+# Example usage:
+project_directory = "/path/to/your/project"
+custom_scrub_patterns = {"old_pattern": "new_pattern", "deprecated_function(": "new_function("}
+code_crawl_and_scrub(project_directory, enabled=True, scrub_patterns=custom_scrub_patterns)
+
+ import os
+from concurrent.futures import ThreadPoolExecutor
+
+def read_code_from_file(file_path):
+    try:
+        with open(file_path, 'r') as file:
+            return file.read()
+    except FileNotFoundError:
+        print(f"Error: File not found - {file_path}")
+        return None
+    except Exception as e:
+        print(f"Error reading file - {file_path}: {e}")
+        return None
+
+def scrub_code(code, scrub_patterns):
+    for old_pattern, new_pattern in scrub_patterns.items():
+        code = code.replace(old_pattern, new_pattern)
+    return code
+
+def save_scrubbed_code_to_file(file_path, scrubbed_code):
+    try:
+        with open(file_path, 'w') as file:
+            file.write(scrubbed_code)
+    except Exception as e:
+        print(f"Error saving scrubbed code to file - {file_path}: {e}")
+
+def process_file(file_path, scrub_patterns):
+    code = read_code_from_file(file_path)
+
+    if code is not None:
+        scrubbed_code = scrub_code(code, scrub_patterns)
+        save_scrubbed_code_to_file(file_path, scrubbed_code)
+
+def code_crawl_and_scrub(project_directory, enabled=True, scrub_patterns=None):
+    if enabled:
+        if not scrub_patterns:
+            scrub_patterns = {"unwanted_pattern": "desired_pattern"}
+
+        if os.path.exists(project_directory):
+            with ThreadPoolExecutor() as executor:
+                file_paths = [os.path.join(root, file_name) for root, _, files in os.walk(project_directory) for file_name in files]
+                executor.map(lambda file_path: process_file(file_path, scrub_patterns), file_paths)
+                
+            print("Code scrubbing completed successfully")
+        else:
+            print("Error: Project directory not found.")
+    else:
+        print("Code scrubbing is not enabled.")
+
+# Example usage:
+project_directory = "/path/to/your/project"
+custom_scrub_patterns = {"old_pattern": "new_pattern", "deprecated_function(": "new_function("}
+code_crawl_and_scrub(project_directory, enabled=True, scrub_patterns=custom_scrub_patterns)
+
+import os
+import asyncio
+from concurrent.futures import ThreadPoolExecutor
+
+def read_code_from_file(file_path):
+    try:
+        with open(file_path, 'r') as file:
+            return file.read()
+    except FileNotFoundError:
+        print(f"Error: File not found - {file_path}")
+        return None
+    except Exception as e:
+        print(f"Error reading file - {file_path}: {e}")
+        return None
+
+def scrub_code(code, scrub_patterns):
+    for old_pattern, new_pattern in scrub_patterns.items():
+        code = code.replace(old_pattern, new_pattern)
+    return code
+
+def save_scrubbed_code_to_file(file_path, scrubbed_code):
+    try:
+        with open(file_path, 'w') as file:
+            file.write(scrubbed_code)
+    except Exception as e:
+        print(f"Error saving scrubbed code to file - {file_path}: {e}")
+
+async def process_file(file_path, scrub_patterns):
+    code = read_code_from_file(file_path)
+
+    if code is not None:
+        scrubbed_code = scrub_code(code, scrub_patterns)
+        await asyncio.to_thread(save_scrubbed_code_to_file, file_path, scrubbed_code)
+
+async def code_crawl_and_scrub(project_directory, enabled=True, scrub_patterns=None):
+    if enabled:
+        if not scrub_patterns:
+            scrub_patterns = {"unwanted_pattern": "desired_pattern"}
+
+        if os.path.exists(project_directory):
+            file_paths = [os.path.join(root, file_name) for root, _, files in os.walk(project_directory) for file_name in files]
+            tasks = [process_file(file_path, scrub_patterns) for file_path in file_paths]
+
+            with ThreadPoolExecutor() as executor:
+                await asyncio.gather(*tasks)
+
+            print("Code scrubbing completed successfully")
+        else:
+            print("Error: Project directory not found.")
+    else:
+        print("Code scrubbing is not enabled.")
+
+# Example usage:
+project_directory = "/path/to/your/project"
+custom_scrub_patterns = {"old_pattern": "new_pattern", "deprecated_function(": "new_function("}
+await code_crawl_and_scrub(project_directory, enabled=True, scrub_patterns=custom_scrub_patterns)
+
+import os
+import asyncio
+from concurrent.futures import ThreadPoolExecutor
+from tqdm import tqdm
+
+def read_code_from_file(file_path):
+    try:
+        with open(file_path, 'r') as file:
+            return file.read()
+    except FileNotFoundError:
+        print(f"Error: File not found - {file_path}")
+        return None
+    except Exception as e:
+        print(f"Error reading file - {file_path}: {e}")
+        return None
+
+def scrub_code(code, scrub_patterns):
+    for old_pattern, new_pattern in scrub_patterns.items():
+        code = code.replace(old_pattern, new_pattern)
+    return code
+
+def save_scrubbed_code_to_file(file_path, scrubbed_code):
+    try:
+        with open(file_path, 'w') as file:
+            file.write(scrubbed_code)
+    except Exception as e:
+        print(f"Error saving scrubbed code to file - {file_path}: {e}")
+
+async def process_file(file_path, scrub_patterns, pbar):
+    code = read_code_from_file(file_path)
+
+    if code is not None:
+        scrubbed_code = scrub_code(code, scrub_patterns)
+        await asyncio.to_thread(save_scrubbed_code_to_file, file_path, scrubbed_code)
+        pbar.update(1)
+
+async def code_crawl_and_scrub(project_directory, enabled=True, scrub_patterns=None):
+    if enabled:
+        if not scrub_patterns:
+            scrub_patterns = {"unwanted_pattern": "desired_pattern"}
+
+        if os.path.exists(project_directory):
+            file_paths = [os.path.join(root, file_name) for root, _, files in os.walk(project_directory) for file_name in files]
+            
+            with tqdm(total=len(file_paths), desc="Scrubbing Progress", unit="file") as pbar:
+                tasks = [process_file(file_path, scrub_patterns, pbar) for file_path in file_paths]
+
+                with ThreadPoolExecutor() as executor:
+                    await asyncio.gather(*tasks)
+
+                print("Code scrubbing completed successfully")
+        else:
+            print("Error: Project directory not found.")
+    else:
+        print("Code scrubbing is not enabled.")
+
+# Example usage:
+project_directory = "/path/to/your/project"
+custom_scrub_patterns = {"old_pattern": "new_pattern", "deprecated_function(": "new_function("}
+await code_crawl_and_scrub(project_directory, enabled=True, scrub_patterns=custom_scrub_patterns)
+
+import os
+import asyncio
+from concurrent.futures import ThreadPoolExecutor
+import ast
+import re
+from tqdm import tqdm
+
+def read_code_from_file(file_path):
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            return file.read()
+    except FileNotFoundError:
+        print(f"Error: File not found - {file_path}")
+        return None
+    except Exception as e:
+        print(f"Error reading file - {file_path}: {e}")
+        return None
+
+def scrub_code(code, scrub_patterns):
+    for old_pattern, new_pattern in scrub_patterns.items():
+        # Using regular expressions for more complex pattern matching
+        code = re.sub(old_pattern, new_pattern, code)
+    return code
+
+def save_scrubbed_code_to_file(file_path, scrubbed_code):
+    try:
+        with open(file_path, 'w', encoding='utf-8') as file:
+            file.write(scrubbed_code)
+    except Exception as e:
+        print(f"Error saving scrubbed code to file - {file_path}: {e}")
+
+async def process_file(file_path, scrub_patterns, pbar):
+    code = read_code_from_file(file_path)
+
+    if code is not None:
+        # Parse code using AST to handle different programming languages
+        parsed_code = ast.parse(code)
+        # Example: Scrub all print statements
+        for node in ast.walk(parsed_code):
+            if isinstance(node, ast.Print):
+                ast.fix_missing_locations(node)
+                node.targets = []
+        scrubbed_code = ast.unparse(parsed_code)
+
+        # Apply additional scrubbing patterns
+        scrubbed_code = scrub_code(scrubbed_code, scrub_patterns)
+        await asyncio.to_thread(save_scrubbed_code_to_file, file_path, scrubbed_code)
+        pbar.update(1)
+
+async def code_crawl_and_scrub(project_directory, enabled=True, scrub_patterns=None):
+    if enabled:
+        if not scrub_patterns:
+            scrub_patterns = {"unwanted_pattern": "desired_pattern"}
+
+        if os.path.exists(project_directory):
+            file_paths = [os.path.join(root, file_name) for root, _, files in os.walk(project_directory) for file_name in files]
+            
+            with tqdm(total=len(file_paths), desc="Scrubbing Progress", unit="file") as pbar:
+                tasks = [process_file(file_path, scrub_patterns, pbar) for file_path in file_paths]
+
+                with ThreadPoolExecutor() as executor:
+                    await asyncio.gather(*tasks)
+
+                print("Code scrubbing completed successfully")
+        else:
+            print("Error: Project directory not found.")
+    else:
+        print("Code scrubbing is not enabled.")
+
+# Example usage:
+project_directory = "/path/to/your/project"
+custom_scrub_patterns = {
+    r'print\((.*)\)': 'logger.info(\g<1>)',  # Replace print statements with logger
+    r'\bTODO\b': ' # TODO:',  # Add colon after TODO comments
+    r'\bFIX\b': ' # FIXME:',  # Convert FIX comments to FIXME
+}
+await code_crawl_and_scrub(project_directory, enabled=True, scrub_patterns=custom_scrub_patterns)
+
+import os
+import asyncio
+from concurrent.futures import ThreadPoolExecutor
+import ast
+import re
+import tokenize
+import io
+from tqdm import tqdm
+import black
+
+def read_code_from_file(file_path):
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            return file.read()
+    except FileNotFoundError:
+        print(f"Error: File not found - {file_path}")
+        return None
+    except Exception as e:
+        print(f"Error reading file - {file_path}: {e}")
+        return None
+
+def tokenize_code(code):
+    # Tokenize code using the tokenize module
+    return tokenize.tokenize(io.BytesIO(code.encode('utf-8')).readline)
+
+def scrub_code(code, scrub_patterns):
+    for old_pattern, new_pattern in scrub_patterns.items():
+        # Using regular expressions for more complex pattern matching
+        code = re.sub(old_pattern, new_pattern, code)
+    return code
+
+def format_code(code):
+    # Use the 'black' library for consistent code formatting
+    return black.format_str(code, mode=black.FileMode())
+
+def save_scrubbed_code_to_file(file_path, scrubbed_code):
+    try:
+        with open(file_path, 'w', encoding='utf-8') as file:
+            file.write(scrubbed_code)
+    except Exception as e:
+        print(f"Error saving scrubbed code to file - {file_path}: {e}")
+
+async def process_file(file_path, scrub_patterns, pbar):
+    code = read_code_from_file(file_path)
+
+    if code is not None:
+        # Tokenize the code to handle code structures
+        tokens = tokenize_code(code)
+        parsed_code = ast.parse(code)
+
+        # Example: Scrub all print statements
+        for node in ast.walk(parsed_code):
+            if isinstance(node, ast.Print):
+                ast.fix_missing_locations(node)
+                node.targets = []
+
+        # Apply additional scrubbing patterns
+        scrubbed_code = ast.unparse(parsed_code)
+        scrubbed_code = scrub_code(scrubbed_code, scrub_patterns)
+        
+        # Use 'black' for consistent code formatting
+        scrubbed_code = format_code(scrubbed_code)
+        
+        await asyncio.to_thread(save_scrubbed_code_to_file, file_path, scrubbed_code)
+        pbar.update(1)
+
+async def code_crawl_and_scrub(project_directory, enabled=True, scrub_patterns=None):
+    if enabled:
+        if not scrub_patterns:
+            scrub_patterns = {"unwanted_pattern": "desired_pattern"}
+
+        if os.path.exists(project_directory):
+            file_paths = [os.path.join(root, file_name) for root, _, files in os.walk(project_directory) for file_name in files]
+            
+            with tqdm(total=len(file_paths), desc="Scrubbing Progress", unit="file") as pbar:
+                tasks = [process_file(file_path, scrub_patterns, pbar) for file_path in file_paths]
+
+                with ThreadPoolExecutor() as executor:
+                    await asyncio.gather(*tasks)
+
+                print("Code scrubbing completed successfully")
+        else:
+            print("Error: Project directory not found.")
+    else:
+        print("Code scrubbing is not enabled.")
+
+# Example usage:
+project_directory = "/path/to/your/project"
+custom_scrub_patterns = {
+    r'print\((.*)\)': 'logger.info(\g<1>)',  # Replace print statements with logger
+    r'\bTODO\b': ' # TODO:',  # Add colon after TODO comments
+    r'\bFIX\b': ' # FIXME:',  # Convert FIX comments to FIXME
+}
+await code_crawl_and_scrub(project_directory, enabled=True, scrub_patterns=custom_scrub_patterns)
+
+import os
+import asyncio
+from concurrent.futures import ThreadPoolExecutor
+import ast
+import re
+import tokenize
+import io
+from tqdm import tqdm
+import black
+from pylint import epylint as lint
+
+def read_code_from_file(file_path):
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            return file.read()
+    except FileNotFoundError:
+        print(f"Error: File not found - {file_path}")
+        return None
+    except Exception as e:
+        print(f"Error reading file - {file_path}: {e}")
+        return None
+
+def tokenize_code(code):
+    return tokenize.tokenize(io.BytesIO(code.encode('utf-8')).readline)
+
+def scrub_code(code, scrub_patterns):
+    for old_pattern, new_pattern in scrub_patterns.items():
+        code = re.sub(old_pattern, new_pattern, code)
+    return code
+
+def format_code(code):
+    return black.format_str(code, mode=black.FileMode())
+
+def lint_code(code):
+    # Use pylint to analyze code and identify issues
+    exit_code, _ = lint.py_run(io.BytesIO(code.encode('utf-8')).readline, return_std=True)
+    return exit_code
+
+def apply_custom_transformations(parsed_code, transformations):
+    for transformation in transformations:
+        parsed_code = transformation(parsed_code)
+    return parsed_code
+
+def save_scrubbed_code_to_file(file_path, scrubbed_code):
+    try:
+        with open(file_path, 'w', encoding='utf-8') as file:
+            file.write(scrubbed_code)
+    except Exception as e:
+        print(f"Error saving scrubbed code to file - {file_path}: {e}")
+
+async def process_file(file_path, scrub_patterns, custom_transformations, pbar):
+    code = read_code_from_file(file_path)
+
+    if code is not None:
+        tokens = tokenize_code(code)
+        parsed_code = ast.parse(code)
+
+        for node in ast.walk(parsed_code):
+            if isinstance(node, ast.Print):
+                ast.fix_missing_locations(node)
+                node.targets = []
+
+        scrubbed_code = ast.unparse(parsed_code)
+        scrubbed_code = scrub_code(scrubbed_code, scrub_patterns)
+        scrubbed_code = apply_custom_transformations(scrubbed_code, custom_transformations)
+
+        formatted_code = format_code(scrubbed_code)
+
+        # Run static code analysis using pylint
+        if lint_code(formatted_code) == 0:
+            await asyncio.to_thread(save_scrubbed_code_to_file, file_path, formatted_code)
+            pbar.update(1)
+
+async def code_crawl_and_scrub(project_directory, enabled=True, scrub_patterns=None, custom_transformations=None):
+    if enabled:
+        if not scrub_patterns:
+            scrub_patterns = {"unwanted_pattern": "desired_pattern"}
+
+        if not custom_transformations:
+            custom_transformations = []
+
+        if os.path.exists(project_directory):
+            file_paths = [os.path.join(root, file_name) for root, _, files in os.walk(project_directory) for file_name in files]
+
+            with tqdm(total=len(file_paths), desc="Scrubbing Progress", unit="file") as pbar:
+                tasks = [process_file(file_path, scrub_patterns, custom_transformations, pbar) for file_path in file_paths]
+
+                with ThreadPoolExecutor() as executor:
+                    await asyncio.gather(*tasks)
+
+                print("Code scrubbing completed successfully")
+        else:
+            print("Error: Project directory not found.")
+    else:
+        print("Code scrubbing is not enabled.")
+
+# Example usage:
+project_directory = "/path/to/your/project"
+custom_scrub_patterns = {
+    r'print\((.*)\)': 'logger.info(\g<1>)',
+    r'\bTODO\b': ' # TODO:',
+    r'\bFIX\b': ' # FIXME:',
+}
+custom_transformations = [
+    lambda code: re.sub(r'\bDEBUG\b', ' # DEBUG:', code),  # Convert DEBUG comments to regular comments
+    lambda code: re.sub(r'\bINFO\b', ' # INFO:', code),    # Convert INFO comments to regular comments
+]
+await code_crawl_and_scrub(project_directory, enabled=True, scrub_patterns=custom_scrub_patterns, custom_transformations=custom_transformations)
+
+import os
+import asyncio
+from concurrent.futures import ThreadPoolExecutor
+import ast
+import re
+import tokenize
+import io
+from tqdm import tqdm
+import black
+from pylint import epylint as lint
+
+def read_code_from_file(file_path):
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            return file.read()
+    except FileNotFoundError:
+        print(f"Error: File not found - {file_path}")
+        return None
+    except Exception as e:
+        print(f"Error reading file - {file_path}: {e}")
+        return None
+
+def tokenize_code(code):
+    return tokenize.tokenize(io.BytesIO(code.encode('utf-8')).readline)
+
+def scrub_code(code, scrub_patterns):
+    for old_pattern, new_pattern in scrub_patterns.items():
+        code = re.sub(old_pattern, new_pattern, code)
+    return code
+
+def format_code(code):
+    return black.format_str(code, mode=black.FileMode())
+
+def lint_code(code):
+    exit_code, _ = lint.py_run(io.BytesIO(code.encode('utf-8')).readline, return_std=True)
+    return exit_code
+
+def apply_language_specific_transformations(language, code, transformations):
+    if language == 'python':
+        parsed_code = ast.parse(code)
+        for transformation in transformations.get(language, []):
+            parsed_code = transformation(parsed_code)
+        return ast.unparse(parsed_code)
+    # Add more language-specific handling as needed
+    return code
+
+def save_scrubbed_code_to_file(file_path, scrubbed_code):
+    try:
+        with open(file_path, 'w', encoding='utf-8') as file:
+            file.write(scrubbed_code)
+    except Exception as e:
+        print(f"Error saving scrubbed code to file - {file_path}: {e}")
+
+async def process_file(file_path, language_transformations, pbar):
+    code = read_code_from_file(file_path)
+
+    if code is not None:
+        language = get_language_from_file_extension(file_path)
+        
+        if language not in language_transformations:
+            print(f"Warning: No transformations defined for {language}. Skipping file - {file_path}")
+            return
+
+        tokens = tokenize_code(code)
+        scrubbed_code = scrub_code(code, language_transformations[language]['scrub_patterns'])
+        
+        formatted_code = format_code(scrubbed_code)
+
+        if lint_code(formatted_code) == 0:
+            transformed_code = apply_language_specific_transformations(language, formatted_code, language_transformations[language]['custom_transformations'])
+            await asyncio.to_thread(save_scrubbed_code_to_file, file_path, transformed_code)
+            pbar.update(1)
+
+def get_language_from_file_extension(file_path):
+    _, file_extension = os.path.splitext(file_path)
+    return file_extension.lower().lstrip('.')
+
+async def code_crawl_and_scrub(project_directory, enabled=True, language_transformations=None):
+    if enabled:
+        if not language_transformations:
+            language_transformations = {
+                'python': {
+                    'scrub_patterns': {
+                        r'print\((.*)\)': 'logger.info(\g<1>)',
+                        r'\bTODO\b': ' # TODO:',
+                        r'\bFIX\b': ' # FIXME:',
+                    },
+                    'custom_transformations': [
+                        lambda code: re.sub(r'\bDEBUG\b', ' # DEBUG:', code),
+                        lambda code: re.sub(r'\bINFO\b', ' # INFO:', code),
+                    ],
+                },
+                # Add more languages with their scrubbing patterns and custom transformations
+            }
+
+        if os.path.exists(project_directory):
+            file_paths = [os.path.join(root, file_name) for root, _, files in os.walk(project_directory) for file_name in files]
+
+            with tqdm(total=len(file_paths), desc="Scrubbing Progress", unit="file") as pbar:
+                tasks = [process_file(file_path, language_transformations, pbar) for file_path in file_paths]
+
+                with ThreadPoolExecutor() as executor:
+                    await asyncio.gather(*tasks)
+
+                print("Code scrubbing completed successfully")
+        else:
+            print("Error: Project directory not found.")
+    else:
+        print("Code scrubbing is not enabled.")
+
+# Example usage:
+project_directory = "/path/to/your/project"
+custom_language_transformations = {
+    'java': {
+        'scrub_patterns': {
+            r'System\.out\.println\((.*)\)': 'logger.info(\g<1>)',
+            # Add more Java-specific scrubbing patterns
+        },
+        'custom_transformations': [
+            # Add Java-specific custom transformations
+        ],
+    },
+    # Add transformations for other languages
+}
+await code_crawl_and_scrub(project_directory, enabled=True, language_transformations=custom_language_transformations)
+
+import os
+import asyncio
+from concurrent.futures import ThreadPoolExecutor
+import ast
+import re
+import tokenize
+import io
+from tqdm import tqdm
+import black
+from pylint import epylint as lint
+
+def read_code_from_file(file_path):
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            return file.read()
+    except FileNotFoundError:
+        print(f"Error: File not found - {file_path}")
+        return None
+    except Exception as e:
+        print(f"Error reading file - {file_path}: {e}")
+        return None
+
+def tokenize_code(code):
+    return tokenize.tokenize(io.BytesIO(code.encode('utf-8')).readline)
+
+def scrub_code(code, scrub_patterns):
+    for old_pattern, new_pattern in scrub_patterns.items():
+        code = re.sub(old_pattern, new_pattern, code)
+    return code
+
+def format_code(code):
+    return black.format_str(code, mode=black.FileMode())
+
+def lint_code(code):
+    exit_code, _ = lint.py_run(io.BytesIO(code.encode('utf-8')).readline, return_std=True)
+    return exit_code
+
+def apply_language_specific_transformations(language, code, transformations):
+    if language == 'python':
+        parsed_code = ast.parse(code)
+        for transformation in transformations.get(language, []):
+            parsed_code = transformation(parsed_code)
+        return ast.unparse(parsed_code)
+    # Add more language-specific handling as needed
+    return code
+
+def enforce_superior_consecutive_sequencing(code, sequencing_rules):
+    lines = code.split('\n')
+    
+    for rule in sequencing_rules:
+        for i in range(1, len(lines)):
+            if rule['check'](lines[i-1], lines[i]):
+                lines[i] = rule['action'](lines[i-1], lines[i])
+
+    return '\n'.join(lines)
+
+def save_scrubbed_code_to_file(file_path, scrubbed_code):
+    try:
+        with open(file_path, 'w', encoding='utf-8') as file:
+            file.write(scrubbed_code)
+    except Exception as e:
+        print(f"Error saving scrubbed code to file - {file_path}: {e}")
+
+async def process_file(file_path, language_transformations, sequencing_rules, pbar):
+    code = read_code_from_file(file_path)
+
+    if code is not None:
+        language = get_language_from_file_extension(file_path)
+        
+        if language not in language_transformations:
+            print(f"Warning: No transformations defined for {language}. Skipping file - {file_path}")
+            return
+
+        tokens = tokenize_code(code)
+        scrubbed_code = scrub_code(code, language_transformations[language]['scrub_patterns'])
+        
+        formatted_code = format_code(scrubbed_code)
+
+        if lint_code(formatted_code) == 0:
+            transformed_code = apply_language_specific_transformations(language, formatted_code, language_transformations[language]['custom_transformations'])
+            
+            # Enforce Superior Consecutive Sequencing
+            transformed_code = enforce_superior_consecutive_sequencing(transformed_code, sequencing_rules)
+            
+            await asyncio.to_thread(save_scrubbed_code_to_file, file_path, transformed_code)
+            pbar.update(1)
+
+def get_language_from_file_extension(file_path):
+    _, file_extension = os.path.splitext(file_path)
+    return file_extension.lower().lstrip('.')
+
+# Example sequencing rules (modify based on your specific requirements)
+sequencing_rules = [
+    {
+        'check': lambda line1, line2: 'import' in line1 and 'import' in line2,
+        'action': lambda line1, line2: line1 if line1 < line2 else line2
+    },
+    # Add more sequencing rules as needed
+]
+
+# Example usage:
+project_directory = "/path/to/your/project"
+custom_language_transformations = {
+    'python': {
+        'scrub_patterns': {
+            r'print\((.*)\)': 'logger.info(\g<1>)',
+            r'\bTODO\b': ' # TODO:',
+            r'\bFIX\b': ' # FIXME:',
+        },
+        'custom_transformations': [
+            lambda code: re.sub(r'\bDEBUG\b', ' # DEBUG:', code),
+            lambda code: re.sub(r'\bINFO\b', ' # INFO:', code),
+        ],
+    },
+    # Add transformations for other languages
+}
+
+await code_crawl_and_scrub(project_directory, enabled=True, language_transformations=custom_language_transformations, sequencing_rules=sequencing_rules)
+
+# Extended Sequencing Rules
+extended_sequencing_rules = [
+    {
+        'check': lambda line1, line2: 'import' in line1 and 'import' in line2,
+        'action': lambda line1, line2: line1 if line1 < line2 else line2
+    },
+    {
+        'check': lambda line1, line2: 'from' in line1 and 'import' in line1 and 'from' in line2 and 'import' in line2,
+        'action': lambda line1, line2: line1 if line1 < line2 else line2
+    },
+    {
+        'check': lambda line1, line2: line1.startswith('class ') and line2.startswith('def '),
+        'action': lambda line1, line2: f"{line2}\n{line1}"
+    },
+    {
+        'check': lambda line1, line2: line1.startswith('@') and line2.startswith('def '),
+        'action': lambda line1, line2: f"{line2}\n{line1}"
+    },
+    {
+        'check': lambda line1, line2: line1.startswith('def ') and 'self' in line1 and line2.startswith('def ') and 'self' not in line2,
+        'action': lambda line1, line2: f"{line2}\n{line1}"
+    },
+    {
+        'check': lambda line1, line2: line1.startswith('def ') and line2.startswith('def '),
+        'action': lambda line1, line2: line1 if line1 < line2 else line2
+    },
+    {
+        'check': lambda line1, line2: line1.startswith('if ') and line2.startswith('else'),
+        'action': lambda line1, line2: f"{line2}\n{line1}"
+    },
+    # Add more rules based on your coding standards
+]
+
+# Combine Sequencing Rules
+sequencing_rules = extended_sequencing_rules + [
+    # Existing rules from the previous example
+    {
+        'check': lambda line1, line2: 'import' in line1 and 'import' in line2,
+        'action': lambda line1, line2: line1 if line1 < line2 else line2
+    },
+]
+
+# Example usage with extended sequencing rules:
+project_directory = "/path/to/your/project"
+custom_language_transformations = {
+    'python': {
+        'scrub_patterns': {
+            r'print\((.*)\)': 'logger.info(\g<1>)',
+            r'\bTODO\b': ' # TODO:',
+            r'\bFIX\b': ' # FIXME:',
+        },
+        'custom_transformations': [
+            lambda code: re.sub(r'\bDEBUG\b', ' # DEBUG:', code),
+            lambda code: re.sub(r'\bINFO\b', ' # INFO:', code),
+        ],
+    },
+    # Add transformations for other languages
+}
+
+await code_crawl_and_scrub(project_directory, enabled=True, language_transformations=custom_language_transformations, sequencing_rules=sequencing_rules)
+
+# Customized Sequencing Rules for https://github.com/JoeySoprano420/VaLangue-Family-Translator.git
+va_langue_translator_sequencing_rules = [
+    {
+        'check': lambda line1, line2: 'import' in line1 and 'import' in line2,
+        'action': lambda line1, line2: line1 if line1 < line2 else line2
+    },
+    {
+        'check': lambda line1, line2: 'from' in line1 and 'import' in line1 and 'from' in line2 and 'import' in line2,
+        'action': lambda line1, line2: line1 if line1 < line2 else line2
+    },
+    {
+        'check': lambda line1, line2: line1.startswith('class ') and line2.startswith('def '),
+        'action': lambda line1, line2: f"{line2}\n{line1}"
+    },
+    {
+        'check': lambda line1, line2: line1.startswith('@') and line2.startswith('def '),
+        'action': lambda line1, line2: f"{line2}\n{line1}"
+    },
+    {
+        'check': lambda line1, line2: line1.startswith('def ') and 'self' in line1 and line2.startswith('def ') and 'self' not in line2,
+        'action': lambda line1, line2: f"{line2}\n{line1}"
+    },
+    {
+        'check': lambda line1, line2: line1.startswith('def ') and line2.startswith('def '),
+        'action': lambda line1, line2: line1 if line1 < line2 else line2
+    },
+    {
+        'check': lambda line1, line2: line1.startswith('if ') and line2.startswith('else'),
+        'action': lambda line1, line2: f"{line2}\n{line1}"
+    },
+    {
+        'check': lambda line1, line2: 'try' in line1 and 'except' in line2,
+        'action': lambda line1, line2: f"{line2}\n{line1}"
+    },
+    {
+        'check': lambda line1, line2: line1.startswith('except ') and 'as' in line1 and line2.startswith('except ') and 'as' not in line2,
+        'action': lambda line1, line2: f"{line2}\n{line1}"
+    },
+    {
+        'check': lambda line1, line2: line1.startswith('except ') and 'as' not in line1 and line2.startswith('except ') and 'as' in line2,
+        'action': lambda line1, line2: f"{line2}\n{line1}"
+    },
+    {
+        'check': lambda line1, line2: 'finally' in line1 and 'except' in line2,
+        'action': lambda line1, line2: f"{line2}\n{line1}"
+    },
+    {
+        'check': lambda line1, line2: line1.startswith('finally:') and line2.startswith('except'),
+        'action': lambda line1, line2: f"{line2}\n{line1}"
+    },
+    # Add more rules based on coding standards for https://github.com/JoeySoprano420/VaLangue-Family-Translator.git
+]
+
+# Combine Sequencing Rules
+sequencing_rules = va_langue_translator_sequencing_rules + [
+    # Existing rules from the previous example
+    {
+        'check': lambda line1, line2: 'import' in line1 and 'import' in line2,
+        'action': lambda line1, line2: line1 if line1 < line2 else line2
+    },
+]
+
+# Example usage with customized sequencing rules:
+project_directory = "/path/to/your/project"
+custom_language_transformations = {
+    'python': {
+        'scrub_patterns': {
+            r'print\((.*)\)': 'logger.info(\g<1>)',
+            r'\bTODO\b': ' # TODO:',
+            r'\bFIX\b': ' # FIXME:',
+        },
+        'custom_transformations': [
+            lambda code: re.sub(r'\bDEBUG\b', ' # DEBUG:', code),
+            lambda code: re.sub(r'\bINFO\b', ' # INFO:', code),
+        ],
+    },
+    # Add transformations for other languages
+}
+
+await code_crawl_and_scrub(project_directory, enabled=True, language_transformations=custom_language_transformations, sequencing_rules=sequencing_rules)
+
+
