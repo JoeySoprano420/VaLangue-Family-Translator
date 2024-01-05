@@ -1,0 +1,3373 @@
+$ pip install diffusers transformers accelerate torch
+
+import torch
+from diffusers import DiffusionPipeline, DPMSolverMultistepScheduler
+from diffusers.utils import export_to_video
+
+gh repo clone JoeySoprano420/Graphic-Zap
+https://github.com/JoeySoprano420/Graphic-Zap.git
+$ pip install diffusers transformers accelerate torch
+
+import torch
+from diffusers import DiffusionPipeline, DPMSolverMultistepScheduler
+from diffusers.utils import export_to_video
+
+pipe = DiffusionPipeline.from_pretrained("damo-vilab/text-to-video-ms-1.7b", torch_dtype=torch.float16, variant="fp16")
+pipe.scheduler = DPMSolverMultistepScheduler.from_config(pipe.scheduler.config)
+pipe.enable_model_cpu_offload()
+
+prompt = "Spiderman is surfing"
+video_frames = pipe(prompt, num_inference_steps=25).frames
+video_path = export_to_video(video_frames)
+
+$ pip install git+https://github.com/huggingface/diffusers transformers accelerate
+
+import torch
+from diffusers import DiffusionPipeline, DPMSolverMultistepScheduler
+from diffusers.utils import export_to_video
+
+# load pipeline
+pipe = DiffusionPipeline.from_pretrained("damo-vilab/text-to-video-ms-1.7b", torch_dtype=torch.float16, variant="fp16")
+pipe.scheduler = DPMSolverMultistepScheduler.from_config(pipe.scheduler.config)
+
+# optimize for GPU memory
+pipe.enable_model_cpu_offload()
+pipe.enable_vae_slicing()
+
+# generate
+prompt = "Spiderman is surfing. Darth Vader is also surfing and following Spiderman"
+video_frames = pipe(prompt, num_inference_steps=25, num_frames=200).frames
+
+# convent to video
+video_path = export_to_video(video_frames)
+
+pipe = DiffusionPipeline.from_pretrained("damo-vilab/text-to-video-ms-1.7b", torch_dtype=torch.float16, variant="fp16")
+pipe.scheduler = DPMSolverMultistepScheduler.from_config(pipe.scheduler.config)
+pipe.enable_model_cpu_offload()
+
+prompt = "Spiderman is surfing"
+video_frames = pipe(prompt, num_inference_steps=25).frames
+video_path = export_to_video(video_frames)
+
+$ pip install git+https://github.com/huggingface/diffusers transformers accelerate
+
+import torch
+from diffusers import DiffusionPipeline, DPMSolverMultistepScheduler
+from diffusers.utils import export_to_video
+
+# load pipeline
+pipe = DiffusionPipeline.from_pretrained("damo-vilab/text-to-video-ms-1.7b", torch_dtype=torch.float16, variant="fp16")
+pipe.scheduler = DPMSolverMultistepScheduler.from_config(pipe.scheduler.config)
+
+# optimize for GPU memory
+pipe.enable_model_cpu_offload()
+pipe.enable_vae_slicing()
+
+# generate
+prompt = "Spiderman is surfing. Darth Vader is also surfing and following Spiderman"
+video_frames = pipe(prompt, num_inference_steps=25, num_frames=200).frames
+
+# convent to video
+video_path = export_to_video(video_frames)
+
+ 
+// EMC Code for Rectangle Area Calculation
+
+English:
+Begin Program
+    Prompt user for Length and Width
+    Calculate Area as Length multiplied by Width
+    Display "The area of the rectangle is: " concatenated with Area
+End Program
+
+Math AST:
+{
+    Begin Program,
+    Prompt(user, "Length"),
+    Prompt(user, "Width"),
+    Calculate(Area, Multiply(Length, Width)),
+    Display("The area of the rectangle is: " + Area),
+    End Program
+}
+
+C++ Backend:
+#include <iostream>
+using namespace std;
+
+int main() {
+    // EMC-generated C++ code
+    double Length, Width, Area;
+    
+    // Prompt user for Length and Width
+    cout << "Enter the Length: ";
+    cin >> Length;
+    cout << "Enter the Width: ";
+    cin >> Width;
+
+    // Calculate Area as Length multiplied by Width
+    Area = Length * Width;
+
+    // Display result
+    cout << "The area of the rectangle is: " << Area << endl;
+
+    return 0;
+}
+
+// EMC Code for Rectangle Area Calculation
+
+Begin Program
+    Prompt User for Length and Width
+    Calculate Area as Length * Width
+    Display "The area of the rectangle is: " + Area
+End Program
+
+import re
+
+# EMC Code for Rectangle Area Calculation
+emc_code = """
+Begin Program
+    Prompt User for Length and Width
+    Calculate Area as Length * Width
+    Display "The area of the rectangle is: " + Area
+End Program
+"""
+
+class Lexer:
+    def __init__(self, code):
+        self.code = code
+        self.tokens = []
+
+    def lex(self):
+        lines = self.code.split('\n')
+        for line in lines:
+            self.tokens += self.tokenize(line)
+
+    def tokenize(self, line):
+        # Tokenizing logic goes here
+        # For simplicity, let's consider words and symbols as tokens
+        return re.findall(r'\b\w+\b|[^\w\s]', line)
+
+class Parser:
+    def __init__(self, tokens):
+        self.tokens = tokens
+
+    def parse(self):
+        # Parsing logic goes here
+        # For simplicity, let's just print the tokens
+        print("Parsed Tokens:")
+        print(self.tokens)
+
+def bridge_emc_to_python(emc_code):
+    lexer = Lexer(emc_code)
+    lexer.lex()
+    tokens = lexer.tokens
+
+    parser = Parser(tokens)
+    parser.parse()
+
+# Bridge EMC to Python
+bridge_emc_to_python(emc_code)
+
+import re
+
+class Token:
+    def __init__(self, type, value=None):
+        self.type = type
+        self.value = value
+
+class Lexer:
+    def __init__(self, code):
+        self.code = code
+        self.tokens = []
+
+    def lex(self):
+        lines = self.code.split('\n')
+        for line in lines:
+            self.tokens += self.tokenize(line)
+
+    def tokenize(self, line):
+        # Tokenizing logic
+        # Recognize keywords, identifiers, operators, and literals
+        return [Token("KEYWORD", match.group()) if (match := re.match(r'\b(Begin|End|Prompt|Calculate|Display)\b', word))
+                else Token("IDENTIFIER", word) if re.match(r'\b\w+\b', word)
+                else Token("OPERATOR", word) if re.match(r'[\+\-\*/]', word)
+                else Token("LITERAL", word) if re.match(r'".*"', word)
+                else Token("UNKNOWN", word)
+                for word in line.split()]
+
+class Parser:
+    def __init__(self, tokens):
+        self.tokens = tokens
+        self.current_token = None
+        self.index = 0
+
+    def advance(self):
+        self.index += 1
+        if self.index < len(self.tokens):
+            self.current_token = self.tokens[self.index]
+        else:
+            self.current_token = None
+
+    def parse(self):
+        # Parsing logic
+        # For simplicity, just print the equivalent Python code
+        print("# Equivalent Python Code:")
+        print("def main():")
+        while self.current_token:
+            if self.current_token.type == "KEYWORD":
+                self.parse_keyword()
+            elif self.current_token.type == "IDENTIFIER":
+                self.parse_assignment()
+            self.advance()
+
+    def parse_keyword(self):
+        if self.current_token.value == "Begin":
+            print("    " + "# Start of EMC Program")
+        elif self.current_token.value == "End":
+            print("    " + "# End of EMC Program")
+
+    def parse_assignment(self):
+        identifier = self.current_token.value
+        self.advance()  # Skip identifier
+        if self.current_token.type == "OPERATOR" and self.current_token.value == "=":
+            self.advance()  # Skip "="
+            print(f"    {identifier} = ", end="")
+            self.parse_expression()
+            print()
+
+    def parse_expression(self):
+        while self.current_token and self.current_token.type != "KEYWORD":
+            print(self.current_token.value, end=" ")
+            self.advance()
+
+# EMC Code for Rectangle Area Calculation
+emc_code = """
+Begin Program
+    Prompt User for Length and Width
+    Calculate Area as Length * Width
+    Display "The area of the rectangle is: " + Area
+End Program
+"""
+
+lexer = Lexer(emc_code)
+lexer.lex()
+
+parser = Parser(lexer.tokens)
+parser.parse()
+
+import re
+
+class Token:
+    def __init__(self, type, value=None):
+        self.type = type
+        self.value = value
+
+class Lexer:
+    def __init__(self, code):
+        self.code = code
+        self.tokens = []
+
+    def lex(self):
+        lines = self.code.split('\n')
+        for line in lines:
+            self.tokens += self.tokenize(line)
+
+    def tokenize(self, line):
+        # Tokenizing logic
+        # Recognize keywords, identifiers, operators, and literals
+        return [Token("KEYWORD", match.group()) if (match := re.match(r'\b(Begin|End|Prompt|Calculate|Display)\b', word))
+                else Token("IDENTIFIER", word) if re.match(r'\b\w+\b', word)
+                else Token("OPERATOR", word) if re.match(r'[\+\-\*/]', word)
+                else Token("LITERAL", word) if re.match(r'".*"', word)
+                else Token("UNKNOWN", word)
+                for word in line.split()]
+
+class Parser:
+    def __init__(self, tokens):
+        self.tokens = tokens
+        self.current_token = None
+        self.index = 0
+
+    def advance(self):
+        self.index += 1
+        if self.index < len(self.tokens):
+            self.current_token = self.tokens[self.index]
+        else:
+            self.current_token = None
+
+    def parse(self):
+        # Parsing logic
+        # For simplicity, just print the equivalent Python code
+        print("# Equivalent Python Code:")
+        print("def main():")
+        while self.current_token:
+            if self.current_token.type == "KEYWORD":
+                self.parse_keyword()
+            elif self.current_token.type == "IDENTIFIER":
+                self.parse_assignment()
+            self.advance()
+
+    def parse_keyword(self):
+        if self.current_token.value == "Begin":
+            print("    " + "# Start of EMC Program")
+        elif self.current_token.value == "End":
+            print("    " + "# End of EMC Program")
+
+    def parse_assignment(self):
+        identifier = self.current_token.value
+        self.advance()  # Skip identifier
+        if self.current_token.type == "OPERATOR" and self.current_token.value == "=":
+            self.advance()  # Skip "="
+            print(f"    {identifier} = ", end="")
+            self.parse_expression()
+            print()
+
+    def parse_expression(self):
+        while self.current_token and self.current_token.type != "KEYWORD":
+            print(self.current_token.value, end=" ")
+            self.advance()
+
+# EMC Code for Rectangle Area Calculation
+emc_code = """
+Begin Program
+    Prompt User for Length and Width
+    Calculate Area as Length * Width
+    Display "The area of the rectangle is: " + Area
+End Program
+"""
+
+lexer = Lexer(emc_code)
+lexer.lex()
+
+parser = Parser(lexer.tokens)
+parser.parse()
+
+import re
+
+class Token:
+    def __init__(self, type, value=None):
+        self.type = type
+        self.value = value
+
+class Lexer:
+    def __init__(self, code):
+        self.code = code
+        self.tokens = []
+
+    def lex(self):
+        lines = self.code.split('\n')
+        for line in lines:
+            self.tokens += self.tokenize(line)
+
+    def tokenize(self, line):
+        return [Token("KEYWORD", match.group()) if (match := re.match(r'\b(Begin|End|Prompt|Calculate|Display|If|Else|While)\b', word))
+                else Token("IDENTIFIER", word) if re.match(r'\b\w+\b', word)
+                else Token("OPERATOR", word) if re.match(r'[\+\-\*/=<>]', word)
+                else Token("LITERAL", word) if re.match(r'".*"', word)
+                else Token("UNKNOWN", word)
+                for word in line.split()]
+
+class Parser:
+    def __init__(self, tokens):
+        self.tokens = tokens
+        self.current_token = None
+        self.index = 0
+
+    def advance(self):
+        self.index += 1
+        if self.index < len(self.tokens):
+            self.current_token = self.tokens[self.index]
+        else:
+            self.current_token = None
+
+    def parse(self):
+        print("# Equivalent Python Code:")
+        print("def main():")
+        while self.current_token:
+            if self.current_token.type == "KEYWORD":
+                self.parse_keyword()
+            elif self.current_token.type == "IDENTIFIER":
+                self.parse_assignment()
+            self.advance()
+
+    def parse_keyword(self):
+        if self.current_token.value == "Begin":
+            print("    " + "# Start of EMC Program")
+        elif self.current_token.value == "End":
+            print("    " + "# End of EMC Program")
+        elif self.current_token.value == "Prompt":
+            self.parse_prompt()
+        elif self.current_token.value == "Calculate":
+            self.parse_calculation()
+        elif self.current_token.value == "Display":
+            self.parse_display()
+        elif self.current_token.value == "If":
+            self.parse_if()
+        elif self.current_token.value == "Else":
+            self.parse_else()
+        elif self.current_token.value == "While":
+            self.parse_while()
+
+    def parse_prompt(self):
+        self.advance()  # Skip "Prompt"
+        identifier = self.current_token.value
+        print(f"    {identifier} = input(\"Enter {identifier}: \")")
+
+    def parse_calculation(self):
+        self.advance()  # Skip "Calculate"
+        identifier = self.current_token.value
+        self.advance()  # Skip identifier
+        if self.current_token.type == "OPERATOR" and self.current_token.value == "=":
+            self.advance()  # Skip "="
+            print(f"    {identifier} = ", end="")
+            self.parse_expression()
+            print()
+
+    def parse_display(self):
+        self.advance()  # Skip "Display"
+        print("    print(", end="")
+        self.parse_expression()
+        print(")")
+
+    def parse_if(self):
+        self.advance()  # Skip "If"
+        print("    if ", end="")
+        self.parse_condition()
+
+    def parse_else(self):
+        print("    else:")
+
+    def parse_while(self):
+        self.advance()  # Skip "While"
+        print("    while ", end="")
+        self.parse_condition()
+
+    def parse_condition(self):
+        print("(", end="")
+        while self.current_token and self.current_token.type != "KEYWORD":
+            print(self.current_token.value, end=" ")
+            self.advance()
+        print("):")
+
+    def parse_expression(self):
+        while self.current_token and self.current_token.type != "KEYWORD":
+            print(self.current_token.value, end=" ")
+            self.advance()
+
+# EMC Code with extended features
+emc_code = """
+Begin Program
+    Prompt User for Length and Width
+    Calculate Area as Length * Width
+    Display "The area of the rectangle is: " + Area
+    If Area > 100
+        Display "Large area!"
+    Else
+        Display "Small area."
+    End If
+    While Length > 0
+        Display "Length is still positive."
+        Length = Length - 1
+    End While
+End Program
+"""
+
+lexer = Lexer(emc_code)
+lexer.lex()
+
+parser = Parser(lexer.tokens)
+parser.parse()
+
+import re
+
+class Token:
+    def __init__(self, type, value=None):
+        self.type = type
+        self.value = value
+
+class Lexer:
+    def __init__(self, code):
+        self.code = code
+        self.tokens = []
+
+    def lex(self):
+        lines = self.code.split('\n')
+        for line in lines:
+            self.tokens += self.tokenize(line)
+
+    def tokenize(self, line):
+        return [Token("KEYWORD", match.group()) if (match := re.match(r'\b(Begin|End|Prompt|Calculate|Display|If|Else|While|Function|Return)\b', word))
+                else Token("IDENTIFIER", word) if re.match(r'\b\w+\b', word)
+                else Token("OPERATOR", word) if re.match(r'[\+\-\*/=<>]', word)
+                else Token("LITERAL", word) if re.match(r'".*"', word)
+                else Token("ARRAY", word) if re.match(r'\[\w+\]', word)
+                else Token("COMMENT", word) if re.match(r'#.*', word)
+                else Token("UNKNOWN", word)
+                for word in line.split()]
+
+class Parser:
+    def __init__(self, tokens):
+        self.tokens = tokens
+        self.current_token = None
+        self.index = 0
+
+    def advance(self):
+        self.index += 1
+        if self.index < len(self.tokens):
+            self.current_token = self.tokens[self.index]
+        else:
+            self.current_token = None
+
+    def parse(self):
+        print("# Equivalent Python Code:")
+        print("def main():")
+        while self.current_token:
+            if self.current_token.type == "KEYWORD":
+                self.parse_keyword()
+            elif self.current_token.type == "IDENTIFIER":
+                self.parse_assignment()
+            self.advance()
+
+    def parse_keyword(self):
+        if self.current_token.value == "Begin":
+            print("    " + "# Start of EMC Program")
+        elif self.current_token.value == "End":
+            print("    " + "# End of EMC Program")
+        elif self.current_token.value == "Prompt":
+            self.parse_prompt()
+        elif self.current_token.value == "Calculate":
+            self.parse_calculation()
+        elif self.current_token.value == "Display":
+            self.parse_display()
+        elif self.current_token.value == "If":
+            self.parse_if()
+        elif self.current_token.value == "Else":
+            self.parse_else()
+        elif self.current_token.value == "While":
+            self.parse_while()
+        elif self.current_token.value == "Function":
+            self.parse_function()
+        elif self.current_token.value == "Return":
+            self.parse_return()
+
+    def parse_prompt(self):
+        self.advance()  # Skip "Prompt"
+        identifier = self.current_token.value
+        print(f"    {identifier} = input(\"Enter {identifier}: \")")
+
+    def parse_calculation(self):
+        self.advance()  # Skip "Calculate"
+        identifier = self.current_token.value
+        self.advance()  # Skip identifier
+        if self.current_token.type == "OPERATOR" and self.current_token.value == "=":
+            self.advance()  # Skip "="
+            print(f"    {identifier} = ", end="")
+            self.parse_expression()
+            print()
+
+    def parse_display(self):
+        self.advance()  # Skip "Display"
+        print("    print(", end="")
+        self.parse_expression()
+        print(")")
+
+    def parse_if(self):
+        self.advance()  # Skip "If"
+        print("    if ", end="")
+        self.parse_condition()
+
+    def parse_else(self):
+        print("    else:")
+
+    def parse_while(self):
+        self.advance()  # Skip "While"
+        print("    while ", end="")
+        self.parse_condition()
+
+    def parse_function(self):
+        self.advance()  # Skip "Function"
+        function_name = self.current_token.value
+        self.advance()  # Skip function name
+        print(f"def {function_name}():")
+        self.parse_function_body()
+
+    def parse_return(self):
+        self.advance()  # Skip "Return"
+        print("    return ", end="")
+        self.parse_expression()
+        print()
+
+    def parse_condition(self):
+        print("(", end="")
+        while self.current_token and self.current_token.type != "KEYWORD":
+            print(self.current_token.value, end=" ")
+            self.advance()
+        print("):")
+
+    def parse_expression(self):
+        while self.current_token and self.current_token.type != "KEYWORD":
+            print(self.current_token.value, end=" ")
+            self.advance()
+
+    def parse_function_body(self):
+        self.advance()  # Skip "Begin"
+        print("    " + "# Function Body")
+        while self.current_token and not (self.current_token.type == "KEYWORD" and self.current_token.value == "End"):
+            if self.current_token.type == "KEYWORD":
+                self.parse_keyword()
+            elif self.current_token.type == "IDENTIFIER":
+                self.parse_assignment()
+            self.advance()
+
+# EMC Code with extended features
+emc_code = """
+Begin Program
+    Prompt User for Length and Width
+    Calculate Area as Length * Width
+    Display "The area of the rectangle is: " + Area
+    If Area > 100
+        Display "Large area!"
+    Else
+        Display "Small area."
+    End If
+    While Length > 0
+        Display "Length is still positive."
+        Length = Length - 1
+    End While
+    Function CalculateCircleArea
+        Prompt User for Radius
+        Calculate CircleArea as 3.14 * Radius * Radius
+        Return CircleArea
+    End Function
+    Display "The area of the circle is: " + CalculateCircleArea()
+End Program
+"""
+
+lexer = Lexer(emc_code)
+lexer.lex()
+
+parser = Parser(lexer.tokens)
+parser.parse()
+
+import re
+
+class Token:
+    def __init__(self, type, value=None):
+        self.type = type
+        self.value = value
+
+class Lexer:
+    def __init__(self, code):
+        self.code = code
+        self.tokens = []
+
+    def lex(self):
+        lines = self.code.split('\n')
+        for line in lines:
+            self.tokens += self.tokenize(line)
+
+    def tokenize(self, line):
+        return [Token("KEYWORD", match.group()) if (match := re.match(r'\b(Begin|End|Prompt|Calculate|Display|If|Else|While|Function|Return|For)\b', word))
+                else Token("IDENTIFIER", word) if re.match(r'\b\w+\b', word)
+                else Token("OPERATOR", word) if re.match(r'[\+\-\*/=<>]', word)
+                else Token("LITERAL", word) if re.match(r'".*"', word)
+                else Token("ARRAY", word) if re.match(r'\[\w+\]', word)
+                else Token("COMMENT", word) if re.match(r'#.*', word)
+                else Token("UNKNOWN", word)
+                for word in line.split()]
+
+class Parser:
+    def __init__(self, tokens):
+        self.tokens = tokens
+        self.current_token = None
+        self.index = 0
+
+    def advance(self):
+        self.index += 1
+        if self.index < len(self.tokens):
+            self.current_token = self.tokens[self.index]
+        else:
+            self.current_token = None
+
+    def parse(self):
+        print("# Equivalent Python Code:")
+        print("def main():")
+        while self.current_token:
+            if self.current_token.type == "KEYWORD":
+                self.parse_keyword()
+            elif self.current_token.type == "IDENTIFIER":
+                self.parse_assignment()
+            self.advance()
+
+    def parse_keyword(self):
+        if self.current_token.value == "Begin":
+            print("    " + "# Start of EMC Program")
+        elif self.current_token.value == "End":
+            print("    " + "# End of EMC Program")
+        elif self.current_token.value == "Prompt":
+            self.parse_prompt()
+        elif self.current_token.value == "Calculate":
+            self.parse_calculation()
+        elif self.current_token.value == "Display":
+            self.parse_display()
+        elif self.current_token.value == "If":
+            self.parse_if()
+        elif self.current_token.value == "Else":
+            self.parse_else()
+        elif self.current_token.value == "While":
+            self.parse_while()
+        elif self.current_token.value == "Function":
+            self.parse_function()
+        elif self.current_token.value == "Return":
+            self.parse_return()
+        elif self.current_token.value == "For":
+            self.parse_for()
+
+    def parse_prompt(self):
+        self.advance()  # Skip "Prompt"
+        identifier = self.current_token.value
+        print(f"    {identifier} = input(\"Enter {identifier}: \")")
+
+    def parse_calculation(self):
+        self.advance()  # Skip "Calculate"
+        identifier = self.current_token.value
+        self.advance()  # Skip identifier
+        if self.current_token.type == "OPERATOR" and self.current_token.value == "=":
+            self.advance()  # Skip "="
+            print(f"    {identifier} = ", end="")
+            self.parse_expression()
+            print()
+
+    def parse_display(self):
+        self.advance()  # Skip "Display"
+        print("    print(", end="")
+        self.parse_expression()
+        print(")")
+
+    def parse_if(self):
+        self.advance()  # Skip "If"
+        print("    if ", end="")
+        self.parse_condition()
+
+    def parse_else(self):
+        print("    else:")
+
+    def parse_while(self):
+        self.advance()  # Skip "While"
+        print("    while ", end="")
+        self.parse_condition()
+
+    def parse_function(self):
+        self.advance()  # Skip "Function"
+        function_name = self.current_token.value
+        self.advance()  # Skip function name
+        print(f"def {function_name}():")
+        self.parse_function_body()
+
+    def parse_return(self):
+        self.advance()  # Skip "Return"
+        print("    return ", end="")
+        self.parse_expression()
+        print()
+
+    def parse_for(self):
+        self.advance()  # Skip "For"
+        print("    for ", end="")
+        self.parse_identifier()
+        print(" in range(", end="")
+        self.advance()  # Skip identifier
+        self.parse_expression()
+        print("):")
+
+    def parse_condition(self):
+        print("(", end="")
+        while self.current_token and self.current_token.type != "KEYWORD":
+            print(self.current_token.value, end=" ")
+            self.advance()
+        print("):")
+
+    def parse_expression(self):
+        while self.current_token and self.current_token.type != "KEYWORD":
+            print(self.current_token.value, end=" ")
+            self.advance()
+
+    def parse_identifier(self):
+        while self.current_token and self.current_token.type != "OPERATOR":
+            print(self.current_token.value, end="")
+            self.advance()
+
+    def parse_function_body(self):
+        self.advance()  # Skip "Begin"
+        print("    " + "# Function Body")
+        while self.current_token and not (self.current_token.type == "KEYWORD" and self.current_token.value == "End"):
+            if self.current_token.type == "KEYWORD":
+                self.parse_keyword()
+            elif self.current_token.type == "IDENTIFIER":
+                self.parse_assignment()
+            self.advance()
+
+# EMC Code with additional features
+emc_code = """
+Begin Program
+    Prompt User for Length and Width
+    Calculate Area as Length * Width
+    Display "The area of the rectangle is: " + Area
+    If Area > 100
+        Display "Large area!"
+    Else
+        Display "Small area."
+    End If
+    While Length > 0
+        Display "Length is still positive."
+        Length = Length - 1
+    End While
+    Function CalculateCircleArea
+        Prompt User for Radius
+        Calculate CircleArea as 3.14 * Radius * Radius
+        Return CircleArea
+    End Function
+    Display "The area of the circle is: " + CalculateCircleArea()
+    For i in range(5):
+        Display "Iteration " + i
+    End For
+End Program
+"""
+
+lexer = Lexer(emc_code)
+lexer.lex()
+
+parser = Parser(lexer.tokens)
+parser.parse()
+
+import re
+
+class Token:
+    def __init__(self, type, value=None):
+        self.type = type
+        self.value = value
+
+class Lexer:
+    def __init__(self, code):
+        self.code = code
+        self.tokens = []
+
+    def lex(self):
+        lines = self.code.split('\n')
+        for line in lines:
+            self.tokens += self.tokenize(line)
+
+    def tokenize(self, line):
+        return [Token("KEYWORD", match.group()) if (match := re.match(r'\b(Begin|End|Prompt|Calculate|Display|If|Else|While|Function|Return|For|Include)\b', word))
+                else Token("IDENTIFIER", word) if re.match(r'\b\w+\b', word)
+                else Token("OPERATOR", word) if re.match(r'[\+\-\*/=<>]', word)
+                else Token("LITERAL", word) if re.match(r'".*"', word)
+                else Token("ARRAY", word) if re.match(r'\[\w+\]', word)
+                else Token("COMMENT", word) if re.match(r'#.*', word)
+                else Token("INCLUDE", word) if re.match(r'#include\s+<\w+>', word)
+                else Token("UNKNOWN", word)
+                for word in line.split()]
+
+class Parser:
+    def __init__(self, tokens):
+        self.tokens = tokens
+        self.current_token = None
+        self.index = 0
+
+    def advance(self):
+        self.index += 1
+        if self.index < len(self.tokens):
+            self.current_token = self.tokens[self.index]
+        else:
+            self.current_token = None
+
+    def parse(self):
+        print("# Equivalent C++ Code:")
+        print("#include <iostream>")
+        print("using namespace std;\n")
+        print("int main() {")
+        while self.current_token:
+            if self.current_token.type == "KEYWORD":
+                self.parse_keyword()
+            elif self.current_token.type == "IDENTIFIER":
+                self.parse_assignment()
+            self.advance()
+        print("    return 0;\n}")
+
+    def parse_keyword(self):
+        if self.current_token.value == "Begin":
+            print("    " + "# Start of EMC Program")
+        elif self.current_token.value == "End":
+            print("    " + "# End of EMC Program")
+        elif self.current_token.value == "Prompt":
+            self.parse_prompt()
+        elif self.current_token.value == "Calculate":
+            self.parse_calculation()
+        elif self.current_token.value == "Display":
+            self.parse_display()
+        elif self.current_token.value == "If":
+            self.parse_if()
+        elif self.current_token.value == "Else":
+            self.parse_else()
+        elif self.current_token.value == "While":
+            self.parse_while()
+        elif self.current_token.value == "Function":
+            self.parse_function()
+        elif self.current_token.value == "Return":
+            self.parse_return()
+        elif self.current_token.value == "For":
+            self.parse_for()
+        elif self.current_token.value == "Include":
+            self.parse_include()
+
+    def parse_prompt(self):
+        self.advance()  # Skip "Prompt"
+        identifier = self.current_token.value
+        print(f"    {identifier} = 0;")
+        print(f"    cout << \"Enter {identifier}: \";")
+        print(f"    cin >> {identifier};")
+
+    def parse_calculation(self):
+        self.advance()  # Skip "Calculate"
+        identifier = self.current_token.value
+        self.advance()  # Skip identifier
+        if self.current_token.type == "OPERATOR" and self.current_token.value == "=":
+            self.advance()  # Skip "="
+            print(f"    {identifier} = ", end="")
+            self.parse_expression()
+            print(";")
+
+    def parse_display(self):
+        self.advance()  # Skip "Display"
+        print(f"    cout << ", end="")
+        self.parse_expression()
+        print(' << endl;')
+
+    def parse_if(self):
+        self.advance()  # Skip "If"
+        print("    if ", end="")
+        self.parse_condition()
+
+    def parse_else(self):
+        print("    else {")
+
+    def parse_while(self):
+        self.advance()  # Skip "While"
+        print("    while ", end="")
+        self.parse_condition()
+
+    def parse_function(self):
+        self.advance()  # Skip "Function"
+        return_type = "void"
+        if self.current_token.type == "IDENTIFIER":
+            return_type = self.current_token.value
+            self.advance()  # Skip return type
+        function_name = self.current_token.value
+        self.advance()  # Skip function name
+        print(f"    {return_type} {function_name}() {{")
+
+        # Parse function parameters
+        self.advance()  # Skip "("
+        while self.current_token and self.current_token.type != "KEYWORD" and self.current_token.value != "Begin":
+            param_type = self.current_token.value
+            self.advance()  # Skip parameter type
+            param_name = self.current_token.value
+            self.advance()  # Skip parameter name
+            print(f"        {param_type} {param_name};")
+            if self.current_token.value == ",":
+                self.advance()  # Skip ","
+        self.advance()  # Skip "Begin"
+
+        # Parse function body
+        print("        " + "# Function Body")
+        while self.current_token and not (self.current_token.type == "KEYWORD" and self.current_token.value == "End"):
+            if self.current_token.type == "KEYWORD":
+                self.parse_keyword()
+            elif self.current_token.type == "IDENTIFIER":
+                self.parse_assignment()
+            self.advance()
+        print(f"    }}")
+
+    def parse_return(self):
+        self.advance()  # Skip "Return"
+        print("    return ", end="")
+        self.parse_expression()
+        print(";")
+
+    def parse_for(self):
+        self.advance()  # Skip "For"
+        print("    for (", end="")
+        self.parse_identifier()
+        print(" = ", end="")
+        self.advance()  # Skip identifier
+        self.parse_expression()
+        print("; ", end="")
+        self.advance()  # Skip ";"
+        self.parse_identifier()
+        print(" < ", end="")
+        self.advance()  # Skip identifier
+        self.parse_expression()
+        print("; ", end="")
+        self.advance()  # Skip ";"
+        self.parse_identifier()
+        print("++) {")
+
+    def parse_include(self):
+        self.advance()  # Skip "Include"
+        print(f"    {self.current_token.value}")
+        
+    def
+parse_condition(self):
+        print("(", end="")
+        while self.current_token and self.current_token.type != "KEYWORD":
+            print(self.current_token.value, end=" ")
+            self.advance()
+        print(")")
+
+    def parse_expression(self):
+        while self.current_token and self.current_token.type != "KEYWORD":
+            print(self.current_token.value, end=" ")
+            self.advance()
+
+    def parse_identifier(self):
+        while self.current_token and self.current_token.type != "OPERATOR":
+            print(self.current_token.value, end="")
+            self.advance()
+
+# EMC Code with C++ features
+emc_code = """
+Begin Program
+    Prompt User for Length and Width
+    Calculate Area as Length * Width
+    Display "The area of the rectangle is: " + Area
+    If Area > 100
+        Display "Large area!"
+    Else
+        Display "Small area."
+    End If
+    While Length > 0
+        Display "Length is still positive."
+        Length = Length - 1
+    End While
+    Function int Add(int a, int b)
+        Begin
+            Return a + b;
+        End
+    End Function
+    Display "Sum: " + Add(5, 3)
+    For i = 0; i < 5; i++
+        Display "Iteration " + i
+    End For
+End Program
+"""
+
+lexer = Lexer(emc_code)
+lexer.lex()
+
+parser = Parser(lexer.tokens)
+parser.parse()
+```
+
+import re
+
+class Token:
+    def __init__(self, type, value=None):
+        self.type = type
+        self.value = value
+
+class Lexer:
+    def __init__(self, code):
+        self.code = code
+        self.tokens = []
+
+    def lex(self):
+        lines = self.code.split('\n')
+        for line in lines:
+            self.tokens += self.tokenize(line)
+
+    def tokenize(self, line):
+        return [Token("KEYWORD", match.group()) if (match := re.match(r'\b(Begin|End|Prompt|Calculate|Display|If|Else|While|Function|Return|For|Include|int|float|string)\b', word))
+                else Token("IDENTIFIER", word) if re.match(r'\b\w+\b', word)
+                else Token("OPERATOR", word) if re.match(r'[\+\-\*/=<>]', word)
+                else Token("LITERAL", word) if re.match(r'".*"', word)
+                else Token("ARRAY", word) if re.match(r'\[\w+\]', word)
+                else Token("COMMENT", word) if re.match(r'#.*', word)
+                else Token("INCLUDE", word) if re.match(r'#include\s+<\w+>', word)
+                else Token("UNKNOWN", word)
+                for word in line.split()]
+
+class Parser:
+    def __init__(self, tokens):
+        self.tokens = tokens
+        self.current_token = None
+        self.index = 0
+
+    def advance(self):
+        self.index += 1
+        if self.index < len(self.tokens):
+            self.current_token = self.tokens[self.index]
+        else:
+            self.current_token = None
+
+    def parse(self):
+        print("# Equivalent C++ Code:")
+        print("#include <iostream>")
+        print("using namespace std;\n")
+        print("int main() {")
+        while self.current_token:
+            if self.current_token.type == "KEYWORD":
+                self.parse_keyword()
+            elif self.current_token.type == "IDENTIFIER":
+                self.parse_assignment()
+            self.advance()
+        print("    return 0;\n}")
+
+    def parse_keyword(self):
+        if self.current_token.value == "Begin":
+            print("    " + "# Start of EMC Program")
+        elif self.current_token.value == "End":
+            print("    " + "# End of EMC Program")
+        elif self.current_token.value == "Prompt":
+            self.parse_prompt()
+        elif self.current_token.value == "Calculate":
+            self.parse_calculation()
+        elif self.current_token.value == "Display":
+            self.parse_display()
+        elif self.current_token.value == "If":
+            self.parse_if()
+        elif self.current_token.value == "Else":
+            self.parse_else()
+        elif self.current_token.value == "While":
+            self.parse_while()
+        elif self.current_token.value == "Function":
+            self.parse_function()
+        elif self.current_token.value == "Return":
+            self.parse_return()
+        elif self.current_token.value == "For":
+            self.parse_for()
+        elif self.current_token.value == "Include":
+            self.parse_include()
+        elif self.current_token.value in ["int", "float", "string"]:
+            self.parse_variable_declaration()
+
+    def parse_prompt(self):
+        self.advance()  # Skip "Prompt"
+        identifier = self.current_token.value
+        print(f"    {identifier} = 0;")
+        print(f"    cout << \"Enter {identifier}: \";")
+        if self.expect("IDENTIFIER"):
+            print(f"    cin >> {self.current_token.value};")
+        else:
+            print("    // Error: Expected an identifier after Prompt")
+
+    def parse_calculation(self):
+        self.advance()  # Skip "Calculate"
+        identifier = self.current_token.value
+        self.advance()  # Skip identifier
+        if self.current_token.type == "OPERATOR" and self.current_token.value == "=":
+            self.advance()  # Skip "="
+            print(f"    {identifier} = ", end="")
+            self.parse_expression()
+            print(";")
+
+    def parse_display(self):
+        self.advance()  # Skip "Display"
+        print(f"    cout << ", end="")
+        self.parse_expression()
+        print(' << endl;')
+
+    def parse_if(self):
+        self.advance()  # Skip "If"
+        print("    if ", end="")
+        self.parse_condition()
+
+    def parse_else(self):
+        print("    else {")
+
+    def parse_while(self):
+        self.advance()  # Skip "While"
+        print("    while ", end="")
+        self.parse_condition()
+
+    def parse_function(self):
+        self.advance()  # Skip "Function"
+        return_type = "void"
+        if self.current_token.type == "IDENTIFIER":
+            return_type = self.current_token.value
+            self.advance()  # Skip return type
+        function_name = self.current_token.value
+        self.advance()  # Skip function name
+        print(f"    {return_type} {function_name}() {{")
+
+        # Parse function parameters
+        self.advance()  # Skip "("
+        while self.current_token and self.current_token.type != "KEYWORD" and self.current_token.value != "Begin":
+            param_type = self.current_token.value
+            self.advance()  # Skip parameter type
+            param_name = self.current_token.value
+            self.advance()  # Skip parameter name
+            print(f"        {param_type} {param_name};")
+            if self.current_token.value == ",":
+                self.advance()  # Skip ","
+        self.advance()  # Skip "Begin"
+
+        # Parse function body
+        print("        " + "# Function Body")
+        while self.current_token and not (self.current_token.type == "KEYWORD" and self.current_token.value == "End"):
+            if self.current_token.type == "KEYWORD":
+                self.parse_keyword()
+            elif self.current_token.type == "IDENTIFIER":
+                self.parse_assignment()
+            self.advance()
+        print(f"    }}")
+
+    def parse_return(self):
+        self.advance()  # Skip "Return
+
+"
+        print("    return ", end="")
+        self.parse_expression()
+        print(";")
+
+    def parse_for(self):
+        self.advance()  # Skip "For"
+        print("    for (", end="")
+        self.parse_variable_declaration()
+        self.parse_expression()
+        print("; ", end="")
+        self.parse_condition()
+        print("; ", end="")
+        self.parse_expression()
+        print(") {")
+
+    def parse_include(self):
+        self.advance()  # Skip "Include"
+        print(f"    {self.current_token.value}")
+
+    def parse_variable_declaration(self):
+        var_type = self.current_token.value
+        self.advance()  # Skip variable type
+        var_name = self.current_token.value
+        self.advance()  # Skip variable name
+        if self.current_token.type == "OPERATOR" and self.current_token.value == "=":
+            self.advance()  # Skip "="
+            print(f"        {var_type} {var_name} = ", end="")
+            self.parse_expression()
+            print(";")
+        else:
+            print(f"        {var_type} {var_name};")
+
+    def parse_condition(self):
+        print("(", end="")
+        while self.current_token and self.current_token.type != "KEYWORD":
+            print(self.current_token.value, end=" ")
+            self.advance()
+        print(")")
+
+    def parse_expression(self):
+        while self.current_token and self.current_token.type != "KEYWORD":
+            print(self.current_token.value, end=" ")
+            self.advance()
+
+    def expect(self, expected_type):
+        return self.current_token.type == expected_type
+
+# EMC Code with enhanced grammar and flexibility
+emc_code = """
+Begin Program
+    int counter = 0;
+    Prompt User for Length and Width
+    float Area = Length * Width
+    Display "The area of the rectangle is: " + Area
+    If Area > 100
+        Display "Large area!"
+    Else
+        Display "Small area."
+    End If
+    While counter < 5
+        Display "Counter: " + counter
+        counter = counter + 1
+    End While
+    Function int Add(int a, int b)
+        Begin
+            Return a + b;
+        End
+    End Function
+    Display "Sum: " + Add(5, 3)
+    For int i = 0; i < 5; i++
+        Display "Iteration " + i
+    End For
+End Program
+"""
+
+lexer = Lexer(emc_code)
+lexer.lex()
+
+parser = Parser(lexer.tokens)
+parser.parse()
+```
+
+import re
+
+class Token:
+    def __init__(self, type, value=None):
+        self.type = type
+        self.value = value
+
+class Lexer:
+    def __init__(self, code):
+        self.code = code
+        self.tokens = []
+
+    def lex(self):
+        lines = self.code.split('\n')
+        for line in lines:
+            self.tokens += self.tokenize(line)
+
+    def tokenize(self, line):
+        return [Token("KEYWORD", match.group()) if (match := re.match(r'\b(Begin|End|Prompt|Calculate|Display|If|Else|While|Function|Return|For|Include|int|float|string|bool|true|false)\b', word))
+                else Token("IDENTIFIER", word) if re.match(r'\b\w+\b', word)
+                else Token("OPERATOR", word) if re.match(r'[\+\-\*/=<>!&|]', word)
+                else Token("LITERAL", word) if re.match(r'".*"', word) or re.match(r'\b(true|false)\b', word)
+                else Token("ARRAY", word) if re.match(r'\[\w+\]', word)
+                else Token("COMMENT", word) if re.match(r'#.*', word)
+                else Token("INCLUDE", word) if re.match(r'#include\s+<\w+>', word)
+                else Token("UNKNOWN", word)
+                for word in line.split()]
+
+class Parser:
+    def __init__(self, tokens):
+        self.tokens = tokens
+        self.current_token = None
+        self.index = 0
+
+    def advance(self):
+        self.index += 1
+        if self.index < len(self.tokens):
+            self.current_token = self.tokens[self.index]
+        else:
+            self.current_token = None
+
+    def parse(self):
+        print("# Equivalent C++ Code:")
+        print("#include <iostream>")
+        print("using namespace std;\n")
+        print("int main() {")
+        while self.current_token:
+            if self.current_token.type == "KEYWORD":
+                self.parse_keyword()
+            elif self.current_token.type == "IDENTIFIER":
+                self.parse_assignment()
+            self.advance()
+        print("    return 0;\n}")
+
+    def parse_keyword(self):
+        if self.current_token.value == "Begin":
+            print("    " + "# Start of EMC Program")
+        elif self.current_token.value == "End":
+            print("    " + "# End of EMC Program")
+        elif self.current_token.value == "Prompt":
+            self.parse_prompt()
+        elif self.current_token.value == "Calculate":
+            self.parse_calculation()
+        elif self.current_token.value == "Display":
+            self.parse_display()
+        elif self.current_token.value == "If":
+            self.parse_if()
+        elif self.current_token.value == "Else":
+            self.parse_else()
+        elif self.current_token.value == "While":
+            self.parse_while()
+        elif self.current_token.value == "Function":
+            self.parse_function()
+        elif self.current_token.value == "Return":
+            self.parse_return()
+        elif self.current_token.value == "For":
+            self.parse_for()
+        elif self.current_token.value == "Include":
+            self.parse_include()
+        elif self.current_token.value in ["int", "float", "string", "bool"]:
+            self.parse_variable_declaration()
+
+    def parse_prompt(self):
+        self.advance()  # Skip "Prompt"
+        identifier = self.current_token.value
+        print(f"    {identifier} = 0;")
+        print(f"    cout << \"Enter {identifier}: \";")
+        if self.expect("IDENTIFIER"):
+            print(f"    cin >> {self.current_token.value};")
+        else:
+            print("    // Error: Expected an identifier after Prompt")
+
+    def parse_calculation(self):
+        self.advance()  # Skip "Calculate"
+        identifier = self.current_token.value
+        self.advance()  # Skip identifier
+        if self.current_token.type == "OPERATOR" and self.current_token.value == "=":
+            self.advance()  # Skip "="
+            print(f"    {identifier} = ", end="")
+            self.parse_expression()
+            print(";")
+
+    def parse_display(self):
+        self.advance()  # Skip "Display"
+        print(f"    cout << ", end="")
+        self.parse_expression()
+        print(' << endl;')
+
+    def parse_if(self):
+        self.advance()  # Skip "If"
+        print("    if ", end="")
+        self.parse_condition()
+
+    def parse_else(self):
+        print("    else {")
+
+    def parse_while(self):
+        self.advance()  # Skip "While"
+        print("    while ", end="")
+        self.parse_condition()
+
+    def parse_function(self):
+        self.advance()  # Skip "Function"
+        return_type = "void"
+        if self.current_token.type == "IDENTIFIER":
+            return_type = self.current_token.value
+            self.advance()  # Skip return type
+        function_name = self.current_token.value
+       
+        self.advance()  # Skip function name
+        print(f"    {return_type} {function_name}() {{")
+
+        # Parse function parameters
+        self.advance()  # Skip "("
+        param_list = self.parse_parameter_list()
+        print(f"        {param_list}")
+
+        self.advance()  # Skip "Begin"
+        # Parse function body
+        print("        " + "# Function Body")
+        while self.current_token and not (self.current_token.type == "KEYWORD" and self.current_token.value == "End"):
+            if self.current_token.type == "KEYWORD":
+                self.parse_keyword()
+            elif self.current_token.type == "IDENTIFIER":
+                self.parse_assignment()
+            self.advance()
+        print(f"    }}")
+
+    def parse_return(self):
+        self.advance()  # Skip "Return"
+        print("    return ", end="")
+        self.parse_expression()
+        print(";")
+
+    def parse_for(self):
+        self.advance()  # Skip "For"
+        print("    for (", end="")
+        self.parse_variable_declaration()
+        self.parse_expression()
+        print("; ", end="")
+        self.parse_condition()
+        print("; ", end="")
+        self.parse_expression()
+        print(") {")
+
+    def parse_include(self):
+        self.advance()  # Skip "Include"
+        print(f"    {self.current_token.value}")
+
+    def parse_variable_declaration(self):
+        var_type = self.current_token.value
+        self.advance()  # Skip variable type
+        var_name = self.current_token.value
+        self.advance()  # Skip variable name
+        if self.current_token.type == "OPERATOR" and self.current_token.value == "=":
+            self.advance()  # Skip "="
+            print(f"        {var_type} {var_name} = ", end="")
+            self.parse_expression()
+            print(";")
+        else:
+            print(f"        {var_type} {var_name};")
+
+    def parse_parameter_list(self):
+        params = []
+        while self.current_token and self.current_token.type != "KEYWORD" and self.current_token.value != "Begin":
+            param_type = self.current_token.value
+            self.advance()  # Skip parameter type
+            param_name = self.current_token.value
+            self.advance()  # Skip parameter name
+            params.append(f"{param_type} {param_name}")
+            if self.current_token.value == ",":
+                self.advance()  # Skip ","
+        return ', '.join(params)
+
+    def parse_condition(self):
+        print("(", end="")
+        while self.current_token and not (self.current_token.type == "KEYWORD" and self.current_token.value in ["Begin", "End"]):
+            print(self.current_token.value, end=" ")
+            self.advance()
+        print(")")
+
+    def parse_expression(self):
+        while self.current_token and not (self.current_token.type == "KEYWORD" and self.current_token.value in ["Begin", "End"]):
+            print(self.current_token.value, end=" ")
+            self.advance()
+
+    def expect(self, expected_type):
+        return self.current_token.type == expected_type
+
+# EMC Code with enhanced grammar and flexibility
+emc_code = """
+Begin Program
+    int counter = 0;
+    Prompt User for Length and Width
+    float Area = Length * Width
+    Display "The area of the rectangle is: " + Area
+    If Area > 100
+        Display "Large area!"
+    Else
+        Display "Small area."
+    End If
+    While counter < 5
+        Display "Counter: " + counter
+        counter = counter + 1
+    End While
+    Function int Add(int a, int b)
+        Begin
+            Return a + b;
+        End
+    End Function
+    Display "Sum: " + Add(5, 3)
+    For int i = 0; i < 5; i++
+        Display "Iteration " + i
+    End For
+End Program
+"""
+
+lexer = Lexer(emc_code)
+lexer.lex()
+
+parser = Parser(lexer.tokens)
+parser.parse()
+
+import re
+
+class Token:
+    def __init__(self, type, value=None):
+        self.type = type
+        self.value = value
+
+class Lexer:
+    def __init__(self, code):
+        self.code = code
+        self.tokens = []
+        self.current_line = 0
+
+    def lex(self):
+        lines = self.code.split('\n')
+        for line in lines:
+            self.current_line += 1
+            self.tokens += self.tokenize(line)
+
+    def tokenize(self, line):
+        return [Token("KEYWORD", match.group()) if (match := re.match(r'\b(Begin|End|Prompt|Calculate|Display|If|Else|While|Function|Return|For|Include|int|float|string|bool|true|false)\b', word))
+                else Token("IDENTIFIER", word) if re.match(r'\b\w+\b', word)
+                else Token("OPERATOR", word) if re.match(r'[\+\-\*/=<>!&|]', word)
+                else Token("LITERAL", word) if re.match(r'".*"', word) or re.match(r'\b(true|false)\b', word)
+                else Token("ARRAY", word) if re.match(r'\[\w+\]', word)
+                else Token("COMMENT", word) if re.match(r'#.*', word)
+                else Token("INCLUDE", word) if re.match(r'#include\s+<\w+>', word)
+                else Token("UNKNOWN", word)
+                for word in line.split()]
+
+class Parser:
+    def __init__(self, tokens):
+        self.tokens = tokens
+        self.current_token = None
+        self.index = 0
+
+    def advance(self):
+        self.index += 1
+        if self.index < len(self.tokens):
+            self.current_token = self.tokens[self.index]
+        else:
+            self.current_token = None
+
+    def synchronize(self, expected_types):
+        while self.current_token and self.current_token.type not in expected_types:
+            self.advance()
+
+    def parse(self):
+        print("# Equivalent C++ Code:")
+        print("#include <iostream>")
+        print("using namespace std;\n")
+        print("int main() {")
+        while self.current_token:
+            if self.current_token.type == "KEYWORD":
+                self.parse_keyword()
+            elif self.current_token.type == "IDENTIFIER":
+                self.parse_assignment()
+            self.advance()
+        print("    return 0;\n}")
+
+    def parse_keyword(self):
+        if self.current_token.value == "Begin":
+            print("    " + "# Start of EMC Program")
+        elif self.current_token.value == "End":
+            print("    " + "# End of EMC Program")
+        elif self.current_token.value == "Prompt":
+            self.parse_prompt()
+        elif self.current_token.value == "Calculate":
+            self.parse_calculation()
+        elif self.current_token.value == "Display":
+            self.parse_display()
+        elif self.current_token.value == "If":
+            self.parse_if()
+        elif self.current_token.value == "Else":
+            self.parse_else()
+        elif self.current_token.value == "While":
+            self.parse_while()
+        elif self.current_token.value == "Function":
+            self.parse_function()
+        elif self.current_token.value == "Return":
+            self.parse_return()
+        elif self.current_token.value == "For":
+            self.parse_for()
+        elif self.current_token.value == "Include":
+            self.parse_include()
+        elif self.current_token.value in ["int", "float", "string", "bool"]:
+            self.parse_variable_declaration()
+
+    def parse_prompt(self):
+        self.advance()  # Skip "Prompt"
+        identifier = self.current_token.value
+        print(f"    {identifier} = 0;")
+        print(f"    cout << \"Enter {identifier}: \";")
+        if self.expect("IDENTIFIER"):
+            print(f"    cin >> {self.current_token.value};")
+        else:
+            print(f"    // Error: Expected an identifier after Prompt on line {self.current_line}")
+
+    def parse_calculation(self):
+        self.advance()  # Skip "Calculate"
+        identifier = self.current_token.value
+        self.advance()  # Skip identifier
+        if self.current_token.type == "OPERATOR" and self.current_token.value == "=":
+            self.advance()  # Skip "="
+            print(f"    {identifier} = ", end="")
+            self.parse_expression()
+            print(";")
+
+    def parse_display(self):
+        self.advance()  # Skip "Display"
+        print(f"    cout << ", end="")
+        self.parse_expression()
+        print(' << endl;')
+
+    def parse_if(self):
+        self.advance()  # Skip "If"
+        print("    if ", end="")
+        self.parse_condition()
+
+    def parse_else(self):
+        print("    else {")
+
+    def parse_while(self):
+        self.advance()  # Skip "While"
+        print("    while ", end="")
+        self.parse_condition()
+
+    def parse_function(self):
+        self.advance()  # Skip "Function"
+        return_type = "void"
+        if self.current_token.type == "IDENTIFIER":
+            return_type = self.current_token.value
+            self.advance()  # Skip return type
+        function_name = self.current_token.value
+        self.advance()  # Skip function name
+        print(f"    {return_type} {function_name}() {{")
+
+        # Parse function parameters
+        self.advance()  # Skip "("
+        param_list = self.parse_parameter_list()
+        print(f"        {param_list}")
+
+        self.advance()  # Skip "Begin"
+        # Parse function body
+        print("        " + "# Function Body")
+        while self.current_token and not (self.current_token.type == "KEYWORD" and self.current_token.value == "End"):
+            if self.current_token.type == "KEYWORD":
+                self.parse_keyword()
+            elif self.current_token.type == "IDENTIFIER":
+                self.parse_assignment()
+            self.advance()
+        print(f"    }}")
+
+    def parse_return(self):
+        self.advance()  # Skip "Return"
+        print("    return ", end="")
+        self.parse_expression()
+        print(";")
+
+    def parse_for(self):
+        self.advance()  # Skip "For"
+        print("    for (", end="")
+        self.parse_variable_declaration()
+        self.parse_expression()
+        print("; ", end="")
+        self.parse_condition()
+        print("; ", end="")
+        self.parse_expression()
+        print(") {")
+
+    def parse_include(self):
+        self.advance()  # Skip "Include"
+        print(f"    {self.current_token.value}")
+
+    def parse_variable_declaration(self):
+        var_type = self.current_token.value
+        self.advance()  # Skip variable type
+        var_name = self.current_token.value
+        self.advance()  # Skip variable name
+        if self.current_token.type == "OPERATOR" and self.current_token.value == "=":
+            self.advance()  # Skip "="
+            print(f"        {var_type} {var_name} = ", end="")
+            self.parse_expression()
+            print(";")
+        else:
+            print(f"        {var_type} {var_name};")
+
+    def parse_parameter_list(self):
+        params = []
+
+        while self.current_token and self.current_token.type != "KEYWORD" and self.current_token.value != "Begin":
+            param_type = self.current_token.value
+            self.advance()  # Skip parameter type
+            param_name = self.current_token.value
+            self.advance()  # Skip parameter name
+            params.append(f"{param_type} {param_name}")
+            if self.current_token.value == ",":
+                self.advance()  # Skip ","
+        return ', '.join(params)
+
+    def parse_condition(self):
+        print("(", end="")
+        while self.current_token and not (self.current_token.type == "KEYWORD" and self.current_token.value in ["Begin", "End"]):
+            print(self.current_token.value, end=" ")
+            self.advance()
+        print(")")
+
+    def parse_expression(self):
+        while self.current_token and not (self.current_token.type == "KEYWORD" and self.current_token.value in ["Begin", "End"]):
+            print(self.current_token.value, end=" ")
+            self.advance()
+
+    def expect(self, expected_type):
+        return self.current_token.type == expected_type
+
+# EMC Code with enhanced syncing and flexibility
+emc_code = """
+Begin Program
+    int counter = 0;
+    Prompt User for Length and Width
+    float Area = Length * Width
+    Display "The area of the rectangle is: " + Area
+    If Area > 100
+        Display "Large area!"
+    Else
+        Display "Small area."
+    End If
+    While counter < 5
+        Display "Counter: " + counter
+        counter = counter + 1
+    End While
+    Function int Add(int a, int b)
+        Begin
+            Return a + b;
+        End
+    End Function
+    Display "Sum: " + Add(5, 3)
+    For int i = 0; i < 5; i++
+        Display "Iteration " + i
+    End For
+End Program
+"""
+
+lexer = Lexer(emc_code)
+lexer.lex()
+
+parser = Parser(lexer.tokens)
+parser.parse()
+```
+
+# Extended EMC Code with English functions
+emc_code = """
+Begin Program
+    int counter = 0;
+    Prompt User for Length and Width
+    float Area = Length * Width
+    Display "The area of the rectangle is: " + Area
+    If Area > 100
+        Display "Large area!"
+    Else
+        Display "Small area."
+    End If
+    While counter < 5
+        Display "Counter: " + counter
+        counter = counter + 1
+    End While
+
+    # English Functions
+    Function float CircleArea(float radius)
+        Begin
+            Return 3.14 * radius * radius;
+        End
+    End Function
+
+    Display "Circle Area: " + CircleArea(2.5)
+
+    Function string Concatenate(string str1, string str2)
+        Begin
+            Return str1 + str2;
+        End
+    End Function
+
+    Display "Concatenated: " + Concatenate("Hello, ", "World!")
+
+    Function int Sum(int a, int b)
+        Begin
+            Return a + b;
+        End
+    End Function
+
+    Display "Sum: " + Sum(5, 3)
+
+    Function int Factorial(int n)
+        Begin
+            If n <= 1
+                Return 1;
+            Else
+                Return n * Factorial(n - 1);
+            End If
+        End
+    End Function
+
+    Display "Factorial of 5: " + Factorial(5)
+
+    Function void GreetUser(string name)
+        Begin
+            Display "Hello, " + name + "!";
+        End
+    End Function
+
+    GreetUser("John")
+
+    For int i = 0; i < 5; i++
+        Display "Iteration " + i
+    End For
+End Program
+"""
+
+lexer = Lexer(emc_code)
+lexer.lex()
+
+parser = Parser(lexer.tokens)
+parser.parse()
+
+# Enhanced EMC Code
+emc_code = """
+Begin Program
+    int counter = 0;
+    Prompt User for Length and Width
+    float Area = Length * Width
+    Display "The area of the rectangle is: " + Area
+    If Area > 100
+        Display "Large area!"
+    Else
+        Display "Small area."
+    End If
+    While counter < 5
+        Display "Counter: " + counter
+        counter = counter + 1
+    End While
+
+    # English Functions
+    Function float CircleArea(float radius)
+        Begin
+            Return 3.14 * radius * radius;
+        End
+    End Function
+
+    Display "Circle Area: " + CircleArea(2.5)
+
+    Function string Concatenate(string str1, string str2)
+        Begin
+            Return str1 + str2;
+        End
+    End Function
+
+    Display "Concatenated: " + Concatenate("Hello, ", "World!")
+
+    Function int Sum(int a, int b)
+        Begin
+            Return a + b;
+        End
+    End Function
+
+    Display "Sum: " + Sum(5, 3)
+
+    Function int Factorial(int n)
+        Begin
+            If n <= 1
+                Return 1;
+            Else
+                Return n * Factorial(n - 1);
+            End If
+        End
+    End Function
+
+    Display "Factorial of 5: " + Factorial(5)
+
+    Function void GreetUser(string name)
+        Begin
+            Display "Hello, " + name + "!";
+        End
+    End Function
+
+    GreetUser("John")
+
+    # Enhanced Features
+    int[] numbers = [1, 2, 3, 4, 5];
+    Display "Sum of Array: " + SumArray(numbers)
+
+    Function int SumArray(int[] arr)
+        Begin
+            int result = 0;
+            For int i = 0; i < Length(arr); i++
+                result = result + arr[i];
+            End For
+            Return result;
+        End
+    End Function
+
+    int x = 10;
+    int y = 20;
+    Display "Logical AND: " + (x > 5 && y < 30)  # true
+    Display "Logical OR: " + (x > 15 || y < 10)  # false
+    Display "Logical NOT: " + !(x == y)  # true
+
+    For int i = 0; i < 5; i++
+        Display "Iteration " + i
+    End For
+End Program
+"""
+
+lexer = Lexer(emc_code)
+lexer.lex()
+
+parser = Parser(lexer.tokens)
+parser.parse()
+
+# Further Enhanced EMC Code
+emc_code = """
+Begin Program
+    # Global Variables
+    int globalVar = 42;
+    string globalMessage = "Hello, EMC!";
+
+    # User-defined Structure
+    Struct Point
+        float x;
+        float y;
+    End Struct
+
+    Point origin;
+    origin.x = 0.0;
+    origin.y = 0.0;
+
+    # Displaying Global Variables and User-defined Structure
+    Display "Global Variable: " + globalVar
+    Display "Global Message: " + globalMessage
+    Display "Origin Coordinates: (" + origin.x + ", " + origin.y + ")"
+
+    # Advanced Control Structure Example
+    int sum = 0;
+    For int i = 1; i <= 10; i++
+        If i % 2 == 0
+            sum = sum + i;
+        End If
+    End For
+
+    Display "Sum of Even Numbers from 1 to 10: " + sum
+
+    # Recursive Function Example
+    Function int Fibonacci(int n)
+        Begin
+            If n <= 1
+                Return n;
+            Else
+                Return Fibonacci(n - 1) + Fibonacci(n - 2);
+            End If
+        End
+    End Function
+
+    Display "Fibonacci Sequence: " + Fibonacci(8)
+
+    # Nested Structures
+    Struct Rectangle
+        float length;
+        float width;
+        Struct Point origin;
+    End Struct
+
+    Rectangle myRect;
+    myRect.length = 5.0;
+    myRect.width = 3.0;
+    myRect.origin.x = 1.0;
+    myRect.origin.y = 2.0;
+
+    Display "Rectangle Length: " + myRect.length
+    Display "Rectangle Width: " + myRect.width
+    Display "Rectangle Origin Coordinates: (" + myRect.origin.x + ", " + myRect.origin.y + ")"
+
+End Program
+"""
+
+lexer = Lexer(emc_code)
+lexer.lex()
+
+parser = Parser(lexer.tokens)
+parser.parse()
+
+# Further Expanded EMC Code
+emc_code = """
+Begin Program
+    # File Handling
+    File file = OpenFile("output.txt", "w");
+    WriteLine(file, "Hello, EMC!");
+    CloseFile(file);
+
+    # Function Overloading
+    Function int Add(int a, int b)
+        Begin
+            Return a + b;
+        End
+    End Function
+
+    Function float Add(float a, float b)
+        Begin
+            Return a + b;
+        End
+    End Function
+
+    Display "Sum of Integers: " + Add(5, 3)
+    Display "Sum of Floats: " + Add(2.5, 3.7)
+
+    # Switch Statement
+    int day = 3;
+    Switch day
+        Case 1
+            Display "Monday";
+        Case 2
+            Display "Tuesday";
+        Case 3
+            Display "Wednesday";
+        Case 4
+            Display "Thursday";
+        Case 5
+            Display "Friday";
+        Default
+            Display "Weekend!";
+    End Switch
+
+    # Enhanced For Loop
+    int[] numbers = [1, 2, 3, 4, 5];
+    For int num in numbers
+        Display "Array Element: " + num
+    End For
+
+    # Exception Handling
+    Try
+        int result = 10 / 0;
+        Display "Result: " + result;
+    Catch
+        Display "Error: Division by zero!";
+    End Try
+
+End Program
+"""
+
+lexer = Lexer(emc_code)
+lexer.lex()
+
+parser = Parser(lexer.tokens)
+parser.parse()
+
+# Embellished EMC Code
+emc_code = """
+Begin Program
+    # File Handling
+    File file = OpenFile("output.txt", "w");
+    WriteLine(file, "Hello, EMC!");
+    CloseFile(file);
+
+    # Function Overloading
+    Function int Add(int a, int b)
+        Begin
+            Return a + b;
+        End
+    End Function
+
+    Function float Add(float a, float b)
+        Begin
+            Return a + b;
+        End
+    End Function
+
+    Display "Sum of Integers: " + Add(5, 3)
+    Display "Sum of Floats: " + Add(2.5, 3.7)
+
+    # Switch Statement
+    int day = 3;
+    Switch day
+        Case 1
+            Display "Monday";
+        Case 2
+            Display "Tuesday";
+        Case 3
+            Display "Wednesday";
+        Case 4
+            Display "Thursday";
+        Case 5
+            Display "Friday";
+        Default
+            Display "Weekend!";
+    End Switch
+
+    # Enhanced For Loop
+    int[] numbers = [1, 2, 3, 4, 5];
+    For int num in numbers
+        Display "Array Element: " + num
+    End For
+
+    # Exception Handling
+    Try
+        int result = 10 / 0;
+        Display "Result: " + result;
+    Catch DivideByZeroException
+        Display "Error: Division by zero!";
+    End Try
+
+    # Lambda Expressions
+    Function Func<int, int, int> Multiply = (int x, int y) => x * y;
+    Display "Product: " + Multiply(4, 6)
+
+    # Generics
+    Function T Identity<T>(T value)
+        Begin
+            Return value;
+        End
+    End Function
+
+    Display "Generic Identity: " + Identity("EMC")
+
+    # Advanced Control Flow
+    int sum = 0;
+    For int i = 1; i <= 10; i++
+        If i % 2 == 0
+            Continue;  # Skip even numbers
+        End If
+        sum = sum + i;
+        If sum > 15
+            Break;  # Exit loop when sum exceeds 15
+        End If
+    End For
+
+    Display "Sum of Odd Numbers up to 10 (until sum > 15): " + sum
+
+End Program
+"""
+
+lexer = Lexer(emc_code)
+lexer.lex()
+
+parser = Parser(lexer.tokens)
+parser.parse()
+
+# Elaborated EMC Code
+emc_code = """
+Begin Program
+    # File Handling
+    File file = OpenFile("output.txt", "w");
+    WriteLine(file, "Hello, EMC!");
+    CloseFile(file);
+
+    # Function Overloading
+    Function int Add(int a, int b)
+        Begin
+            Return a + b;
+        End
+    End Function
+
+    Function float Add(float a, float b)
+        Begin
+            Return a + b;
+        End
+    End Function
+
+    Display "Sum of Integers: " + Add(5, 3)
+    Display "Sum of Floats: " + Add(2.5, 3.7)
+
+    # Switch Statement
+    int day = 3;
+    Switch day
+        Case 1
+            Display "Monday";
+        Case 2
+            Display "Tuesday";
+        Case 3
+            Display "Wednesday";
+        Case 4
+            Display "Thursday";
+        Case 5
+            Display "Friday";
+        Default
+            Display "Weekend!";
+    End Switch
+
+    # Enhanced For Loop
+    int[] numbers = [1, 2, 3, 4, 5];
+    For int num in numbers
+        Display "Array Element: " + num
+    End For
+
+    # Exception Handling
+    Try
+        int result = 10 / 0;
+        Display "Result: " + result;
+    Catch DivideByZeroException
+        Display "Error: Division by zero!";
+    End Try
+
+    # Lambda Expressions
+    Function Func<int, int, int> Multiply = (int x, int y) => x * y;
+    Display "Product: " + Multiply(4, 6)
+
+    # Generics
+    Function T Identity<T>(T value)
+        Begin
+            Return value;
+        End
+    End Function
+
+    Display "Generic Identity: " + Identity("EMC")
+
+    # Advanced Control Flow
+    int sum = 0;
+    For int i = 1; i <= 10; i++
+        If i % 2 == 0
+            Continue;  # Skip even numbers
+        End If
+        sum = sum + i;
+        If sum > 15
+            Break;  # Exit loop when sum exceeds 15
+        End If
+    End For
+
+    Display "Sum of Odd Numbers up to 10 (until sum > 15): " + sum
+
+    # Custom Exceptions
+    Exception CustomException
+        Begin
+            Display "Custom Exception occurred!";
+        End
+    End Exception
+
+    Try
+        Raise CustomException;
+    Catch CustomException
+        Display "Caught Custom Exception!";
+    End Try
+
+    # Asynchronous Programming
+    Async Function void AsyncOperation()
+        Begin
+            Display "Start of Async Operation";
+            Await Delay(2000);  # Simulate asynchronous delay
+            Display "End of Async Operation";
+        End
+    End Function
+
+    Await AsyncOperation();
+
+    # Object-Oriented Programming
+    Class Person
+        string name;
+        int age;
+
+        Constructor Person(string n, int a)
+            Begin
+                name = n;
+                age = a;
+            End
+        End Constructor
+
+        Method void DisplayInfo()
+            Begin
+                Display "Name: " + name;
+                Display "Age: " + age;
+            End
+        End Method
+    End Class
+
+    Person john = new Person("John", 30);
+    john.DisplayInfo();
+
+End Program
+"""
+
+lexer = Lexer(emc_code)
+lexer.lex()
+
+parser = Parser(lexer.tokens)
+parser.parse()
+
+# Elaborated EMC Code
+emc_code = """
+Begin Program
+    # File Handling
+    File file = OpenFile("output.txt", "w");
+    WriteLine(file, "Hello, EMC!");
+    CloseFile(file);
+
+    # Function Overloading
+    Function int Add(int a, int b)
+        Begin
+            Return a + b;
+        End
+    End Function
+
+    Function float Add(float a, float b)
+        Begin
+            Return a + b;
+        End
+    End Function
+
+    Display "Sum of Integers: " + Add(5, 3)
+    Display "Sum of Floats: " + Add(2.5, 3.7)
+
+    # Switch Statement
+    int day = 3;
+    Switch day
+        Case 1
+            Display "Monday";
+        Case 2
+            Display "Tuesday";
+        Case 3
+            Display "Wednesday";
+        Case 4
+            Display "Thursday";
+        Case 5
+            Display "Friday";
+        Default
+            Display "Weekend!";
+    End Switch
+
+    # Enhanced For Loop
+    int[] numbers = [1, 2, 3, 4, 5];
+    For int num in numbers
+        Display "Array Element: " + num
+    End For
+
+    # Exception Handling
+    Try
+        int result = 10 / 0;
+        Display "Result: " + result;
+    Catch DivideByZeroException
+        Display "Error: Division by zero!";
+    End Try
+
+    # Lambda Expressions
+    Function Func<int, int, int> Multiply = (int x, int y) => x * y;
+    Display "Product: " + Multiply(4, 6)
+
+    # Generics
+    Function T Identity<T>(T value)
+        Begin
+            Return value;
+        End
+    End Function
+
+    Display "Generic Identity: " + Identity("EMC")
+
+    # Advanced Control Flow
+    int sum = 0;
+    For int i = 1; i <= 10; i++
+        If i % 2 == 0
+            Continue;  # Skip even numbers
+        End If
+        sum = sum + i;
+        If sum > 15
+            Break;  # Exit loop when sum exceeds 15
+        End If
+    End For
+
+    Display "Sum of Odd Numbers up to 10 (until sum > 15): " + sum
+
+    # Custom Exceptions
+    Exception CustomException
+        Begin
+            Display "Custom Exception occurred!";
+        End
+    End Exception
+
+    Try
+        Raise CustomException;
+    Catch CustomException
+        Display "Caught Custom Exception!";
+    End Try
+
+    # Asynchronous Programming
+    Async Function void AsyncOperation()
+        Begin
+            Display "Start of Async Operation";
+            Await Delay(2000);  # Simulate asynchronous delay
+            Display "End of Async Operation";
+        End
+    End Function
+
+    Await AsyncOperation();
+
+    # Object-Oriented Programming
+    Class Person
+        string name;
+        int age;
+
+        Constructor Person(string n, int a)
+            Begin
+                name = n;
+                age = a;
+            End
+        End Constructor
+
+        Method void DisplayInfo()
+            Begin
+                Display "Name: " + name;
+                Display "Age: " + age;
+            End
+        End Method
+    End Class
+
+    Person john = new Person("John", 30);
+    john.DisplayInfo();
+
+End Program
+"""
+
+lexer = Lexer(emc_code)
+lexer.lex()
+
+parser = Parser(lexer.tokens)
+parser.parse()
+
+# EMC Code with Extensibility and Paradigm Expansion
+emc_code = """
+# User-defined Modules
+Module MathOperations
+    Function int Square(int x)
+        Begin
+            Return x * x;
+        End
+    End Function
+End Module
+
+Module StringOperations
+    Function string Reverse(string str)
+        Begin
+            return str[::-1];
+        End
+    End Function
+End Module
+
+Begin Program
+    # Using User-defined Modules
+    Display "Square of 5: " + MathOperations.Square(5)
+    Display "Reversed String: " + StringOperations.Reverse("EMC")
+
+    # Functional Programming Concepts
+    Function int[] Map(Function int, int[] numbers)
+        Begin
+            int[] result = [];
+            For int num in numbers
+                result.append(int(num));
+            End For
+            Return result;
+        End
+    End Function
+
+    Function int MultiplyByTwo(int x)
+        Begin
+            Return x * 2;
+        End
+    End Function
+
+    int[] originalNumbers = [1, 2, 3, 4, 5];
+    int[] mappedNumbers = Map(MultiplyByTwo, originalNumbers);
+
+    Display "Original Numbers: " + originalNumbers
+    Display "Mapped Numbers (Multiplied by Two): " + mappedNumbers
+
+    # Custom Language Extensions
+    Extension CustomExtension
+        Function string Greet(string name)
+            Begin
+                Return "Custom Greeting: Hello, " + name + "!";
+            End
+        End Function
+    End Extension
+
+    Display CustomExtension.Greet("User123")
+
+    # Paradigm Expansion - Declarative Programming
+    int[] numbers = [1, 2, 3, 4, 5];
+    int sum = numbers.reduce((acc, num) => acc + num, 0);
+
+    Display "Sum of Numbers (Declarative): " + sum
+
+End Program
+"""
+
+lexer = Lexer(emc_code)
+lexer.lex()
+
+parser = Parser(lexer.tokens)
+parser.parse()
+
+# Refined EMC Code with Some Improvements
+emc_code = """
+# Standard Library Enhancement
+Module IOOperations
+    Function void WriteLine(string message)
+        Begin
+            Display message;
+        End
+    End Function
+
+    # Additional Modules (HTTP, JSON, Database, etc.) can be added in the future
+End Module
+
+# Advanced Data Structures
+Module AdvancedDataStructures
+    Function Map<int, int> CreateHashMap()
+        Begin
+            Map<int, int> hashMap = {};
+            Return hashMap;
+        End
+    End Function
+
+    # Similar modules for sets, trees, etc. can be added
+End Module
+
+Begin Program
+    # Error Handling and Diagnostics
+    Try
+        int result = 10 / 0;
+        WriteLine("Result: " + result);
+    Catch DivideByZeroException
+        WriteLine("Error: Division by zero!");
+    End Try
+
+    # Standard Library Enhancement
+    IOOperations.WriteLine("Hello from EMC!");
+
+    # Advanced Data Structures
+    Map<int, int> myHashMap = AdvancedDataStructures.CreateHashMap();
+    myHashMap[1] = 42;
+    WriteLine("Value in HashMap: " + myHashMap[1]);
+
+    # Memory Management Improvements
+    # (Placeholder for memory management enhancements)
+
+    # Tooling and IDE Support (Placeholder)
+
+    # Concurrency Support (Placeholder)
+    
+    # Optimizations (Placeholder)
+
+    # Documentation and Tutorials (Placeholder)
+
+    # Community Engagement (Placeholder)
+
+End Program
+"""
+
+lexer = Lexer(emc_code)
+lexer.lex()
+
+parser = Parser(lexer.tokens)
+parser.parse()
+
+# Program/App Creation and Game Dev Enhancements
+Module GUIOperations
+    # Placeholder for GUI-related operations in program/app creation
+    Function void DisplayWindow(string title)
+        Begin
+            Display "Created Window: " + title;
+        End
+    End Function
+
+    # Additional GUI-related functions can be added
+End Module
+
+Module GameDevOperations
+    # Placeholder for game development operations
+    Function void LoadGameAssets()
+        Begin
+            Display "Loading game assets...";
+        End
+    End Function
+
+    # Additional game development functions can be added
+End Module
+
+# Placeholder for Memory Management Improvements
+Module MemoryManagement
+    # Placeholder for memory management enhancements
+    Function void OptimizeMemoryUsage()
+        Begin
+            Display "Memory optimization in progress...";
+        End
+    End Function
+End Module
+
+# Placeholder for Concurrency Support
+Module ConcurrencyOperations
+    # Placeholder for concurrency support
+    Function void ExecuteConcurrentTasks()
+        Begin
+            Display "Executing concurrent tasks...";
+        End
+    End Function
+End Module
+
+# Placeholder for Optimizations
+Module OptimizationOperations
+    # Placeholder for optimization operations
+    Function void ApplyOptimizations()
+        Begin
+            Display "Applying optimizations...";
+        End
+    End Function
+End Module
+
+# Placeholder for Documentation and Tutorials
+Module DocumentationOperations
+    # Placeholder for documentation and tutorials
+    Function void CreateDocumentation()
+        Begin
+            Display "Creating documentation...";
+        End
+    End Function
+End Module
+
+# Placeholder for Community Engagement
+Module CommunityEngagement
+    # Placeholder for community engagement
+    Function void EngageCommunity()
+        Begin
+            Display "Engaging with the community...";
+        End
+    End Function
+End Module
+
+Begin Program
+    # GUI Operations (Program/App Creation)
+    GUIOperations.DisplayWindow("My App");
+
+    # Game Development Operations
+    GameDevOperations.LoadGameAssets();
+
+    # Memory Management Improvements
+    MemoryManagement.OptimizeMemoryUsage();
+
+    # Concurrency Support
+    ConcurrencyOperations.ExecuteConcurrentTasks();
+
+    # Optimizations
+    OptimizationOperations.ApplyOptimizations();
+
+    # Documentation and Tutorials
+    DocumentationOperations.CreateDocumentation();
+
+    # Community Engagement
+    CommunityEngagement.EngageCommunity();
+
+End Program
+
+# Program/App Creation and Game Dev Logic
+Module GUIOperations
+    Function void DisplayWindow(string title, int width, int height)
+        Begin
+            Display "Created Window: " + title + " (Size: " + width + "x" + height + ")";
+        End
+    End Function
+End Module
+
+Module GameDevOperations
+    Function void LoadGameAssets()
+        Begin
+            Display "Loading game assets...";
+        End
+    End Function
+End Module
+
+Module MemoryManagement
+    Function void OptimizeMemoryUsage()
+        Begin
+            Display "Memory optimization in progress...";
+        End
+    End Function
+End Module
+
+Module ConcurrencyOperations
+    Function void ExecuteConcurrentTasks()
+        Begin
+            Display "Executing concurrent tasks...";
+        End
+    End Function
+End Module
+
+Module OptimizationOperations
+    Function void ApplyOptimizations()
+        Begin
+            Display "Applying optimizations...";
+        End
+    End Function
+End Module
+
+Module DocumentationOperations
+    Function void CreateDocumentation()
+        Begin
+            Display "Creating documentation...";
+        End
+    End Function
+End Module
+
+Module CommunityEngagement
+    Function void EngageCommunity()
+        Begin
+            Display "Engaging with the community...";
+        End
+    End Function
+End Module
+
+Begin Program
+    # GUI Operations (Program/App Creation)
+    GUIOperations.DisplayWindow("My App", 800, 600);
+
+    # Game Development Operations
+    GameDevOperations.LoadGameAssets();
+
+    # Memory Management Improvements
+    MemoryManagement.OptimizeMemoryUsage();
+
+    # Concurrency Support
+    ConcurrencyOperations.ExecuteConcurrentTasks();
+
+    # Optimizations
+    OptimizationOperations.ApplyOptimizations();
+
+    # Documentation and Tutorials
+    DocumentationOperations.CreateDocumentation();
+
+    # Community Engagement
+    CommunityEngagement.EngageCommunity();
+End Program
+
+# Refined EMC Code with Some Improvements
+emc_code = """
+# Standard Library Enhancement
+Module IOOperations
+    Function void WriteLine(string message)
+        Begin
+            Display message;
+        End
+    End Function
+
+    # Additional Modules (HTTP, JSON, Database, etc.) can be added in the future
+End Module
+
+# Advanced Data Structures
+Module AdvancedDataStructures
+    Function Map<int, int> CreateHashMap()
+        Begin
+            Map<int, int> hashMap = {};
+            Return hashMap;
+        End
+    End Function
+
+    # Similar modules for sets, trees, etc. can be added
+End Module
+
+Begin Program
+    # Error Handling and Diagnostics
+    Try
+        int result = 10 / 0;
+        WriteLine("Result: " + result);
+    Catch DivideByZeroException
+        WriteLine("Error: Division by zero!");
+    End Try
+
+    # Standard Library Enhancement
+    IOOperations.WriteLine("Hello from EMC!");
+
+    # Advanced Data Structures
+    Map<int, int> myHashMap = AdvancedDataStructures.CreateHashMap();
+    myHashMap[1] = 42;
+    WriteLine("Value in HashMap: " + myHashMap[1]);
+
+    # Memory Management Improvements
+    # (Placeholder for memory management enhancements)
+
+    # Tooling and IDE Support (Placeholder)
+
+    # Concurrency Support (Placeholder)
+    
+    # Optimizations (Placeholder)
+
+    # Documentation and Tutorials (Placeholder)
+
+    # Community Engagement (Placeholder)
+
+End Program
+"""
+
+lexer = Lexer(emc_code)
+lexer.lex()
+
+parser = Parser(lexer.tokens)
+parser.parse()
+
+# Program/App Creation and Game Dev Enhancements
+Module GUIOperations
+    # Placeholder for GUI-related operations in program/app creation
+    Function void DisplayWindow(string title)
+        Begin
+            Display "Created Window: " + title;
+        End
+    End Function
+
+    # Additional GUI-related functions can be added
+End Module
+
+Module GameDevOperations
+    # Placeholder for game development operations
+    Function void LoadGameAssets()
+        Begin
+            Display "Loading game assets...";
+        End
+    End Function
+
+    # Additional game development functions can be added
+End Module
+
+# Placeholder for Memory Management Improvements
+Module MemoryManagement
+    # Placeholder for memory management enhancements
+    Function void OptimizeMemoryUsage()
+        Begin
+            Display "Memory optimization in progress...";
+        End
+    End Function
+End Module
+
+# Placeholder for Concurrency Support
+Module ConcurrencyOperations
+    # Placeholder for concurrency support
+    Function void ExecuteConcurrentTasks()
+        Begin
+            Display "Executing concurrent tasks...";
+        End
+    End Function
+End Module
+
+# Placeholder for Optimizations
+Module OptimizationOperations
+    # Placeholder for optimization operations
+    Function void ApplyOptimizations()
+        Begin
+            Display "Applying optimizations...";
+        End
+    End Function
+End Module
+
+# Placeholder for Documentation and Tutorials
+Module DocumentationOperations
+    # Placeholder for documentation and tutorials
+    Function void CreateDocumentation()
+        Begin
+            Display "Creating documentation...";
+        End
+    End Function
+End Module
+
+# Placeholder for Community Engagement
+Module CommunityEngagement
+    # Placeholder for community engagement
+    Function void EngageCommunity()
+        Begin
+            Display "Engaging with the community...";
+        End
+    End Function
+End Module
+
+Begin Program
+    # GUI Operations (Program/App Creation)
+    GUIOperations.DisplayWindow("My App");
+
+    # Game Development Operations
+    GameDevOperations.LoadGameAssets();
+
+    # Memory Management Improvements
+    MemoryManagement.OptimizeMemoryUsage();
+
+    # Concurrency Support
+    ConcurrencyOperations.ExecuteConcurrentTasks();
+
+    # Optimizations
+    OptimizationOperations.ApplyOptimizations();
+
+    # Documentation and Tutorials
+    DocumentationOperations.CreateDocumentation();
+
+    # Community Engagement
+    CommunityEngagement.EngageCommunity();
+
+End Program
+
+# Program/App Creation and Game Dev Logic
+Module GUIOperations
+    Function void DisplayWindow(string title, int width, int height)
+        Begin
+            Display "Created Window: " + title + " (Size: " + width + "x" + height + ")";
+        End
+    End Function
+End Module
+
+Module GameDevOperations
+    Function void LoadGameAssets()
+        Begin
+            Display "Loading game assets...";
+        End
+    End Function
+End Module
+
+Module MemoryManagement
+    Function void OptimizeMemoryUsage()
+        Begin
+            Display "Memory optimization in progress...";
+        End
+    End Function
+End Module
+
+Module ConcurrencyOperations
+    Function void ExecuteConcurrentTasks()
+        Begin
+            Display "Executing concurrent tasks...";
+        End
+    End Function
+End Module
+
+Module OptimizationOperations
+    Function void ApplyOptimizations()
+        Begin
+            Display "Applying optimizations...";
+        End
+    End Function
+End Module
+
+Module DocumentationOperations
+    Function void CreateDocumentation()
+        Begin
+            Display "Creating documentation...";
+        End
+    End Function
+End Module
+
+Module CommunityEngagement
+    Function void EngageCommunity()
+        Begin
+            Display "Engaging with the community...";
+        End
+    End Function
+End Module
+
+Begin Program
+    # GUI Operations (Program/App Creation)
+    GUIOperations.DisplayWindow("My App", 800, 600);
+
+    # Game Development Operations
+    GameDevOperations.LoadGameAssets();
+
+    # Memory Management Improvements
+    MemoryManagement.OptimizeMemoryUsage();
+
+    # Concurrency Support
+    ConcurrencyOperations.ExecuteConcurrentTasks();
+
+    # Optimizations
+    OptimizationOperations.ApplyOptimizations();
+
+    # Documentation and Tutorials
+    DocumentationOperations.CreateDocumentation();
+
+    # Community Engagement
+    CommunityEngagement.EngageCommunity();
+End Program
+
+# Error Handling and Diagnostics
+Module ErrorHandling
+    Function void HandleCompilationError(string errorMessage)
+        Begin
+            Display "Compilation Error: " + errorMessage;
+            # Additional logic for handling compilation errors can be added
+        End
+    End Function
+
+    Function void HandleRuntimeError(string errorMessage)
+        Begin
+            Display "Runtime Error: " + errorMessage;
+            # Additional logic for handling runtime errors can be added
+        End
+    End Function
+End Module
+
+# Standard Library Enhancement
+Module StandardLibrary
+    Function void HttpRequest(string url)
+        Begin
+            Display "HTTP Request Sent to: " + url;
+            # Additional logic for handling HTTP requests can be added
+        End
+    End Function
+
+    Function void ManipulateJSON(string jsonData)
+        Begin
+            Display "JSON Manipulation: " + jsonData;
+            # Additional logic for JSON manipulation can be added
+        End
+    End Function
+
+    # Placeholder for additional modules (e.g., databases, networking, system-level operations)
+End Module
+
+# Advanced Data Structures
+Module AdvancedDataStructures
+    Function HashMap<int, int> CreateHashMap()
+        Begin
+            HashMap<int, int> hashMap = {};
+            Return hashMap;
+        End
+    End Function
+
+    Function void PerformTreeOperations()
+        Begin
+            Display "Tree Operations Performed.";
+            # Additional logic for tree operations can be added
+        End
+    End Function
+End Module
+
+# Concurrency Support
+Module ConcurrencySupport
+    Function void ExecuteWithCoroutines()
+        Begin
+            Display "Executing with Coroutines.";
+            # Additional logic for coroutines can be added
+        End
+    End Function
+
+    Function void SynchronizeData()
+        Begin
+            Display "Data Synchronized.";
+            # Additional logic for synchronization can be added
+        End
+    End Function
+End Module
+
+# Memory Management Improvements
+Module MemoryManagement
+    Function void IntroduceGarbageCollection()
+        Begin
+            Display "Garbage Collection Introduced.";
+            # Additional logic for garbage collection can be added
+        End
+    End Function
+
+    Function void ImplementMemorySafeConcepts()
+        Begin
+            Display "Memory-Safe Concepts Implemented.";
+            # Additional logic for memory-safe concepts can be added
+        End
+    End Function
+End Module
+
+# Optimizations
+Module Optimizations
+    Function void BasicInterpreterOptimizations()
+        Begin
+            Display "Basic Interpreter Optimizations Applied.";
+            # Additional logic for interpreter optimizations can be added
+        End
+    End Function
+
+    Function void ApplyJITCompilation()
+        Begin
+            Display "JIT Compilation Applied for Improved Performance.";
+            # Additional logic for JIT compilation can be added
+        End
+    End Function
+End Module
+
+# Tooling and IDE Support
+Module IDESupport
+    Function void RealTimeErrorChecking()
+        Begin
+            Display "Real-time Error Checking Enabled.";
+            # Additional logic for real-time error checking can be added
+        End
+    End Function
+
+    Function void DebuggingTools()
+        Begin
+            Display "Debugging Tools Available.";
+            # Additional logic for debugging tools can be added
+        End
+    End Function
+End Module
+
+Begin Program
+    # Error Handling and Diagnostics
+    ErrorHandling.HandleCompilationError("Syntax error in line 10.");
+    ErrorHandling.HandleRuntimeError("Null Pointer Exception at runtime.");
+
+    # Standard Library Enhancement
+    StandardLibrary.HttpRequest("https://example.com/api/data");
+    StandardLibrary.ManipulateJSON("{\"key\": \"value\"}");
+
+    # Advanced Data Structures
+    HashMap<int, int> myHashMap = AdvancedDataStructures.CreateHashMap();
+    AdvancedDataStructures.PerformTreeOperations();
+
+    # Concurrency Support
+    ConcurrencySupport.ExecuteWithCoroutines();
+    ConcurrencySupport.SynchronizeData();
+
+    # Memory Management Improvements
+    MemoryManagement.IntroduceGarbageCollection();
+    MemoryManagement.ImplementMemorySafeConcepts();
+
+    # Optimizations
+    Optimizations.BasicInterpreterOptimizations();
+    Optimizations.ApplyJITCompilation();
+
+    # Tooling and IDE Support
+    IDESupport.RealTimeErrorChecking();
+    IDESupport.DebuggingTools();
+End Program
+
+Certainly, let's replace "Nu fixes" with "bug fixes" in the EMC code:
+
+```python
+# Intricate Advanced Debugging, Edge Cases, Glitches, Bug Fixes, Error Handling, and Security
+Module AdvancedDebugging
+    Function void EnableVerboseDebugging()
+        Begin
+            Display "Verbose Debugging Enabled.";
+            # Additional logic for detailed debugging can be added
+        End
+    End Function
+
+    Function void HandleEdgeCases(int input)
+        Begin
+            if (input <= 0)
+                Display "Edge Case Detected: Negative or Zero Input";
+            else if (input > 1000)
+                Display "Edge Case Detected: Input Exceeds 1000";
+            # Additional logic for handling specific edge cases can be added
+        End
+    End Function
+
+    Function void FixGlitches()
+        Begin
+            Display "Glitches Fixed.";
+            # Additional logic for fixing glitches can be added
+        End
+    End Function
+
+    Function void ApplyBugFixes()
+        Begin
+            Display "Applied Bug Fixes.";
+            # Additional logic for applying bug fixes can be added
+        End
+    End Function
+
+    Function void EnhanceErrorHandling()
+        Begin
+            Display "Error Handling Enhanced.";
+            # Additional logic for advanced error handling can be added
+        End
+    End Function
+
+    Function void ImplementSecurityMeasures()
+        Begin
+            Display "Security Measures Implemented.";
+            # Additional logic for security measures can be added
+        End
+    End Function
+End Module
+
+Begin Program
+    # Intricate Advanced Debugging
+    AdvancedDebugging.EnableVerboseDebugging();
+
+    # Edge Cases and Glitches
+    AdvancedDebugging.HandleEdgeCases(1200);
+    AdvancedDebugging.HandleEdgeCases(-5);
+
+    # Glitch and Bug Fixes
+    AdvancedDebugging.FixGlitches();
+    AdvancedDebugging.ApplyBugFixes();
+
+    # Enhanced Error Handling
+    AdvancedDebugging.EnhanceErrorHandling();
+
+    # Security Measures
+    AdvancedDebugging.ImplementSecurityMeasures();
+End Program
+```
+
+In this updated code, the function `ApplyNuFixes` has been replaced with `ApplyBugFixes` to better reflect the concept of addressing and resolving software bugs. Adjustments have been made throughout the code accordingly.
+
+# Intricate Advanced Debugging, Edge Cases, Glitches, Bug Fixes, Crash Fixes, Retry, Code Correction, Code Completion, Error Detection, and Security
+Module AdvancedDebugging
+    Function void EnableVerboseDebugging()
+        Begin
+            Display "Verbose Debugging Enabled.";
+            # Additional logic for detailed debugging can be added
+        End
+    End Function
+
+    Function void HandleEdgeCases(int input)
+        Begin
+            if (input <= 0)
+                Display "Edge Case Detected: Negative or Zero Input";
+            else if (input > 1000)
+                Display "Edge Case Detected: Input Exceeds 1000";
+            # Additional logic for handling specific edge cases can be added
+        End
+    End Function
+
+    Function void FixGlitches()
+        Begin
+            Display "Glitches Fixed.";
+            # Additional logic for fixing glitches can be added
+        End
+    End Function
+
+    Function void ApplyBugFixes()
+        Begin
+            Display "Applied Bug Fixes.";
+            # Additional logic for applying bug fixes can be added
+        End
+    End Function
+
+    Function void ImplementCrashFixes()
+        Begin
+            Display "Implemented Crash Fixes.";
+            # Additional logic for crash fixes can be added
+        End
+    End Function
+
+    Function void RetryOperation(int attempts)
+        Begin
+            for (int i = 1; i <= attempts; i++)
+                Display "Retry Attempt " + i;
+            # Additional logic for retry mechanism can be added
+        End
+    End Function
+
+    Function void CorrectCode(string codeSnippet)
+        Begin
+            Display "Corrected Code: " + codeSnippet;
+            # Additional logic for code correction can be added
+        End
+    End Function
+
+    Function void CompleteCode(string incompleteCode)
+        Begin
+            Display "Code Completion: " + incompleteCode;
+            # Additional logic for code completion can be added
+        End
+    End Function
+
+    Function void DetectErrors(string code)
+        Begin
+            Display "Errors Detected in Code: " + code;
+            # Additional logic for error detection can be added
+        End
+    End Function
+
+    Function void ProvideSuggestions(string code)
+        Begin
+            Display "Suggestions for Code: " + code;
+            # Additional logic for providing suggestions can be added
+        End
+    End Function
+
+    Function void EnhanceErrorHandling()
+        Begin
+            Display "Error Handling Enhanced.";
+            # Additional logic for advanced error handling can be added
+        End
+    End Function
+
+    Function void ImplementSecurityMeasures()
+        Begin
+            Display "Security Measures Implemented.";
+            # Additional logic for security measures can be added
+        End
+    End Function
+End Module
+
+Begin Program
+    # Intricate Advanced Debugging
+    AdvancedDebugging.EnableVerboseDebugging();
+
+    # Edge Cases and Glitches
+    AdvancedDebugging.HandleEdgeCases(1200);
+    AdvancedDebugging.HandleEdgeCases(-5);
+
+    # Glitch and Bug Fixes
+    AdvancedDebugging.FixGlitches();
+    AdvancedDebugging.ApplyBugFixes();
+
+    # Crash Fixes and Retry
+    AdvancedDebugging.ImplementCrashFixes();
+    AdvancedDebugging.RetryOperation(3);
+
+    # Code Correction and Completion
+    AdvancedDebugging.CorrectCode("int x = 5;;");
+    AdvancedDebugging.CompleteCode("for (int i = 0; i < 10; i++) { /* incomplete code */ }");
+
+    # Error Detection and Suggestions
+    AdvancedDebugging.DetectErrors("if (x = 5) { /* incorrect assignment */ }");
+    AdvancedDebugging.ProvideSuggestions("for (int i = 0; i < 10; i++) { /* suggest better loop condition */ }");
+
+    # Enhanced Error Handling
+    AdvancedDebugging.EnhanceErrorHandling();
+
+    # Security Measures
+    AdvancedDebugging.ImplementSecurityMeasures();
+End Program
+
+
